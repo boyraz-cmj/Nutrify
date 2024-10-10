@@ -1,20 +1,38 @@
 const express = require('express');
-const axios = require('axios');
-const cheerio = require('cheerio');
+const puppeteer = require('puppeteer');
 const cors = require('cors');
+const fs = require('fs').promises;
+const path = require('path');
 
 const app = express();
 const port = 3000;
 
 app.use(cors({origin: '*'}));
 app.use(express.json());
+app.use('/screenshots', express.static(path.join(__dirname, 'screenshots')));
 
 let logs = [];
 
-function addLog(message) {
-  const log = `${new Date().toISOString()} - ${message}`;
+async function addLog(step, message, details = null, screenshot = null) {
+  const log = `[${step}] ${message}`;
   console.log(log);
   logs.push(log);
+  if (details) {
+    const detailLog = JSON.stringify(details, null, 2);
+    console.log(detailLog);
+    logs.push(detailLog);
+  }
+  if (screenshot) {
+    try {
+      const filename = `screenshot_${Date.now()}.png`;
+      const filePath = path.join(__dirname, 'screenshots', filename);
+      await fs.writeFile(filePath, screenshot);
+      logs.push(`<img src="/screenshots/${filename}" style="max-width: 100%; height: auto; margin-top: 10px; border: 1px solid #ddd;">`);
+    } catch (error) {
+      console.error('Error saving screenshot:', error);
+      logs.push(`Error saving screenshot: ${error.message}`);
+    }
+  }
   if (logs.length > 100) logs.shift(); // Son 100 logu tut
 }
 
@@ -23,48 +41,100 @@ app.get('/', (req, res) => {
 });
 
 app.get('/product-name/:barcode', async (req, res) => {
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    defaultViewport: null,
+    timeout: 60000 // 60 saniye
+  });
+  const page = await browser.newPage();
+  
   try {
     const { barcode } = req.params;
-    addLog(`Received request for barcode: ${barcode}`);
+    await addLog('START', `Received request for barcode: ${barcode}`);
     
     const url = 'https://platform.fatsecret.com/api-demo#barcode-api';
-    addLog(`Sending request to: ${url}`);
+    await addLog('NAVIGATION', `Navigating to: ${url}`);
     
-    // İlk isteği gönder ve sayfayı al
-    const response = await axios.get(url);
-    addLog('Received initial response');
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
+    try {
+      let screenshot = await page.screenshot();
+      await addLog('PAGE_LOADED', 'Barcode API page loaded', null, screenshot);
+    } catch (error) {
+      console.error('Error taking screenshot:', error);
+      await addLog('SCREENSHOT_ERROR', 'Error taking screenshot', { error: error.message });
+    }
     
-    let $ = cheerio.load(response.data);
+    // JavaScript'in çalışmasını bekleyelim
+    await page.waitForSelector('#barcode_market', { visible: true, timeout: 10000 });
     
-    // Market dropdown'unu seç ve Turkey'i seç
-    $('select[name="market"]').val('Turkey');
-    addLog('Selected Turkey from market dropdown');
-    
-    // Barkod numarasını gir
-    $('input[name="barcode"]').val(barcode);
-    addLog(`Entered barcode: ${barcode}`);
-    
-    // Form gönderme işlemini simüle et
-    const formData = new URLSearchParams();
-    formData.append('market', 'Turkey');
-    formData.append('barcode', barcode);
-    
-    addLog('Sending POST request to simulate form submission');
-    const searchResponse = await axios.post(url, formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    // Market seçimi
+    try {
+      await page.select('#barcode_market', 'TR');
+      const selectedMarket = await page.$eval('#barcode_market', el => el.value);
+      screenshot = await page.screenshot();
+      await addLog('MARKET_SELECTED', `Selected market: ${selectedMarket}`, null, screenshot);
+    } catch (error) {
+      console.error('Error selecting market:', error);
+      await addLog('MARKET_SELECTION_ERROR', 'Error selecting market', { error: error.message });
+    }
+
+    // Barkod girişi
+    await page.type('input[name="Barcode"]', barcode);
+    screenshot = await page.screenshot();
+    await addLog('BARCODE_ENTERED', 'Entered barcode', null, screenshot);
+
+    // Formu gönderelim
+    const submitButton = await page.$('#barcode_search_button');
+    if (submitButton) {
+      await addLog('SUBMIT_BUTTON_FOUND', 'Submit button found');
+      await submitButton.click();
+      
+      // Yükleme göstergesini bekleyelim
+      await addLog('WAITING_FOR_RESULTS', 'Waiting for results to load');
+      await page.waitForSelector('.loading-indicator', { visible: true, timeout: 10000 }).catch(() => {});
+      await page.waitForSelector('.loading-indicator', { hidden: true, timeout: 60000 }).catch(() => {});
+      
+      // Sonuç sayfasının yüklenmesini bekleyelim
+      await page.waitForSelector('.brand-name, .food-name, .no-results-message', { timeout: 60000 });
+      
+      screenshot = await page.screenshot();
+      await addLog('RESULTS_PAGE_LOADED', 'Results page loaded', null, screenshot);
+    } else {
+      await addLog('SUBMIT_BUTTON_NOT_FOUND', 'Submit button not found');
+    }
+
+    // Sonucu alalım
+    const noResults = await page.$('.no-results-message');
+    if (noResults) {
+      await addLog('NO_RESULTS', 'No results found for this barcode');
+      res.status(404).json({ error: 'Product not found' });
+    } else {
+      const brandName = await page.$eval('.brand-name', el => el.textContent.trim()).catch(() => null);
+      let foodName = await page.$eval('.food-name', el => el.textContent.trim()).catch(() => null);
+
+      // Eğer foodName, brandName'i içeriyorsa, brandName'i çıkar
+      if (foodName && brandName && foodName.includes(brandName)) {
+        foodName = foodName.replace(brandName, '').trim();
       }
-    });
-    addLog('Received search response');
-    
-    $ = cheerio.load(searchResponse.data);
-    const productName = $('.food_title').first().text().trim();
-    
-    addLog(`Product name found: ${productName}`);
-    res.json({ productName });
+
+      if (brandName || foodName) {
+        const result = {
+          brandName: brandName || 'Marka bulunamadı',
+          productName: foodName || 'Ürün adı bulunamadı'
+        };
+        await addLog('SUCCESS', `Product found: ${JSON.stringify(result)}`, null, await page.screenshot());
+        res.json(result);
+      } else {
+        await addLog('NOT_FOUND', 'Product information not found in the response', null, await page.screenshot());
+        res.status(404).json({ error: 'Product not found' });
+      }
+    }
   } catch (error) {
-    addLog(`Error: ${error.message}`);
-    res.status(500).json({ error: 'An error occurred while fetching the product name', details: error.message });
+    await addLog('ERROR', `Error: ${error.message}`, { stack: error.stack }, await page.screenshot());
+    res.status(500).json({ error: 'An error occurred while fetching the product information', details: error.message });
+  } finally {
+    await browser.close();
   }
 });
 
@@ -73,6 +143,11 @@ app.get('/logs', (req, res) => {
     <html>
       <head>
         <title>Backend Logs</title>
+        <style>
+          body { font-family: Arial, sans-serif; }
+          #logs { margin-top: 20px; }
+          img { max-width: 100%; height: auto; margin-top: 10px; border: 1px solid #ddd; }
+        </style>
         <script>
           setInterval(() => {
             fetch('/api/logs')
@@ -95,6 +170,15 @@ app.get('/api/logs', (req, res) => {
   res.json(logs);
 });
 
+const screenshotsDir = path.join(__dirname, 'screenshots');
+fs.mkdir(screenshotsDir, { recursive: true }, (err) => {
+  if (err) {
+    console.error('Error creating screenshots directory:', err);
+  } else {
+    console.log('Screenshots directory is ready');
+  }
+});
+
 app.listen(port, '0.0.0.0', () => {
-  addLog(`Server running at http://0.0.0.0:${port}`);
+  addLog('SERVER', `Server running at http://0.0.0.0:${port}`);
 });

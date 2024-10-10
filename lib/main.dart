@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
 }
 
 final barcodeProvider = StateProvider<String?>((ref) => null);
-final productNameProvider = StateProvider<String?>((ref) => null);
+final productNameProvider = StateProvider<ProductInfo?>((ref) => null);
 
 class BarcodeScanner extends ConsumerWidget {
   const BarcodeScanner({super.key});
@@ -60,8 +60,7 @@ class BarcodeScanner extends ConsumerWidget {
 
   Future<void> getProductName(WidgetRef ref, String barcode) async {
     try {
-      const String baseUrl =
-          'http://10.32.18.172:3000'; // Localhost IP adresiniz
+      const String baseUrl = 'http://10.32.18.172:3000'; // Localhost IP adresiniz
 
       final uri = Uri.parse('$baseUrl/product-name/$barcode');
       _logger.info('Requesting: $uri');
@@ -73,23 +72,23 @@ class BarcodeScanner extends ConsumerWidget {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
+        final brandName = data['brandName'];
         final productName = data['productName'];
-        _logger.info('Product name: $productName');
-        ref.read(productNameProvider.notifier).state =
-            productName.isNotEmpty ? productName : 'Ürün bulunamadı';
+        _logger.info('Brand name: $brandName, Product name: $productName');
+        ref.read(productNameProvider.notifier).state = ProductInfo(brandName, productName);
       } else {
-        throw Exception('Failed to load product name: ${response.statusCode}');
+        throw Exception('Failed to load product information: ${response.statusCode}');
       }
     } catch (e) {
-      _logger.severe('Error fetching product name', e);
+      _logger.severe('Error fetching product information', e);
       if (e is SocketException) {
         ref.read(productNameProvider.notifier).state =
-            'Bağlantı hatası: Sunucuya ulaşılamıyor.';
+            ProductInfo('Hata', 'Bağlantı hatası: Sunucuya ulaşılamıyor.');
       } else if (e is TimeoutException) {
         ref.read(productNameProvider.notifier).state =
-            'Bağlantı zaman aşımına uğradı. Lütfen tekrar deneyin.';
+            ProductInfo('Hata', 'Bağlantı zaman aşımına uğradı. Lütfen tekrar deneyin.');
       } else {
-        ref.read(productNameProvider.notifier).state = 'Hata: ${e.toString()}';
+        ref.read(productNameProvider.notifier).state = ProductInfo('Hata', e.toString());
       }
     }
   }
@@ -97,7 +96,7 @@ class BarcodeScanner extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final barcode = ref.watch(barcodeProvider);
-    final productName = ref.watch(productNameProvider);
+    final productInfo = ref.watch(productNameProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -125,21 +124,44 @@ class BarcodeScanner extends ConsumerWidget {
                 ),
               ),
             const SizedBox(height: 20),
-            if (productName != null)
-              SelectableText.rich(
-                TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: 'Ürün Adı: ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+            if (productInfo != null)
+              Column(
+                children: [
+                  SelectableText.rich(
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Marka: ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: productInfo.brandName),
+                      ],
                     ),
-                    TextSpan(text: productName),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 10),
+                  SelectableText.rich(
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Ürün Adı: ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: productInfo.productName),
+                      ],
+                    ),
+                  ),
+                ],
               ),
           ],
         ),
       ),
     );
   }
+}
+
+class ProductInfo {
+  final String brandName;
+  final String productName;
+
+  ProductInfo(this.brandName, this.productName);
 }
