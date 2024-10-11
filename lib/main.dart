@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'screens/home_screen.dart'; // Bu import'u eklediğinizden emin olun
+import 'screens/home_screen.dart'; // Remember remember
 
 final _logger = Logger('IngrediApp');
 
