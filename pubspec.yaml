@@ -31,7 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
   camera: ^0.10.5+2
-  flutter_riverpod: ^2.4.9
+  flutter_riverpod: ^2.3.6
+  flutter_hooks: ^0.18.0
+  hooks_riverpod: ^2.3.6
   flutter_barcode_scanner: ^2.0.0
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,6 +41,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   http: ^0.13.5
   logging: ^1.1.0  # Bu satırın eklendiğinden emin olun
+  riverpod: ^2.3.6  # Bu satırı ekleyin
 
 dev_dependencies:
   flutter_test:

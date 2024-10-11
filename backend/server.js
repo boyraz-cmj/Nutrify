@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 const cors = require('cors');
 const fs = require('fs').promises;
 const path = require('path');
+const Tesseract = require('tesseract.js');
 
 const app = express();
 const port = 3000;
@@ -96,12 +97,22 @@ app.get('/product-name/:barcode', async (req, res) => {
       await page.waitForSelector('.loading-indicator', { hidden: true, timeout: 60000 }).catch(() => {});
       
       // Sonuç sayfasının yüklenmesini bekleyelim
-      await page.waitForSelector('.brand-name, .food-name, .no-results-message', { timeout: 60000 });
+      await page.waitForSelector('.brand-name, .food-name, .no-results-message, .content', { timeout: 60000 });
       
       screenshot = await page.screenshot();
       await addLog('RESULTS_PAGE_LOADED', 'Results page loaded', null, screenshot);
     } else {
       await addLog('SUBMIT_BUTTON_NOT_FOUND', 'Submit button not found');
+    }
+
+    // "Unknown barcode" kontrolü ekleyelim
+    const unknownBarcodeElement = await page.$('.content');
+    if (unknownBarcodeElement) {
+      const content = await page.evaluate(el => el.textContent, unknownBarcodeElement);
+      if (content.trim().toLowerCase() === 'unknown barcode') {
+        await addLog('UNKNOWN_BARCODE', 'Unknown barcode error detected');
+        return res.status(404).json({ error: 'Unknown barcode' });
+      }
     }
 
     // Sonucu alalım
@@ -181,4 +192,35 @@ fs.mkdir(screenshotsDir, { recursive: true }, (err) => {
 
 app.listen(port, '0.0.0.0', () => {
   addLog('SERVER', `Server running at http://0.0.0.0:${port}`);
+});
+
+app.post('/scan', async (req, res) => {
+  const { image } = req.body;
+
+  if (!image) {
+    return res.status(400).json({ error: 'Image data is required' });
+  }
+
+  try {
+    const result = await Tesseract.recognize(Buffer.from(image, 'base64'), 'eng');
+    const text = result.data.text.trim();
+
+    // "Unknown barcode" kontrolü ekleyelim
+    if (text.toLowerCase().includes('unknown barcode')) {
+      return res.status(404).json({ error: 'Unknown barcode' });
+    }
+
+    // Diğer işlemler...
+    // Örneğin, barkod numarasını çıkarma ve veritabanında arama
+
+    // Eğer ürün bulunamazsa
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json({ product });
+  } catch (error) {
+    console.error('Error processing image:', error);
+    res.status(500).json({ error: 'Error processing image' });
+  }
 });
