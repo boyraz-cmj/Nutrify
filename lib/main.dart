@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'screens/home_screen.dart'; // remember no russian
+import 'screens/home_screen.dart'; // remember no russian, yoo
 
 final _logger = Logger('IngrediApp');
 
