@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'screens/home_screen.dart'; // remember no russian, yoo
+import 'screens/auth/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 final _logger = Logger('IngrediApp');
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    _logger.info('Firebase initialized successfully');
+  } catch (e) {
+    _logger.severe('Firebase initialization failed: $e');
+  }
+
   _setupLogging();
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -32,7 +45,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      home: const HomeScreen(), // BarcodeScanner yerine HomeScreen kullanın
+      home: const LoginScreen(),
     );
   }
 }
