@@ -42,8 +42,6 @@ dependencies:
   http: ^0.13.5
   logging: ^1.1.0  # Bu satırın eklendiğinden emin olun
   riverpod: ^2.3.6  # Bu satırı ekleyin
-  firebase_core: ^3.8.0
-  firebase_auth: ^5.3.3
 
 dev_dependencies:
   flutter_test:
