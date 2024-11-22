@@ -4,52 +4,49 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logging/logging.dart';
 import '../home_screen.dart';
-import 'signup_screen.dart';
 
-final _logger = Logger('LoginScreen');
+final _logger = Logger('SignupScreen');
 
-// Firebase auth provider
-final authProvider = Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
-
-// Auth state provider
-final authStateProvider = StreamProvider<User?>((ref) {
-  return ref.watch(authProvider).authStateChanges();
-});
-
-class LoginScreen extends HookConsumerWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends HookConsumerWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
+    final confirmPasswordController = useTextEditingController();
     final isPasswordVisible = useState(false);
+    final isConfirmPasswordVisible = useState(false);
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final isLoading = useState(false);
 
-    // Login işlemi
-    Future<void> handleLogin() async {
+    Future<void> handleSignup() async {
       if (formKey.currentState?.validate() ?? false) {
         try {
           isLoading.value = true;
-          _logger.info('Login attempt for email: ${emailController.text}');
+          _logger.info('Signup attempt for email: ${emailController.text}');
 
-          final auth = ref.read(authProvider);
-          final userCredential = await auth.signInWithEmailAndPassword(
+          final auth = FirebaseAuth.instance;
+          final userCredential = await auth.createUserWithEmailAndPassword(
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
           );
 
           _logger
-              .info('Login successful for user: ${userCredential.user?.uid}');
+              .info('Signup successful for user: ${userCredential.user?.uid}');
 
           if (context.mounted) {
-            _logger.info('Navigating to HomeScreen');
-            await Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content:
+                    Text('Kayıt başarılı! Anasayfaya yönlendiriliyorsunuz.'),
+                backgroundColor: Colors.green,
               ),
-              (route) => false, // Tüm route stack'i temizle
+            );
+
+            await Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              (route) => false,
             );
           }
         } on FirebaseAuthException catch (e) {
@@ -57,39 +54,22 @@ class LoginScreen extends HookConsumerWidget {
           if (context.mounted) {
             String errorMessage;
             switch (e.code) {
-              case 'user-not-found':
-                errorMessage =
-                    'Bu e-posta adresi ile kayıtlı kullanıcı bulunamadı.';
-                break;
-              case 'wrong-password':
-                errorMessage = 'Hatalı şifre girdiniz.';
+              case 'email-already-in-use':
+                errorMessage = 'Bu e-posta adresi zaten kullanımda.';
                 break;
               case 'invalid-email':
                 errorMessage = 'Geçersiz e-posta formatı.';
                 break;
-              case 'user-disabled':
-                errorMessage = 'Bu kullanıcı hesabı devre dışı bırakılmış.';
+              case 'weak-password':
+                errorMessage = 'Şifre çok zayıf.';
                 break;
               default:
-                errorMessage = 'Giriş yapılırken bir hata oluştu: ${e.code}';
+                errorMessage = 'Kayıt olurken bir hata oluştu: ${e.code}';
             }
-
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(errorMessage),
                 backgroundColor: Colors.red,
-                duration: const Duration(seconds: 4),
-              ),
-            );
-          }
-        } catch (e) {
-          _logger.severe('Unexpected error during login: $e');
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Beklenmeyen bir hata oluştu: $e'),
-                backgroundColor: Colors.red,
-                duration: const Duration(seconds: 4),
               ),
             );
           }
@@ -99,39 +79,15 @@ class LoginScreen extends HookConsumerWidget {
       }
     }
 
-    // Auth state listener'ı güncelleyelim
-    useEffect(() {
-      final subscription = FirebaseAuth.instance.authStateChanges().listen(
-        (User? user) {
-          _logger.info('Auth state changed. User: ${user?.uid}');
-          if (user != null && context.mounted) {
-            _logger.info('User is logged in, navigating to HomeScreen');
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-              (route) => false,
-            );
-          }
-        },
-        onError: (error) {
-          _logger.severe('Auth state stream error: $error');
-        },
-      );
-
-      return subscription.cancel;
-    }, const []);
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Giriş Yap'),
+        title: const Text('Kayıt Ol'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
                 controller: emailController,
@@ -175,11 +131,10 @@ class LoginScreen extends HookConsumerWidget {
                   ),
                 ),
                 obscureText: !isPasswordVisible.value,
-                textInputAction: TextInputAction.done,
-                onFieldSubmitted: (_) => handleLogin(),
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Lütfen şifrenizi girin';
+                    return 'Lütfen şifre girin';
                   }
                   if (value.length < 6) {
                     return 'Şifre en az 6 karakter olmalıdır';
@@ -187,9 +142,43 @@ class LoginScreen extends HookConsumerWidget {
                   return null;
                 },
               ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: confirmPasswordController,
+                enabled: !isLoading.value,
+                decoration: InputDecoration(
+                  labelText: 'Şifre Tekrar',
+                  prefixIcon: const Icon(Icons.lock_outline),
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isConfirmPasswordVisible.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: !isLoading.value
+                        ? () {
+                            isConfirmPasswordVisible.value =
+                                !isConfirmPasswordVisible.value;
+                          }
+                        : null,
+                  ),
+                ),
+                obscureText: !isConfirmPasswordVisible.value,
+                textInputAction: TextInputAction.done,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Lütfen şifrenizi tekrar girin';
+                  }
+                  if (value != passwordController.text) {
+                    return 'Şifreler eşleşmiyor';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 24),
               ElevatedButton(
-                onPressed: isLoading.value ? null : handleLogin,
+                onPressed: isLoading.value ? null : handleSignup,
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                 ),
@@ -201,20 +190,7 @@ class LoginScreen extends HookConsumerWidget {
                           strokeWidth: 2,
                         ),
                       )
-                    : const Text('Giriş Yap'),
-              ),
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: isLoading.value
-                    ? null
-                    : () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SignupScreen(),
-                          ),
-                        );
-                      },
-                child: const Text('Hesabınız yok mu? Kayıt olun'),
+                    : const Text('Kayıt Ol'),
               ),
             ],
           ),
