@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:logging/logging.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'product_detail_screen.dart';
-
-// Diğer import'ları kaldırdık
+import 'package:mobile_scanner/mobile_scanner.dart';
+import '../features/scanner/scanner_screen.dart';
 
 final barcodeProvider = StateProvider<String?>((ref) => null);
 final productNameProvider = StateProvider<ProductInfo?>((ref) => null);
@@ -97,16 +96,15 @@ class HomeScreen extends HookConsumerWidget {
     }
 
     Future<void> scanBarcode(WidgetRef ref) async {
-      String barcodeScanRes;
       try {
-        barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666',
-          'İptal',
-          true,
-          ScanMode.BARCODE,
+        final String? barcodeScanRes = await Navigator.push<String>(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ScannerScreen(),
+          ),
         );
 
-        if (barcodeScanRes != '-1') {
+        if (barcodeScanRes != null) {
           ref.read(barcodeProvider.notifier).state = barcodeScanRes;
           await getProductName(ref, barcodeScanRes);
         }

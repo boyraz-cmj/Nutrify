@@ -1,4 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Kamera izni -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Flaş izni -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    
     <application
         android:label="ingrediapp"
         android:name="${applicationName}"
