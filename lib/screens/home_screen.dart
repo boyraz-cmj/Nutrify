@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'product_detail_screen.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+
 import '../features/scanner/scanner_screen.dart';
 
 final barcodeProvider = StateProvider<String?>((ref) => null);
@@ -35,50 +36,66 @@ class HomeScreen extends HookConsumerWidget {
           throw Exception('Barkod 13 haneli olmalıdır');
         }
 
-        const String baseUrl = 'http://10.32.18.172:3000'; // Localhost IP adresiniz
-
+        const String baseUrl = 'http://10.32.3.7:3000';
         final uri = Uri.parse('$baseUrl/product-name/$barcode');
         logger.info('Requesting: $uri');
 
-        logger.info('Sending request to: $uri');
-        final response = await http.get(uri).timeout(const Duration(seconds: 60));
+        final response =
+            await http.get(uri).timeout(const Duration(seconds: 60));
         logger.info(
             'Response received. Status: ${response.statusCode}, Body: ${response.body}');
 
         if (response.statusCode == 200) {
-          if (response.body.contains('<div class="content">Unknown barcode</div>')) {
-            throw Exception('Bilinmeyen barkod');
-          }
-          if (response.body.contains('<span id="barcode_number-error" class="is-invalid">Barcode must be 13 digits</span>')) {
-            throw Exception('Barkod 13 haneli olmalıdır');
+          final data = json.decode(response.body);
+
+          // Hata kontrolü ekleyelim
+          if (data is! Map<String, dynamic>) {
+            throw Exception('Invalid response format');
           }
 
-          final data = json.decode(response.body);
-          final brandName = data['brandName'];
-          final productName = data['productName'];
+          final brandName = data['brandName'] as String?;
+          final productName = data['productName'] as String?;
+
+          if (brandName == null && productName == null) {
+            throw Exception('Ürün bilgisi bulunamadı');
+          }
+
           logger.info('Brand name: $brandName, Product name: $productName');
-          ref.read(productNameProvider.notifier).state = ProductInfo(brandName, productName);
-          
-          // Ürün detay sayfasına yönlendirme
+
+          // ProductInfo state'ini güncelle
+          ref.read(productNameProvider.notifier).state = ProductInfo(
+              brandName ?? 'Marka bulunamadı',
+              productName ?? 'Ürün adı bulunamadı');
+
+          // Context kontrolü
           if (!context.mounted) return;
-          Navigator.push(
+
+          // ProductDetailScreen'e yönlendir
+          await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProductDetailScreen(product: data),
+              builder: (context) => ProductDetailScreen(
+                product: {
+                  'brandName': brandName ?? 'Marka bulunamadı',
+                  'productName': productName ?? 'Ürün adı bulunamadı'
+                },
+              ),
             ),
           );
         } else {
-          throw Exception('Failed to load product information: ${response.statusCode}');
+          throw Exception(
+              'Failed to load product information: ${response.statusCode}');
         }
       } catch (e) {
         logger.severe('Error fetching product information', e);
         if (!context.mounted) return;
-        
+
         String errorMessage;
         if (e is SocketException) {
           errorMessage = 'Bağlantı hatası: Sunucuya ulaşılamıyor.';
         } else if (e is TimeoutException) {
-          errorMessage = 'Bağlantı zaman aşımına uğradı. Lütfen tekrar deneyin.';
+          errorMessage =
+              'Bağlantı zaman aşımına uğradı. Lütfen tekrar deneyin.';
         } else if (e.toString().contains('Bilinmeyen barkod')) {
           errorMessage = 'Bu barkoda ait ürün bulunamadı.';
         } else if (e.toString().contains('Barkod 13 haneli olmalıdır')) {
@@ -87,8 +104,9 @@ class HomeScreen extends HookConsumerWidget {
           errorMessage = 'Bir hata oluştu: ${e.toString()}';
         }
 
-        ref.read(productNameProvider.notifier).state = ProductInfo('Hata', errorMessage);
-        
+        ref.read(productNameProvider.notifier).state =
+            ProductInfo('Hata', errorMessage);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage)),
         );
@@ -100,19 +118,39 @@ class HomeScreen extends HookConsumerWidget {
         final String? barcodeScanRes = await Navigator.push<String>(
           context,
           MaterialPageRoute(
-            builder: (context) => ScannerScreen(),
+            builder: (context) => const ScannerScreen(),
           ),
         );
 
-        if (barcodeScanRes != null) {
-          ref.read(barcodeProvider.notifier).state = barcodeScanRes;
-          await getProductName(ref, barcodeScanRes);
+        if (barcodeScanRes != null && context.mounted) {
+          // Loading göstergesi ekleyelim
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
+
+          try {
+            ref.read(barcodeProvider.notifier).state = barcodeScanRes;
+            await getProductName(ref, barcodeScanRes);
+          } finally {
+            // Loading göstergesini kaldır
+            if (context.mounted) {
+              Navigator.of(context).pop();
+            }
+          }
         }
       } catch (e) {
         logger.warning('Barkod tarama hatası: $e');
         if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Barkod taranamadı. Lütfen tekrar deneyin.')),
+          const SnackBar(
+            content: Text('Barkod taranamadı. Lütfen tekrar deneyin.'),
+          ),
         );
       }
     }

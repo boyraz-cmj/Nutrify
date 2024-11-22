@@ -1,9 +1,23 @@
 const express = require('express');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+const RecaptchaPlugin = require('puppeteer-extra-plugin-recaptcha');
 const cors = require('cors');
 const fs = require('fs').promises;
 const path = require('path');
 const Tesseract = require('tesseract.js');
+
+puppeteer.use(StealthPlugin());
+
+puppeteer.use(
+  RecaptchaPlugin({
+    provider: {
+      id: '2captcha',
+      token: 'YOUR_2CAPTCHA_API_KEY'
+    },
+    visualFeedback: true
+  })
+);
 
 const app = express();
 const port = 3000;
@@ -13,6 +27,9 @@ app.use(express.json());
 app.use('/screenshots', express.static(path.join(__dirname, 'screenshots')));
 
 let logs = [];
+let browser = null;
+let page = null;
+let isCaptchaSolved = false;
 
 async function addLog(step, message, details = null, screenshot = null) {
   const log = `[${step}] ${message}`;
@@ -42,110 +59,160 @@ app.get('/', (req, res) => {
 });
 
 app.get('/product-name/:barcode', async (req, res) => {
-  const browser = await puppeteer.launch({
-    headless: "new",
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    defaultViewport: null,
-    timeout: 60000 // 60 saniye
-  });
-  const page = await browser.newPage();
-  
   try {
-    const { barcode } = req.params;
-    await addLog('START', `Received request for barcode: ${barcode}`);
-    
-    const url = 'https://platform.fatsecret.com/api-demo#barcode-api';
-    await addLog('NAVIGATION', `Navigating to: ${url}`);
-    
-    await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
-    try {
+    // Browser yoksa başlat
+    if (!browser) {
+      browser = await puppeteer.launch({
+        headless: false,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--window-size=1366,768',
+        ],
+        defaultViewport: null,
+      });
+      
+      page = await browser.newPage();
+      await page.goto('https://platform.fatsecret.com/api-demo#barcode-api', { 
+        waitUntil: 'networkidle0',
+        timeout: 60000 
+      });
+      
       let screenshot = await page.screenshot();
-      await addLog('PAGE_LOADED', 'Barcode API page loaded', null, screenshot);
-    } catch (error) {
-      console.error('Error taking screenshot:', error);
-      await addLog('SCREENSHOT_ERROR', 'Error taking screenshot', { error: error.message });
+      await addLog('PAGE_LOADED', 'Initial page load', null, screenshot);
     }
-    
-    // JavaScript'in çalışmasını bekleyelim
-    await page.waitForSelector('#barcode_market', { visible: true, timeout: 10000 });
-    
-    // Market seçimi
+
+    const { barcode } = req.params;
+
+    // Eğer captcha henüz çözülmediyse
+    if (!isCaptchaSolved) {
+      try {
+        const frames = await page.frames();
+        const recaptchaFrame = frames.find(frame => 
+          frame.url().includes('recaptcha')
+        );
+
+        if (recaptchaFrame) {
+          let screenshot = await page.screenshot();
+          await addLog('CAPTCHA_DETECTED', 'Waiting for manual CAPTCHA solution...', null, screenshot);
+          
+          await page.waitForSelector('input[name="Barcode"]', { 
+            visible: true, 
+            timeout: 300000  // 5 dakika
+          });
+          
+          screenshot = await page.screenshot();
+          await addLog('CAPTCHA_SOLVED', 'Barcode input field is now visible', null, screenshot);
+          isCaptchaSolved = true;
+        }
+      } catch (error) {
+        await addLog('CAPTCHA_ERROR', 'Error with CAPTCHA', { error: error.message });
+      }
+    }
+
+    // Barkod arama işlemleri
     try {
-      await page.select('#barcode_market', 'TR');
-      const selectedMarket = await page.$eval('#barcode_market', el => el.value);
+      // Market seçimini daha güvenilir hale getirelim
+      await page.waitForSelector('#barcode_market', { visible: true });
+      await page.evaluate(() => {
+        const marketSelect = document.querySelector('#barcode_market');
+        if (marketSelect) {
+          marketSelect.value = 'TR';
+          // Change event'ini tetikle
+          const event = new Event('change', { bubbles: true });
+          marketSelect.dispatchEvent(event);
+          // Input event'ini de tetikle
+          const inputEvent = new Event('input', { bubbles: true });
+          marketSelect.dispatchEvent(inputEvent);
+        }
+      });
+      
+      // Market seçiminin uygulanmasını bekle
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      let screenshot = await page.screenshot();
+      await addLog('MARKET_SELECTED', 'Selected market: TR', null, screenshot);
+
+      // Barkod girişi
+      await page.evaluate((barcodeValue) => {
+        const input = document.querySelector('input[name="Barcode"]');
+        if (input) {
+          input.value = barcodeValue;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+      }, barcode);
+      
       screenshot = await page.screenshot();
-      await addLog('MARKET_SELECTED', `Selected market: ${selectedMarket}`, null, screenshot);
-    } catch (error) {
-      console.error('Error selecting market:', error);
-      await addLog('MARKET_SELECTION_ERROR', 'Error selecting market', { error: error.message });
-    }
+      await addLog('BARCODE_ENTERED', `Entered barcode: ${barcode}`, null, screenshot);
 
-    // Barkod girişi
-    await page.type('input[name="Barcode"]', barcode);
-    screenshot = await page.screenshot();
-    await addLog('BARCODE_ENTERED', 'Entered barcode', null, screenshot);
+      const submitButton = await page.waitForSelector('#barcode_search_button', { visible: true });
+      if (submitButton) {
+        await submitButton.click();
+        await addLog('SUBMIT_CLICKED', 'Clicked submit button');
+        
+        try {
+          // Yükleme göstergesinin görünmesini bekle
+          await page.waitForSelector('.loading-indicator', { visible: true, timeout: 10000 })
+            .catch(() => console.log('Loading indicator not found'));
+          
+          // Yükleme göstergesinin kaybolmasını bekle
+          await page.waitForSelector('.loading-indicator', { hidden: true, timeout: 60000 })
+            .catch(() => console.log('Loading indicator still visible'));
+          
+          // Sonuçların yüklenmesi için kısa bir bekleme
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          
+          screenshot = await page.screenshot();
+          await addLog('RESULTS_LOADED', 'Results page loaded', null, screenshot);
+          
+          // Önce "Unknown barcode" kontrolü
+          const content = await page.$('.content');
+          if (content) {
+            const text = await page.evaluate(el => el.textContent.trim(), content);
+            if (text.includes('Unknown barcode')) {
+              await addLog('UNKNOWN_BARCODE', 'Unknown barcode detected');
+              return res.status(404).json({ error: 'Unknown barcode' });
+            }
+          }
 
-    // Formu gönderelim
-    const submitButton = await page.$('#barcode_search_button');
-    if (submitButton) {
-      await addLog('SUBMIT_BUTTON_FOUND', 'Submit button found');
-      await submitButton.click();
-      
-      // Yükleme göstergesini bekleyelim
-      await addLog('WAITING_FOR_RESULTS', 'Waiting for results to load');
-      await page.waitForSelector('.loading-indicator', { visible: true, timeout: 10000 }).catch(() => {});
-      await page.waitForSelector('.loading-indicator', { hidden: true, timeout: 60000 }).catch(() => {});
-      
-      // Sonuç sayfasının yüklenmesini bekleyelim
-      await page.waitForSelector('.brand-name, .food-name, .no-results-message, .content', { timeout: 60000 });
-      
-      screenshot = await page.screenshot();
-      await addLog('RESULTS_PAGE_LOADED', 'Results page loaded', null, screenshot);
-    } else {
-      await addLog('SUBMIT_BUTTON_NOT_FOUND', 'Submit button not found');
-    }
+          // Ürün bilgilerini almayı dene
+          const brandName = await page.$eval('.brand-name', el => el.textContent.trim())
+            .catch(() => null);
+          const foodName = await page.$eval('.food-name', el => el.textContent.trim())
+            .catch(() => null);
 
-    // "Unknown barcode" kontrolü ekleyelim
-    const unknownBarcodeElement = await page.$('.content');
-    if (unknownBarcodeElement) {
-      const content = await page.evaluate(el => el.textContent, unknownBarcodeElement);
-      if (content.trim().toLowerCase() === 'unknown barcode') {
-        await addLog('UNKNOWN_BARCODE', 'Unknown barcode error detected');
-        return res.status(404).json({ error: 'Unknown barcode' });
-      }
-    }
+          screenshot = await page.screenshot();
+          await addLog('PRODUCT_INFO', 'Product information found', 
+            { brandName, foodName }, screenshot);
 
-    // Sonucu alalım
-    const noResults = await page.$('.no-results-message');
-    if (noResults) {
-      await addLog('NO_RESULTS', 'No results found for this barcode');
-      res.status(404).json({ error: 'Product not found' });
-    } else {
-      const brandName = await page.$eval('.brand-name', el => el.textContent.trim()).catch(() => null);
-      let foodName = await page.$eval('.food-name', el => el.textContent.trim()).catch(() => null);
-
-      // Eğer foodName, brandName'i içeriyorsa, brandName'i çıkar
-      if (foodName && brandName && foodName.includes(brandName)) {
-        foodName = foodName.replace(brandName, '').trim();
-      }
-
-      if (brandName || foodName) {
-        const result = {
-          brandName: brandName || 'Marka bulunamadı',
-          productName: foodName || 'Ürün adı bulunamadı'
-        };
-        await addLog('SUCCESS', `Product found: ${JSON.stringify(result)}`, null, await page.screenshot());
-        res.json(result);
+          if (brandName || foodName) {
+            const result = {
+              brandName: brandName || 'Marka bulunamadı',
+              productName: foodName || 'Ürün adı bulunamadı'
+            };
+            await addLog('SUCCESS', `Found product: ${JSON.stringify(result)}`);
+            return res.json(result);
+          } else {
+            await addLog('NO_PRODUCT_INFO', 'No product information found');
+            return res.status(404).json({ error: 'Product not found' });
+          }
+        } catch (error) {
+          screenshot = await page.screenshot();
+          await addLog('ERROR', 'Error processing results', 
+            { error: error.message }, screenshot);
+          return res.status(500).json({ error: error.message });
+        }
       } else {
-        await addLog('NOT_FOUND', 'Product information not found in the response', null, await page.screenshot());
-        res.status(404).json({ error: 'Product not found' });
+        await addLog('ERROR', 'Submit button not found');
+        return res.status(500).json({ error: 'Submit button not found' });
       }
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: error.message });
     }
   } catch (error) {
-    await addLog('ERROR', `Error: ${error.message}`, { stack: error.stack }, await page.screenshot());
-    res.status(500).json({ error: 'An error occurred while fetching the product information', details: error.message });
-  } finally {
-    await browser.close();
+    console.error('Error:', error);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -205,15 +272,10 @@ app.post('/scan', async (req, res) => {
     const result = await Tesseract.recognize(Buffer.from(image, 'base64'), 'eng');
     const text = result.data.text.trim();
 
-    // "Unknown barcode" kontrolü ekleyelim
     if (text.toLowerCase().includes('unknown barcode')) {
       return res.status(404).json({ error: 'Unknown barcode' });
     }
 
-    // Diğer işlemler...
-    // Örneğin, barkod numarasını çıkarma ve veritabanında arama
-
-    // Eğer ürün bulunamazsa
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
@@ -223,4 +285,12 @@ app.post('/scan', async (req, res) => {
     console.error('Error processing image:', error);
     res.status(500).json({ error: 'Error processing image' });
   }
+});
+
+// Uygulama kapatıldığında browser'ı temizle
+process.on('SIGINT', async () => {
+  if (browser) {
+    await browser.close();
+  }
+  process.exit();
 });

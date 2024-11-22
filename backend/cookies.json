@@ -1,0 +1,46 @@
+[
+  {
+    "name": "AWSALBCORS",
+    "value": "c/SsQyvArpZcXOo2ima/P7eUGvgcAyTNoNeRMh29QdllODRsj0oLDGcJEDuvjf9cWb0kWbYXE7uv+0SkVWowaK/z3xemcxArYH4kdZSmaFCak1x1rwmSsuCfrmPS",
+    "domain": "platform.fatsecret.com",
+    "path": "/",
+    "expires": 1732921285.773256,
+    "size": 134,
+    "httpOnly": false,
+    "secure": true,
+    "session": false,
+    "sameSite": "None",
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "AWSALB",
+    "value": "c/SsQyvArpZcXOo2ima/P7eUGvgcAyTNoNeRMh29QdllODRsj0oLDGcJEDuvjf9cWb0kWbYXE7uv+0SkVWowaK/z3xemcxArYH4kdZSmaFCak1x1rwmSsuCfrmPS",
+    "domain": "platform.fatsecret.com",
+    "path": "/",
+    "expires": 1732921285.773149,
+    "size": 130,
+    "httpOnly": false,
+    "secure": true,
+    "session": false,
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "FatSecret.AntiForgery",
+    "value": "CfDJ8BPT8Y-3o7FDkRiB4ECfYY8TgC-orHxNsA4LTR3wH6WqctvJ6pasBJHJZgQXOzhJWleJm6P3M1UuA0pnmSk5Pa1ABrZu5OG4ceBU0hMkGKgbwOLeqfdkbCR27CtzC4zM9S0eFSQo5OasdsYzTutXijI",
+    "domain": "platform.fatsecret.com",
+    "path": "/",
+    "expires": -1,
+    "size": 176,
+    "httpOnly": true,
+    "secure": true,
+    "session": true,
+    "sameSite": "Lax",
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  }
+]

@@ -49,9 +49,9 @@ class ScannerScreen extends HookConsumerWidget {
           final List<Barcode> barcodes = capture.barcodes;
           for (final barcode in barcodes) {
             if (barcode.rawValue != null) {
-              // Barkod bulunduğunda ana ekrana geri dön
+              scannerController.dispose();
               Navigator.of(context).pop(barcode.rawValue);
-              break; // İlk geçerli barkodu bulduktan sonra döngüden çık
+              break;
             }
           }
         },
