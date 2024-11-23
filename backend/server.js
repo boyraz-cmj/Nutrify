@@ -54,12 +54,31 @@ async function addLog(step, message, details = null, screenshot = null) {
   if (logs.length > 100) logs.shift(); // Son 100 logu tut
 }
 
+// Screenshot'ları temizleme fonksiyonu
+async function clearScreenshots() {
+  try {
+    const files = await fs.readdir(screenshotsDir);
+    for (const file of files) {
+      if (file.startsWith('screenshot_')) {
+        await fs.unlink(path.join(screenshotsDir, file));
+      }
+    }
+    logs = logs.filter(log => !log.includes('<img src="/screenshots/'));
+    await addLog('CLEANUP', 'Cleared previous screenshots');
+  } catch (error) {
+    console.error('Error clearing screenshots:', error);
+  }
+}
+
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });
 
 app.get('/product-name/:barcode', async (req, res) => {
   try {
+    // Her yeni istek başlangıcında eski screenshot'ları temizle
+    await clearScreenshots();
+
     // Browser yoksa başlat
     if (!browser) {
       browser = await puppeteer.launch({
@@ -181,14 +200,88 @@ app.get('/product-name/:barcode', async (req, res) => {
           const foodName = await page.$eval('.food-name', el => el.textContent.trim())
             .catch(() => null);
 
-          screenshot = await page.screenshot();
-          await addLog('PRODUCT_INFO', 'Product information found', 
-            { brandName, foodName }, screenshot);
+          // Besin değerlerini çek
+          const nutritionFacts = await page.evaluate(() => {
+            try {
+              // Kalori bilgisini al
+              const calories = document.querySelector('.hero_value.black.right')?.textContent.trim() || '0';
+              
+              // Diğer besin değerlerini al
+              const nutrients = {};
+              const rows = document.querySelectorAll('.nutrition_facts .nutrient');
+              
+              let currentLabel = '';
+              rows.forEach(row => {
+                const isLabel = row.classList.contains('left') && !row.classList.contains('value');
+                const isValue = row.classList.contains('value');
+                
+                if (isLabel) {
+                  currentLabel = row.textContent.trim();
+                } else if (isValue && currentLabel) {
+                  let value = row.textContent.trim();
+                  // Eğer değer sadece "-" ise "0" olarak değiştir
+                  if (value === '-') value = '0';
+                  
+                  switch (currentLabel) {
+                    case 'Total Fat':
+                      nutrients.totalFat = value || '0g';
+                      break;
+                    case 'Saturated Fat':
+                      nutrients.saturatedFat = value || '0g';
+                      break;
+                    case 'Trans Fat':
+                      nutrients.transFat = value || '0g';
+                      break;
+                    case 'Cholesterol':
+                      nutrients.cholesterol = value || '0mg';
+                      break;
+                    case 'Sodium':
+                      nutrients.sodium = value || '0mg';
+                      break;
+                    case 'Total Carbohydrate':
+                      nutrients.totalCarbohydrate = value || '0g';
+                      break;
+                    case 'Dietary Fiber':
+                      nutrients.dietaryFiber = value || '0g';
+                      break;
+                    case 'Sugars':
+                      nutrients.sugars = value || '0g';
+                      break;
+                    case 'Protein':
+                      nutrients.protein = value || '0g';
+                      break;
+                    case 'Vitamin D':
+                      nutrients.vitaminD = value || '0mcg';
+                      break;
+                    case 'Calcium':
+                      nutrients.calcium = value || '0mg';
+                      break;
+                    case 'Iron':
+                      nutrients.iron = value || '0mg';
+                      break;
+                    case 'Potassium':
+                      nutrients.potassium = value || '0mg';
+                      break;
+                  }
+                }
+              });
+
+              return {
+                servingSize: document.querySelector('.serving_size_value')?.textContent.trim() || '100g',
+                calories: calories,
+                ...nutrients
+              };
+            } catch (error) {
+              console.error('Error extracting nutrition facts:', error);
+              return null;
+            }
+          }).catch(() => null);
 
           if (brandName || foodName) {
             const result = {
               brandName: brandName || 'Marka bulunamadı',
-              productName: foodName || 'Ürün adı bulunamadı'
+              productName: foodName || 'Ürün adı bulunamadı',
+              nutritionFacts: nutritionFacts || {}
             };
             await addLog('SUCCESS', `Found product: ${JSON.stringify(result)}`);
             return res.json(result);

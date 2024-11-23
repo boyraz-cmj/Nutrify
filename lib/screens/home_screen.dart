@@ -55,12 +55,15 @@ class HomeScreen extends HookConsumerWidget {
 
           final brandName = data['brandName'] as String?;
           final productName = data['productName'] as String?;
+          final nutritionFacts =
+              data['nutritionFacts'] as Map<String, dynamic>?;
 
           if (brandName == null && productName == null) {
             throw Exception('Ürün bilgisi bulunamadı');
           }
 
           logger.info('Brand name: $brandName, Product name: $productName');
+          logger.info('Nutrition facts: $nutritionFacts');
 
           // ProductInfo state'ini güncelle
           ref.read(productNameProvider.notifier).state = ProductInfo(
@@ -77,7 +80,9 @@ class HomeScreen extends HookConsumerWidget {
               builder: (context) => ProductDetailScreen(
                 product: {
                   'brandName': brandName ?? 'Marka bulunamadı',
-                  'productName': productName ?? 'Ürün adı bulunamadı'
+                  'productName': productName ?? 'Ürün adı bulunamadı',
+                  'nutritionFacts':
+                      nutritionFacts ?? {}, // Besin değerlerini ekle
                 },
               ),
             ),
