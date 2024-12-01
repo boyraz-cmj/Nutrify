@@ -1,24 +1,57 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../models/product_model.dart';
+
+final productServiceProvider = Provider((ref) => ProductService());
 
 class ProductService {
-  final String baseUrl = 'https://world.openfoodfacts.org/api/v0/product/';
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<Map<String, dynamic>> getProductByBarcode(String barcode) async {
-    final response = await http.get(Uri.parse('$baseUrl$barcode.json'));
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      if (data['status'] == 1) {
-        return data['product'];
-      } else {
-        throw Exception('Ürün bulunamadı');
+  Future<Product?> getProductByBarcode(String barcode) async {
+    try {
+      final doc = await _firestore.collection('products').doc(barcode).get();
+      if (doc.exists) {
+        return Product.fromFirestore(doc);
       }
-    } else {
-      throw Exception('Ürün yüklenirken bir hata oluştu');
+      return null;
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        throw Exception('Firebase erişim izni hatası: Lütfen güvenlik kurallarını kontrol edin');
+      }
+      throw Exception('Firebase hatası: ${e.message}');
+    } catch (e) {
+      throw Exception('Beklenmeyen bir hata oluştu: $e');
+    }
+  }
+
+  Future<void> saveProduct(String barcode, Map<String, dynamic> productData) async {
+    try {
+      final now = DateTime.now();
+      await _firestore.collection('products').doc(barcode).set({
+        ...productData,
+        'createdAt': now,
+        'updatedAt': now,
+      });
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        throw Exception('Firebase erişim izni hatası: Lütfen güvenlik kurallarını kontrol edin');
+      }
+      throw Exception('Firebase hatası: ${e.message}');
+    } catch (e) {
+      throw Exception('Beklenmeyen bir hata oluştu: $e');
+    }
+  }
+
+  // Test fonksiyonu
+  Future<void> testFirebaseConnection() async {
+    try {
+      final testDoc = await _firestore.collection('test').doc('test').set({
+        'test': 'Bağlantı başarılı',
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      print('Firebase bağlantısı başarılı');
+    } catch (e) {
+      print('Firebase bağlantı hatası: $e');
     }
   }
 }
-
-final productServiceProvider = Provider<ProductService>((ref) => ProductService());

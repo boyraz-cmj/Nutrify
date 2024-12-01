@@ -10,6 +10,7 @@ import 'product_detail_screen.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../features/scanner/scanner_screen.dart';
+import '../services/product_service.dart';
 
 final barcodeProvider = StateProvider<String?>((ref) => null);
 final productNameProvider = StateProvider<ProductInfo?>((ref) => null);
@@ -31,59 +32,98 @@ class HomeScreen extends HookConsumerWidget {
 
     Future<void> getProductName(WidgetRef ref, String barcode) async {
       try {
-        // Barkod uzunluğu kontrolü
         if (barcode.length != 13) {
           throw Exception('Barkod 13 haneli olmalıdır');
+        }
+
+        final productService = ref.read(productServiceProvider);
+        final cachedProduct = await productService.getProductByBarcode(barcode);
+
+        if (cachedProduct != null) {
+          ref.read(productNameProvider.notifier).state = ProductInfo(
+            cachedProduct.brandName,
+            cachedProduct.productName,
+          );
+
+          if (!context.mounted) return;
+
+          logger.info('Cached Product Nutrition Claims: ${cachedProduct.nutritionClaims}');
+
+          final Map<String, dynamic> productData = {
+            'brandName': cachedProduct.brandName,
+            'productName': cachedProduct.productName,
+            'nutritionFacts': cachedProduct.nutritionFacts,
+            'nutritionClaims': {
+              'allergens': cachedProduct.nutritionClaims?.allergens ?? {},
+              'dietaryInfo': cachedProduct.nutritionClaims?.dietaryInfo ?? {},
+            },
+          };
+
+          logger.info('Prepared Product Data: ${json.encode(productData)}');
+
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailScreen(
+                product: productData,
+              ),
+            ),
+          );
+          return;
         }
 
         const String baseUrl = 'http://10.32.3.7:3000';
         final uri = Uri.parse('$baseUrl/product-name/$barcode');
         logger.info('Requesting: $uri');
 
-        final response =
-            await http.get(uri).timeout(const Duration(seconds: 60));
+        final response = await http.get(uri).timeout(const Duration(seconds: 60));
         logger.info(
             'Response received. Status: ${response.statusCode}, Body: ${response.body}');
 
         if (response.statusCode == 200) {
           final data = json.decode(response.body);
+          
+          logger.info('API Response Data: ${json.encode(data)}');
 
-          // Hata kontrolü ekleyelim
           if (data is! Map<String, dynamic>) {
             throw Exception('Invalid response format');
           }
 
           final brandName = data['brandName'] as String?;
           final productName = data['productName'] as String?;
-          final nutritionFacts =
-              data['nutritionFacts'] as Map<String, dynamic>?;
+          final nutritionFacts = data['nutritionFacts'] as Map<String, dynamic>?;
+          final nutritionClaims = data['nutritionClaims'] as Map<String, dynamic>? ?? {
+            'allergens': {},
+            'dietaryInfo': {}
+          };
 
           if (brandName == null && productName == null) {
             throw Exception('Ürün bilgisi bulunamadı');
           }
 
-          logger.info('Brand name: $brandName, Product name: $productName');
-          logger.info('Nutrition facts: $nutritionFacts');
+          final Map<String, dynamic> productData = {
+            'brandName': brandName ?? 'Marka bulunamadı',
+            'productName': productName ?? 'Ürün adı bulunamadı',
+            'nutritionFacts': nutritionFacts ?? {},
+            'nutritionClaims': nutritionClaims,
+          };
 
-          // ProductInfo state'ini güncelle
+          logger.info('Prepared Product Data: ${json.encode(productData)}');
+
+          await productService.saveProduct(barcode, productData);
+
           ref.read(productNameProvider.notifier).state = ProductInfo(
-              brandName ?? 'Marka bulunamadı',
-              productName ?? 'Ürün adı bulunamadı');
+            brandName ?? 'Marka bulunamadı',
+            productName ?? 'Ürün adı bulunamadı',
+          );
 
-          // Context kontrolü
           if (!context.mounted) return;
 
-          // ProductDetailScreen'e yönlendir
           await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ProductDetailScreen(
-                product: {
-                  'brandName': brandName ?? 'Marka bulunamadı',
-                  'productName': productName ?? 'Ürün adı bulunamadı',
-                  'nutritionFacts':
-                      nutritionFacts ?? {}, // Besin değerlerini ekle
-                },
+                product: productData,
               ),
             ),
           );

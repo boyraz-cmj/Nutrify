@@ -6,6 +6,7 @@ const cors = require('cors');
 const fs = require('fs').promises;
 const path = require('path');
 const Tesseract = require('tesseract.js');
+const cheerio = require('cheerio');
 
 puppeteer.use(StealthPlugin());
 
@@ -73,6 +74,52 @@ async function clearScreenshots() {
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });
+
+function extractNutritionClaims(html) {
+  const $ = cheerio.load(html);
+  const nutritionClaims = {
+    allergens: {},
+    dietaryInfo: {}
+  };
+
+  // Free from allergens
+  $('.border.border-info.p-2 ul li i.bi-check-square.text-success').each((_, el) => {
+    const allergen = $(el).parent().text().trim();
+    if (allergen) {
+      nutritionClaims.allergens[allergen] = 'free';
+    }
+  });
+
+  // May contain allergens
+  $('.border.border-info.p-2 ul li i.bi-question-square.text-warning').each((_, el) => {
+    const allergen = $(el).parent().text().trim();
+    if (allergen) {
+      nutritionClaims.allergens[allergen] = 'may';
+    }
+  });
+
+  // Dietary information
+  const dietText = $('.border.border-info.p-2 .row:last-child .col').text().trim();
+  
+  // Vegan kontrolü
+  if (dietText.includes('Vegan') && dietText.includes('not suitable')) {
+    nutritionClaims.dietaryInfo['Vegan'] = false;
+  } else {
+    nutritionClaims.dietaryInfo['Vegan'] = true;
+  }
+  
+  // Vegetarian kontrolü
+  if (dietText.includes('Vegetarian') && dietText.includes('not suitable')) {
+    nutritionClaims.dietaryInfo['Vegetarian'] = false;
+  } else {
+    nutritionClaims.dietaryInfo['Vegetarian'] = true;
+  }
+
+  // Debug için log ekleyelim
+  console.log('Extracted Nutrition Claims:', JSON.stringify(nutritionClaims, null, 2));
+
+  return nutritionClaims;
+}
 
 app.get('/product-name/:barcode', async (req, res) => {
   try {
@@ -277,13 +324,67 @@ app.get('/product-name/:barcode', async (req, res) => {
             }
           }).catch(() => null);
 
+          // Nutrition facts çekildikten sonra nutrition claims'i de çekelim
+          const nutritionClaims = await page.evaluate(() => {
+            try {
+              const claims = {
+                allergens: {},
+                dietaryInfo: {}
+              };
+
+              // Free from allergens
+              document.querySelectorAll('.border.border-info.border-1 ul li i.bi-check-square.text-success').forEach(el => {
+                const allergen = el.parentElement.textContent.trim().replace(/\s+/g, ' ');
+                if (allergen) {
+                  claims.allergens[allergen] = 'free';
+                }
+              });
+
+              // May contain allergens
+              document.querySelectorAll('.border.border-info.border-1 ul li i.bi-question-square.text-warning').forEach(el => {
+                const allergen = el.parentElement.textContent.trim().replace(/\s+/g, ' ');
+                if (allergen) {
+                  claims.allergens[allergen] = 'may';
+                }
+              });
+
+              // Dietary information
+              const dietText = document.querySelector('.border.border-info.border-1 .row:last-child .col')?.textContent.trim() || '';
+              
+              // Sadece "not suitable" bilgisi varsa false değerini set et
+              if (dietText.includes('not suitable')) {
+                if (dietText.includes('Vegan')) {
+                  claims.dietaryInfo['Vegan'] = false;
+                }
+                if (dietText.includes('Vegetarian')) {
+                  claims.dietaryInfo['Vegetarian'] = false;
+                }
+              }
+
+              console.log('Extracted claims:', claims);
+              return claims;
+            } catch (error) {
+              console.error('Error extracting nutrition claims:', error);
+              return {
+                allergens: {},
+                dietaryInfo: {}
+              };
+            }
+          });
+
           if (brandName || foodName) {
             const result = {
               brandName: brandName || 'Marka bulunamadı',
               productName: foodName || 'Ürün adı bulunamadı',
-              nutritionFacts: nutritionFacts || {}
+              nutritionFacts: nutritionFacts || {},
+              nutritionClaims: nutritionClaims || {
+                allergens: {},
+                dietaryInfo: {}
+              }
             };
-            await addLog('SUCCESS', `Found product: ${JSON.stringify(result)}`);
+
+            console.log('Extracted Claims:', JSON.stringify(nutritionClaims, null, 2));
+            await addLog('SUCCESS', `Found product with all data: ${JSON.stringify(result, null, 2)}`);
             return res.json(result);
           } else {
             await addLog('NO_PRODUCT_INFO', 'No product information found');

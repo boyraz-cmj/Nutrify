@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../widgets/nutrition_claims_widget.dart';
+import '../models/nutrition_claims.dart';
+import 'dart:convert';
 
 class ProductDetailScreen extends ConsumerWidget {
   final Map<String, dynamic> product;
@@ -8,8 +11,10 @@ class ProductDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nutritionFacts =
-        product['nutritionFacts'] as Map<String, dynamic>? ?? {};
+    print('Product Details: ${json.encode(product)}');
+    print('Nutrition Claims Data: ${json.encode(product['nutritionClaims'])}');
+
+    final nutritionFacts = product['nutritionFacts'] as Map<String, dynamic>? ?? {};
 
     // Makrobesin değerlerini al ve hesapla
     final totalFat = _extractNumericValue(nutritionFacts['totalFat']);
@@ -30,13 +35,13 @@ class ProductDetailScreen extends ConsumerWidget {
 
     // Günlük referans değerleri
     final Map<String, double> dailyValues = {
-      'totalFat': 78.0,         // 78g (değiştirildi: 65g -> 78g)
-      'saturatedFat': 20.0,     // 20g (aynı)
-      'cholesterol': 300.0,     // 300mg (aynı)
-      'sodium': 2300.0,         // 2300mg (aynı)
+      'totalFat': 78.0, // 78g (değiştirildi: 65g -> 78g)
+      'saturatedFat': 20.0, // 20g (aynı)
+      'cholesterol': 300.0, // 300mg (aynı)
+      'sodium': 2300.0, // 2300mg (aynı)
       'totalCarbohydrate': 275.0, // 275g (değiştirildi: 300g -> 275g)
-      'dietaryFiber': 28.0,     // 28g
-      'protein': 50.0,          // 50g (aynı)
+      'dietaryFiber': 28.0, // 28g
+      'protein': 50.0, // 50g (aynı)
     };
 
     int _calculateDailyValue(double value, String nutrient) {
@@ -174,7 +179,8 @@ class ProductDetailScreen extends ConsumerWidget {
                         'Total Carbohydrate',
                         nutritionFacts['totalCarbohydrate'] ?? '0g',
                         _calculateDailyValue(
-                          _extractNumericValue(nutritionFacts['totalCarbohydrate']),
+                          _extractNumericValue(
+                              nutritionFacts['totalCarbohydrate']),
                           'totalCarbohydrate',
                         ),
                       ),
@@ -216,6 +222,173 @@ class ProductDetailScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+
+              // Nutrition Claims kartı
+              Builder(
+                builder: (context) {
+                  try {
+                    // Nutrition claims verilerini kontrol et
+                    final nutritionClaimsData = product['nutritionClaims'];
+                    if (nutritionClaimsData == null) return const SizedBox.shrink();
+
+                    // Tip kontrolü ve dönüşümü
+                    Map<String, dynamic> nutritionClaims;
+                    if (nutritionClaimsData is Map) {
+                      nutritionClaims = Map<String, dynamic>.from(nutritionClaimsData);
+                    } else {
+                      print('Invalid nutrition claims data type: ${nutritionClaimsData.runtimeType}');
+                      return const SizedBox.shrink();
+                    }
+
+                    final allergens = (nutritionClaims['allergens'] is Map)
+                        ? Map<String, dynamic>.from(nutritionClaims['allergens'] as Map)
+                        : <String, dynamic>{};
+
+                    final dietaryInfo = (nutritionClaims['dietaryInfo'] is Map)
+                        ? Map<String, dynamic>.from(nutritionClaims['dietaryInfo'] as Map)
+                        : <String, dynamic>{};
+
+                    // Debug için
+                    print('Allergens: $allergens');
+                    print('Dietary Info: $dietaryInfo');
+
+                    // Eğer hem allergens hem de dietaryInfo boşsa, hiçbir şey gösterme
+                    if (allergens.isEmpty && dietaryInfo.isEmpty) {
+                      return const SizedBox.shrink();
+                    }
+
+                    return Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Nutrition Claims',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const SizedBox(height: 16),
+                            
+                            // Free from section
+                            if (allergens.entries.where((e) => 
+                              e.value.toString().toLowerCase().contains('free')).isNotEmpty)
+                              Builder(
+                                builder: (context) {
+                                  try {
+                                    final freeFromItems = allergens.entries
+                                      .where((e) => e.value.toString().toLowerCase().contains('free'))
+                                      .toList();
+
+                                    return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('This food is free from:'),
+                                        const SizedBox(height: 8),
+                                        ...freeFromItems.map((e) => Padding(
+                                          padding: const EdgeInsets.only(left: 16, bottom: 4),
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.check_circle,
+                                                color: Colors.green,
+                                                size: 20,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text(e.key.toString().replaceAll(RegExp(r'^\s+|\s+$'), '')),
+                                            ],
+                                          ),
+                                        )),
+                                        const SizedBox(height: 16),
+                                      ],
+                                    );
+                                  } catch (e) {
+                                    print('Error in Free from section: $e');
+                                    return const SizedBox.shrink();
+                                  }
+                                },
+                              ),
+
+                            // May contain section
+                            if (allergens.entries.where((e) => 
+                              e.value.toString().toLowerCase().contains('may')).isNotEmpty)
+                              Builder(
+                                builder: (context) {
+                                  try {
+                                    final mayContainItems = allergens.entries
+                                      .where((e) => e.value.toString().toLowerCase().contains('may'))
+                                      .toList();
+
+                                    return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('This food may contain:'),
+                                        const SizedBox(height: 8),
+                                        ...mayContainItems.map((e) => Padding(
+                                          padding: const EdgeInsets.only(left: 16, bottom: 4),
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.help,
+                                                color: Colors.orange,
+                                                size: 20,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text(e.key.toString().replaceAll(RegExp(r'^\s+|\s+$'), '')),
+                                            ],
+                                          ),
+                                        )),
+                                        const SizedBox(height: 16),
+                                      ],
+                                    );
+                                  } catch (e) {
+                                    print('Error in May contain section: $e');
+                                    return const SizedBox.shrink();
+                                  }
+                                },
+                              ),
+
+                            // Dietary Information
+                            if (dietaryInfo.isNotEmpty)
+                              Builder(
+                                builder: (context) {
+                                  try {
+                                    return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('Dietary Information:'),
+                                        const SizedBox(height: 8),
+                                        ...dietaryInfo.entries.map((e) => Padding(
+                                          padding: const EdgeInsets.only(left: 16, bottom: 4),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                e.value == false ? Icons.cancel : Icons.check_circle,
+                                                color: e.value == false ? Colors.red : Colors.green,
+                                                size: 20,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Text('${e.key} diet'),
+                                            ],
+                                          ),
+                                        )),
+                                      ],
+                                    );
+                                  } catch (e) {
+                                    print('Error in Dietary Information section: $e');
+                                    return const SizedBox.shrink();
+                                  }
+                                },
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  } catch (e) {
+                    print('Error in nutrition claims card: $e');
+                    return const SizedBox.shrink();
+                  }
+                },
+              ),
             ],
           ),
         ),
@@ -248,10 +421,11 @@ class ProductDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildNutritionRowWithPercentage(String label, String value, int? percentage) {
+  Widget _buildNutritionRowWithPercentage(
+      String label, String value, int? percentage) {
     // Değer ve birim arasındaki boşlukları temizle
     final cleanValue = value.replaceAll(RegExp(r'\s+'), '');
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -331,10 +505,11 @@ class ProductDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildIndentedNutritionRowWithPercentage(String label, String value, int? percentage) {
+  Widget _buildIndentedNutritionRowWithPercentage(
+      String label, String value, int? percentage) {
     // Değer ve birim arasındaki boşlukları temizle
     final cleanValue = value.replaceAll(RegExp(r'\s+'), '');
-    
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 0, 4),
       child: Row(
@@ -382,7 +557,9 @@ class ProductDetailScreen extends ConsumerWidget {
   String _cleanProductName(String productName, String brandName) {
     // Eğer ürün adı marka adı ile bitiyorsa, marka adını kaldır
     if (productName.toLowerCase().endsWith(brandName.toLowerCase())) {
-      return productName.substring(0, productName.length - brandName.length).trim();
+      return productName
+          .substring(0, productName.length - brandName.length)
+          .trim();
     }
     // Eğer ürün adı marka adı ile başlıyorsa, marka adını kaldır
     if (productName.toLowerCase().startsWith(brandName.toLowerCase())) {
