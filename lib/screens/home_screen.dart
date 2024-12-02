@@ -261,12 +261,28 @@ class HomeScreen extends HookConsumerWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => scanBarcode(ref),
-        backgroundColor: AppColors.primaryOrange,
-        child: const Icon(
-          Icons.camera_alt,
-          color: Colors.white,
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primaryOrange.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: FloatingActionButton(
+          onPressed: () => scanBarcode(ref),
+          backgroundColor: AppColors.primaryOrange,
+          elevation: 4,
+          shape: const CircleBorder(),
+          child: const Icon(
+            Icons.camera_alt,
+            color: Colors.white,
+            size: 28,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
