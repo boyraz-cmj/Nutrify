@@ -11,6 +11,8 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../features/scanner/scanner_screen.dart';
 import '../services/product_service.dart';
+import '../core/theme/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final barcodeProvider = StateProvider<String?>((ref) => null);
 final productNameProvider = StateProvider<ProductInfo?>((ref) => null);
@@ -47,7 +49,8 @@ class HomeScreen extends HookConsumerWidget {
 
           if (!context.mounted) return;
 
-          logger.info('Cached Product Nutrition Claims: ${cachedProduct.nutritionClaims}');
+          logger.info(
+              'Cached Product Nutrition Claims: ${cachedProduct.nutritionClaims}');
 
           final Map<String, dynamic> productData = {
             'brandName': cachedProduct.brandName,
@@ -76,13 +79,14 @@ class HomeScreen extends HookConsumerWidget {
         final uri = Uri.parse('$baseUrl/product-name/$barcode');
         logger.info('Requesting: $uri');
 
-        final response = await http.get(uri).timeout(const Duration(seconds: 60));
+        final response =
+            await http.get(uri).timeout(const Duration(seconds: 60));
         logger.info(
             'Response received. Status: ${response.statusCode}, Body: ${response.body}');
 
         if (response.statusCode == 200) {
           final data = json.decode(response.body);
-          
+
           logger.info('API Response Data: ${json.encode(data)}');
 
           if (data is! Map<String, dynamic>) {
@@ -91,11 +95,11 @@ class HomeScreen extends HookConsumerWidget {
 
           final brandName = data['brandName'] as String?;
           final productName = data['productName'] as String?;
-          final nutritionFacts = data['nutritionFacts'] as Map<String, dynamic>?;
-          final nutritionClaims = data['nutritionClaims'] as Map<String, dynamic>? ?? {
-            'allergens': {},
-            'dietaryInfo': {}
-          };
+          final nutritionFacts =
+              data['nutritionFacts'] as Map<String, dynamic>?;
+          final nutritionClaims =
+              data['nutritionClaims'] as Map<String, dynamic>? ??
+                  {'allergens': {}, 'dietaryInfo': {}};
 
           if (brandName == null && productName == null) {
             throw Exception('Ürün bilgisi bulunamadı');
@@ -202,11 +206,23 @@ class HomeScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        backgroundColor: AppColors.primaryGreen,
+        title: const Text(
           'Ürün Tarayıcı',
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
