@@ -255,23 +255,26 @@ class HomeScreen extends HookConsumerWidget {
                     'Ürün taramak için kamerayı kullanın',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  const SizedBox(height: 24),
-                  ElevatedButton.icon(
-                    onPressed: () => scanBarcode(ref),
-                    icon: const Icon(Icons.camera_alt),
-                    label: const Text('Kamerayı Aç'),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => scanBarcode(ref),
+        backgroundColor: AppColors.primaryOrange,
+        child: const Icon(
+          Icons.camera_alt,
+          color: Colors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: AppColors.primaryGreen,
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8,
+        child: const SizedBox(height: 56.0),
       ),
     );
   }
