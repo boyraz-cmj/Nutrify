@@ -13,6 +13,8 @@ import '../features/scanner/scanner_screen.dart';
 import '../services/product_service.dart';
 import '../core/theme/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'auth/login_screen.dart'; // Login ekranını import edelim
+import 'settings/user_settings_screen.dart';
 
 final barcodeProvider = StateProvider<String?>((ref) => null);
 final productNameProvider = StateProvider<ProductInfo?>((ref) => null);
@@ -205,24 +207,128 @@ class HomeScreen extends HookConsumerWidget {
     }
 
     return Scaffold(
+      drawer: Drawer(
+        width: MediaQuery.of(context).size.width * 0.33, // Ekranın 1/3'ü
+        child: Container(
+          color: AppColors.backgroundGreen,
+          child: Column(
+            children: [
+              DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: AppColors.backgroundGreen,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primaryOrange.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: const CircleAvatar(
+                        backgroundColor: AppColors.primaryOrange,
+                        radius: 30,
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      FirebaseAuth.instance.currentUser?.email ?? '',
+                      style: const TextStyle(
+                        color: AppColors.textDark,
+                        fontSize: 12,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.settings,
+                  color: AppColors.primaryOrange,
+                ),
+                title: const Text('Ayarlar'),
+                onTap: () {
+                  Navigator.pop(context); // Drawer'ı kapat
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserSettingsScreen(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.logout,
+                  color: AppColors.primaryOrange,
+                ),
+                title: const Text('Çıkış Yap'),
+                onTap: () async {
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                    if (context.mounted) {
+                      // Drawer'ı kapat ve login ekranına yönlendir
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                        (route) => false, // Tüm route stack'i temizle
+                      );
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Çıkış yapılırken bir hata oluştu'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: AppColors.primaryGreen,
-        title: const Text(
-          'Ürün Tarayıcı',
-          style: TextStyle(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+        title: Text(
+          FirebaseAuth.instance.currentUser?.displayName != null
+              ? 'Hoşgeldin ${FirebaseAuth.instance.currentUser!.displayName}'
+              : 'Hoşgeldin',
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout, color: Colors.white),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-            },
-          ),
-        ],
       ),
       body: Column(
         children: [
