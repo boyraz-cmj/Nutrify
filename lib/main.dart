@@ -8,6 +8,7 @@ import 'services/product_service.dart';
 import 'screens/auth/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'core/theme/app_colors.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 final _logger = Logger('IngrediApp');
 
@@ -37,6 +38,21 @@ void main() async {
   Logger.root.onRecord.listen((record) {
     debugPrint('${record.level.name}: ${record.time}: ${record.message}');
   });
+
+  await AwesomeNotifications().initialize(
+    null, // null = varsayılan app icon
+    [
+      NotificationChannel(
+        channelKey: 'basic_channel',
+        channelName: 'Basic Notifications',
+        channelDescription: 'Basic notification channel',
+        defaultColor: AppColors.primaryGreen,
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+      ),
+    ],
+    debug: true,
+  );
 
   runApp(const ProviderScope(child: MyApp()));
 }

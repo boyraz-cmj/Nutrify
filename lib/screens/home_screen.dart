@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'product_detail_screen.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 import '../features/scanner/scanner_screen.dart';
 import '../services/product_service.dart';
@@ -174,6 +175,16 @@ class HomeScreen extends HookConsumerWidget {
         );
 
         if (barcodeScanRes != null && context.mounted) {
+          // Başarılı tarama bildirimi
+          await AwesomeNotifications().createNotification(
+            content: NotificationContent(
+              id: 1,
+              channelKey: 'basic_channel',
+              title: 'Barcode Scanner',
+              body: 'The product barcode was successfully scanned.',
+            ),
+          );
+
           // Loading göstergesi ekleyelim
           showDialog(
             context: context,
