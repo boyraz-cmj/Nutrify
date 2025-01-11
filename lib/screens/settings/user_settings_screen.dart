@@ -8,6 +8,9 @@ class UserSettingsScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final usernameController = useTextEditingController(
+      text: FirebaseAuth.instance.currentUser?.displayName,
+    );
     final currentPasswordController = useTextEditingController();
     final newPasswordController = useTextEditingController();
     final confirmPasswordController = useTextEditingController();
@@ -17,6 +20,32 @@ class UserSettingsScreen extends HookWidget {
     final isNewPasswordVisible = useState(false);
     final isConfirmPasswordVisible = useState(false);
 
+    Future<void> handleUsernameChange() async {
+      try {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          await user.updateDisplayName(usernameController.text.trim());
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Username successfully updated'),
+                backgroundColor: Colors.green,
+              ),
+            );
+          }
+        }
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error updating username: ${e.toString()}'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    }
+
     Future<void> handlePasswordChange() async {
       if (formKey.currentState?.validate() ?? false) {
         try {
@@ -25,7 +54,7 @@ class UserSettingsScreen extends HookWidget {
           final email = user?.email;
 
           if (user == null || email == null) {
-            throw Exception('Kullanıcı oturumu bulunamadı');
+            throw Exception('User session not found');
           }
 
           final credential = EmailAuthProvider.credential(
@@ -39,7 +68,7 @@ class UserSettingsScreen extends HookWidget {
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Şifreniz başarıyla güncellendi'),
+                content: Text('Password successfully updated'),
                 backgroundColor: Colors.green,
               ),
             );
@@ -49,7 +78,7 @@ class UserSettingsScreen extends HookWidget {
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Hata: ${e.toString()}'),
+                content: Text('Error: ${e.toString()}'),
                 backgroundColor: Colors.red,
               ),
             );
@@ -65,7 +94,7 @@ class UserSettingsScreen extends HookWidget {
         backgroundColor: AppColors.primaryGreen,
         elevation: 0,
         title: const Text(
-          'Kullanıcı Ayarları',
+          'User Settings',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -131,6 +160,88 @@ class UserSettingsScreen extends HookWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
+                  // Kullanıcı Adı Değiştirme Bölümü
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primaryGreen.withOpacity(0.1),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Change Username',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textDark,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          controller: usernameController,
+                          decoration: InputDecoration(
+                            labelText: 'Username',
+                            prefixIcon: Icon(
+                              Icons.person_outline,
+                              color: AppColors.primaryOrange,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: AppColors.primaryGreen.withOpacity(0.3),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: AppColors.primaryGreen,
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a username';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: handleUsernameChange,
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 56),
+                            backgroundColor: AppColors.primaryGreen,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 2,
+                          ),
+                          child: const Text(
+                            'Update Username',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   // Şifre Değiştirme Bölümü
                   Container(
                     padding: const EdgeInsets.all(20),
@@ -149,7 +260,7 @@ class UserSettingsScreen extends HookWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Şifre Değiştir',
+                          'Change Password',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -161,7 +272,7 @@ class UserSettingsScreen extends HookWidget {
                           controller: currentPasswordController,
                           obscureText: !isCurrentPasswordVisible.value,
                           decoration: InputDecoration(
-                            labelText: 'Mevcut Şifre',
+                            labelText: 'Current Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
@@ -195,7 +306,7 @@ class UserSettingsScreen extends HookWidget {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen mevcut şifrenizi girin';
+                              return 'Please enter your current password';
                             }
                             return null;
                           },
@@ -205,7 +316,7 @@ class UserSettingsScreen extends HookWidget {
                           controller: newPasswordController,
                           obscureText: !isNewPasswordVisible.value,
                           decoration: InputDecoration(
-                            labelText: 'Yeni Şifre',
+                            labelText: 'New Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
@@ -239,10 +350,10 @@ class UserSettingsScreen extends HookWidget {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen yeni şifrenizi girin';
+                              return 'Please enter your new password';
                             }
                             if (value.length < 6) {
-                              return 'Şifre en az 6 karakter olmalıdır';
+                              return 'Password must be at least 6 characters';
                             }
                             return null;
                           },
@@ -252,7 +363,7 @@ class UserSettingsScreen extends HookWidget {
                           controller: confirmPasswordController,
                           obscureText: !isConfirmPasswordVisible.value,
                           decoration: InputDecoration(
-                            labelText: 'Yeni Şifre Tekrar',
+                            labelText: 'Confirm New Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
@@ -286,46 +397,46 @@ class UserSettingsScreen extends HookWidget {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen yeni şifrenizi tekrar girin';
+                              return 'Please confirm your new password';
                             }
                             if (value != newPasswordController.text) {
-                              return 'Şifreler eşleşmiyor';
+                              return 'Passwords do not match';
                             }
                             return null;
                           },
                         ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed:
+                              isLoading.value ? null : handlePasswordChange,
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 56),
+                            backgroundColor: AppColors.primaryGreen,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 2,
+                          ),
+                          child: isLoading.value
+                              ? const SizedBox(
+                                  height: 24,
+                                  width: 24,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : const Text(
+                                  'Update Password',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                        ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  // Kaydet Butonu
-                  ElevatedButton(
-                    onPressed: isLoading.value ? null : handlePasswordChange,
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 56),
-                      backgroundColor: AppColors.primaryGreen,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      elevation: 2,
-                    ),
-                    child: isLoading.value
-                        ? const SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 2,
-                            ),
-                          )
-                        : const Text(
-                            'Şifreyi Güncelle',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
                   ),
                 ],
               ),

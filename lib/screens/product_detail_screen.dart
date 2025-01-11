@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/nutrition_claims_widget.dart';
 import '../models/nutrition_claims.dart';
+import '../core/theme/app_colors.dart';
 import 'dart:convert';
 
 class ProductDetailScreen extends ConsumerWidget {
@@ -14,7 +15,8 @@ class ProductDetailScreen extends ConsumerWidget {
     print('Product Details: ${json.encode(product)}');
     print('Nutrition Claims Data: ${json.encode(product['nutritionClaims'])}');
 
-    final nutritionFacts = product['nutritionFacts'] as Map<String, dynamic>? ?? {};
+    final nutritionFacts =
+        product['nutritionFacts'] as Map<String, dynamic>? ?? {};
 
     // Makrobesin değerlerini al ve hesapla
     final totalFat = _extractNumericValue(nutritionFacts['totalFat']);
@@ -229,23 +231,28 @@ class ProductDetailScreen extends ConsumerWidget {
                   try {
                     // Nutrition claims verilerini kontrol et
                     final nutritionClaimsData = product['nutritionClaims'];
-                    if (nutritionClaimsData == null) return const SizedBox.shrink();
+                    if (nutritionClaimsData == null)
+                      return const SizedBox.shrink();
 
                     // Tip kontrolü ve dönüşümü
                     Map<String, dynamic> nutritionClaims;
                     if (nutritionClaimsData is Map) {
-                      nutritionClaims = Map<String, dynamic>.from(nutritionClaimsData);
+                      nutritionClaims =
+                          Map<String, dynamic>.from(nutritionClaimsData);
                     } else {
-                      print('Invalid nutrition claims data type: ${nutritionClaimsData.runtimeType}');
+                      print(
+                          'Invalid nutrition claims data type: ${nutritionClaimsData.runtimeType}');
                       return const SizedBox.shrink();
                     }
 
                     final allergens = (nutritionClaims['allergens'] is Map)
-                        ? Map<String, dynamic>.from(nutritionClaims['allergens'] as Map)
+                        ? Map<String, dynamic>.from(
+                            nutritionClaims['allergens'] as Map)
                         : <String, dynamic>{};
 
                     final dietaryInfo = (nutritionClaims['dietaryInfo'] is Map)
-                        ? Map<String, dynamic>.from(nutritionClaims['dietaryInfo'] as Map)
+                        ? Map<String, dynamic>.from(
+                            nutritionClaims['dietaryInfo'] as Map)
                         : <String, dynamic>{};
 
                     // Debug için
@@ -268,36 +275,49 @@ class ProductDetailScreen extends ConsumerWidget {
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const SizedBox(height: 16),
-                            
+
                             // Free from section
-                            if (allergens.entries.where((e) => 
-                              e.value.toString().toLowerCase().contains('free')).isNotEmpty)
+                            if (allergens.entries
+                                .where((e) => e.value
+                                    .toString()
+                                    .toLowerCase()
+                                    .contains('free'))
+                                .isNotEmpty)
                               Builder(
                                 builder: (context) {
                                   try {
                                     final freeFromItems = allergens.entries
-                                      .where((e) => e.value.toString().toLowerCase().contains('free'))
-                                      .toList();
+                                        .where((e) => e.value
+                                            .toString()
+                                            .toLowerCase()
+                                            .contains('free'))
+                                        .toList();
 
                                     return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         const Text('This food is free from:'),
                                         const SizedBox(height: 8),
                                         ...freeFromItems.map((e) => Padding(
-                                          padding: const EdgeInsets.only(left: 16, bottom: 4),
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.check_circle,
-                                                color: Colors.green,
-                                                size: 20,
+                                              padding: const EdgeInsets.only(
+                                                  left: 16, bottom: 4),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.check_circle,
+                                                    color: Colors.green,
+                                                    size: 20,
+                                                  ),
+                                                  const SizedBox(width: 8),
+                                                  Text(e.key
+                                                      .toString()
+                                                      .replaceAll(
+                                                          RegExp(r'^\s+|\s+$'),
+                                                          '')),
+                                                ],
                                               ),
-                                              const SizedBox(width: 8),
-                                              Text(e.key.toString().replaceAll(RegExp(r'^\s+|\s+$'), '')),
-                                            ],
-                                          ),
-                                        )),
+                                            )),
                                         const SizedBox(height: 16),
                                       ],
                                     );
@@ -309,34 +329,47 @@ class ProductDetailScreen extends ConsumerWidget {
                               ),
 
                             // May contain section
-                            if (allergens.entries.where((e) => 
-                              e.value.toString().toLowerCase().contains('may')).isNotEmpty)
+                            if (allergens.entries
+                                .where((e) => e.value
+                                    .toString()
+                                    .toLowerCase()
+                                    .contains('may'))
+                                .isNotEmpty)
                               Builder(
                                 builder: (context) {
                                   try {
                                     final mayContainItems = allergens.entries
-                                      .where((e) => e.value.toString().toLowerCase().contains('may'))
-                                      .toList();
+                                        .where((e) => e.value
+                                            .toString()
+                                            .toLowerCase()
+                                            .contains('may'))
+                                        .toList();
 
                                     return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         const Text('This food may contain:'),
                                         const SizedBox(height: 8),
                                         ...mayContainItems.map((e) => Padding(
-                                          padding: const EdgeInsets.only(left: 16, bottom: 4),
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.help,
-                                                color: Colors.orange,
-                                                size: 20,
+                                              padding: const EdgeInsets.only(
+                                                  left: 16, bottom: 4),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.help,
+                                                    color: Colors.orange,
+                                                    size: 20,
+                                                  ),
+                                                  const SizedBox(width: 8),
+                                                  Text(e.key
+                                                      .toString()
+                                                      .replaceAll(
+                                                          RegExp(r'^\s+|\s+$'),
+                                                          '')),
+                                                ],
                                               ),
-                                              const SizedBox(width: 8),
-                                              Text(e.key.toString().replaceAll(RegExp(r'^\s+|\s+$'), '')),
-                                            ],
-                                          ),
-                                        )),
+                                            )),
                                         const SizedBox(height: 16),
                                       ],
                                     );
@@ -353,28 +386,38 @@ class ProductDetailScreen extends ConsumerWidget {
                                 builder: (context) {
                                   try {
                                     return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         const Text('Dietary Information:'),
                                         const SizedBox(height: 8),
-                                        ...dietaryInfo.entries.map((e) => Padding(
-                                          padding: const EdgeInsets.only(left: 16, bottom: 4),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                e.value == false ? Icons.cancel : Icons.check_circle,
-                                                color: e.value == false ? Colors.red : Colors.green,
-                                                size: 20,
-                                              ),
-                                              const SizedBox(width: 8),
-                                              Text('${e.key} diet'),
-                                            ],
-                                          ),
-                                        )),
+                                        ...dietaryInfo.entries
+                                            .map((e) => Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 16, bottom: 4),
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(
+                                                        e.value == false
+                                                            ? Icons.cancel
+                                                            : Icons
+                                                                .check_circle,
+                                                        color: e.value == false
+                                                            ? Colors.red
+                                                            : Colors.green,
+                                                        size: 20,
+                                                      ),
+                                                      const SizedBox(width: 8),
+                                                      Text('${e.key} diet'),
+                                                    ],
+                                                  ),
+                                                )),
                                       ],
                                     );
                                   } catch (e) {
-                                    print('Error in Dietary Information section: $e');
+                                    print(
+                                        'Error in Dietary Information section: $e');
                                     return const SizedBox.shrink();
                                   }
                                 },
@@ -401,19 +444,36 @@ class ProductDetailScreen extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('$label ($percentage%)'),
-              Text('${value.toStringAsFixed(1)}g'),
+              Icon(
+                _getMacroIcon(label),
+                color: color,
+                size: 24,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '$label ($percentage%)',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      '${value.toStringAsFixed(1)}g',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 4),
           LinearProgressIndicator(
             value: percentage / 100,
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: color.withOpacity(0.2),
             valueColor: AlwaysStoppedAnimation<Color>(color),
           ),
         ],
@@ -423,35 +483,29 @@ class ProductDetailScreen extends ConsumerWidget {
 
   Widget _buildNutritionRowWithPercentage(
       String label, String value, int? percentage) {
-    // Değer ve birim arasındaki boşlukları temizle
-    final cleanValue = value.replaceAll(RegExp(r'\s+'), '');
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          // Label sol tarafta
-          Expanded(
-            flex: 3,
-            child: Text(label),
+          Icon(
+            _getNutritionIcon(label),
+            color: AppColors.primaryGreen,
+            size: 20,
           ),
-          // Yüzde ve değer sağ tarafta
+          const SizedBox(width: 8),
           Expanded(
-            flex: 2,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (percentage != null) ...[
-                  Text(
-                    '$percentage%',
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                  const SizedBox(width: 16),
-                ],
-                Text(
-                  cleanValue,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                Text(label),
+                Row(
+                  children: [
+                    Text(value),
+                    if (percentage != null) ...[
+                      const SizedBox(width: 8),
+                      Text('${percentage.toString()}%'),
+                    ],
+                  ],
                 ),
               ],
             ),
@@ -566,5 +620,47 @@ class ProductDetailScreen extends ConsumerWidget {
       return productName.substring(brandName.length).trim();
     }
     return productName;
+  }
+
+  IconData _getMacroIcon(String label) {
+    switch (label.toLowerCase()) {
+      case 'fat':
+        return Icons.opacity; // Yağ damlası ikonu
+      case 'carbs':
+        return Icons.grain; // Tahıl ikonu
+      case 'protein':
+        return Icons.fitness_center; // Protein için ağırlık ikonu
+      default:
+        return Icons.circle;
+    }
+  }
+
+  IconData _getNutritionIcon(String label) {
+    switch (label.toLowerCase()) {
+      case 'calories':
+        return Icons.local_fire_department; // Kalori için ateş ikonu
+      case 'total fat':
+        return Icons.opacity; // Yağ damlası ikonu
+      case 'saturated fat':
+        return Icons.opacity_outlined; // Doymuş yağ için farklı yağ ikonu
+      case 'trans fat':
+        return Icons.warning_outlined; // Trans yağ için uyarı ikonu
+      case 'cholesterol':
+        return Icons.medical_services_outlined; // Kolesterol için medikal ikonu
+      case 'sodium':
+        return Icons.restaurant; // Sodyum için tuz/yemek ikonu
+      case 'total carbohydrate':
+        return Icons.grain; // Karbonhidrat için tahıl ikonu
+      case 'dietary fiber':
+        return Icons.grass; // Lif için bitki ikonu
+      case 'sugars':
+        return Icons.cake; // Şeker için tatlı ikonu
+      case 'protein':
+        return Icons.fitness_center; // Protein için ağırlık ikonu
+      case 'serving size':
+        return Icons.restaurant_menu; // Porsiyon için tabak ikonu
+      default:
+        return Icons.info_outline;
+    }
   }
 }

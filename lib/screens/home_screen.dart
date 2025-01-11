@@ -275,7 +275,7 @@ class HomeScreen extends HookConsumerWidget {
                   Icons.settings,
                   color: AppColors.primaryOrange,
                 ),
-                title: const Text('Ayarlar'),
+                title: const Text('Settings'),
                 onTap: () {
                   Navigator.pop(context); // Drawer'ı kapat
                   Navigator.push(
@@ -291,7 +291,7 @@ class HomeScreen extends HookConsumerWidget {
                   Icons.logout,
                   color: AppColors.primaryOrange,
                 ),
-                title: const Text('Çıkış Yap'),
+                title: const Text('Logout'),
                 onTap: () async {
                   try {
                     await FirebaseAuth.instance.signOut();
@@ -308,7 +308,7 @@ class HomeScreen extends HookConsumerWidget {
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Çıkış yapılırken bir hata oluştu'),
+                          content: Text('An error occurred during logout'),
                           backgroundColor: Colors.red,
                         ),
                       );
@@ -339,8 +339,8 @@ class HomeScreen extends HookConsumerWidget {
         ),
         title: Text(
           FirebaseAuth.instance.currentUser?.displayName != null
-              ? 'Hoşgeldin ${FirebaseAuth.instance.currentUser!.displayName}'
-              : 'Hoşgeldin',
+              ? 'Welcome ${FirebaseAuth.instance.currentUser!.displayName}'
+              : 'Welcome',
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -378,7 +378,7 @@ class HomeScreen extends HookConsumerWidget {
               child: TextField(
                 controller: searchController,
                 decoration: InputDecoration(
-                  hintText: 'Barkod veya ürün adı girin',
+                  hintText: 'Enter barcode or product name',
                   hintStyle: TextStyle(
                     color: Colors.grey[400],
                     fontSize: 16,
@@ -423,7 +423,7 @@ class HomeScreen extends HookConsumerWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Ürün taramak için kamerayı kullanın',
+                      'Use camera to scan product',
                       style: TextStyle(
                         fontSize: 18,
                         color: AppColors.textDark,
@@ -437,46 +437,54 @@ class HomeScreen extends HookConsumerWidget {
           ],
         ),
       ),
-      floatingActionButton: Container(
+      bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
+          color: AppColors.primaryGreen,
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryOrange.withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
             ),
           ],
         ),
-        child: FloatingActionButton(
-          onPressed: () => scanBarcode(ref),
-          backgroundColor: AppColors.primaryOrange,
-          elevation: 4,
-          shape: const CircleBorder(),
-          child: const Icon(
-            Icons.camera_alt,
-            color: Colors.white,
-            size: 28,
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        color: AppColors.primaryGreen,
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        elevation: 8,
-        child: Container(
-          height: 56.0,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.primaryGreen,
-                AppColors.primaryGreen.withOpacity(0.9),
-              ],
+        height: 60,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () => scanBarcode(ref),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryOrange,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryOrange.withOpacity(0.3),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(
+                        Icons.camera_alt,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

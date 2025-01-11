@@ -59,20 +59,19 @@ class LoginScreen extends HookConsumerWidget {
             String errorMessage;
             switch (e.code) {
               case 'user-not-found':
-                errorMessage =
-                    'Bu e-posta adresi ile kayıtlı kullanıcı bulunamadı.';
+                errorMessage = 'No user found with this email address.';
                 break;
               case 'wrong-password':
-                errorMessage = 'Hatalı şifre girdiniz.';
+                errorMessage = 'Incorrect password.';
                 break;
               case 'invalid-email':
-                errorMessage = 'Geçersiz e-posta formatı.';
+                errorMessage = 'Invalid email format.';
                 break;
               case 'user-disabled':
-                errorMessage = 'Bu kullanıcı hesabı devre dışı bırakılmış.';
+                errorMessage = 'This user account has been disabled.';
                 break;
               default:
-                errorMessage = 'Giriş yapılırken bir hata oluştu: ${e.code}';
+                errorMessage = 'Login error: ${e.code}';
             }
 
             ScaffoldMessenger.of(context).showSnackBar(
@@ -200,7 +199,7 @@ class LoginScreen extends HookConsumerWidget {
                           controller: emailController,
                           enabled: !isLoading.value,
                           decoration: InputDecoration(
-                            labelText: 'E-posta',
+                            labelText: 'Email',
                             prefixIcon: Icon(
                               Icons.email_outlined,
                               color: AppColors.primaryOrange,
@@ -226,10 +225,10 @@ class LoginScreen extends HookConsumerWidget {
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen e-posta adresinizi girin';
+                              return 'Please enter your email';
                             }
                             if (!value.contains('@')) {
-                              return 'Geçerli bir e-posta adresi girin';
+                              return 'Please enter a valid email address';
                             }
                             return null;
                           },
@@ -239,7 +238,7 @@ class LoginScreen extends HookConsumerWidget {
                           controller: passwordController,
                           enabled: !isLoading.value,
                           decoration: InputDecoration(
-                            labelText: 'Şifre',
+                            labelText: 'Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
@@ -266,10 +265,10 @@ class LoginScreen extends HookConsumerWidget {
                           onFieldSubmitted: (_) => handleLogin(),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen şifrenizi girin';
+                              return 'Please enter your password';
                             }
                             if (value.length < 6) {
-                              return 'Şifre en az 6 karakter olmalıdır';
+                              return 'Password must be at least 6 characters';
                             }
                             return null;
                           },
@@ -300,7 +299,7 @@ class LoginScreen extends HookConsumerWidget {
                             ),
                           )
                         : const Text(
-                            'Giriş Yap',
+                            'Login',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -319,7 +318,7 @@ class LoginScreen extends HookConsumerWidget {
                             );
                           },
                     child: Text(
-                      'Hesabınız yok mu? Kayıt olun',
+                      'Don\'t have an account? Sign up',
                       style: TextStyle(
                         color: AppColors.primaryOrange,
                         fontWeight: FontWeight.w600,

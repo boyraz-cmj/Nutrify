@@ -40,7 +40,7 @@ class SignupScreen extends HookConsumerWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content:
-                    Text('Kayıt başarılı! Anasayfaya yönlendiriliyorsunuz.'),
+                    Text('Registration successful! Redirecting to home page.'),
                 backgroundColor: Colors.green,
               ),
             );
@@ -56,16 +56,16 @@ class SignupScreen extends HookConsumerWidget {
             String errorMessage;
             switch (e.code) {
               case 'email-already-in-use':
-                errorMessage = 'Bu e-posta adresi zaten kullanımda.';
+                errorMessage = 'This email is already in use.';
                 break;
               case 'invalid-email':
-                errorMessage = 'Geçersiz e-posta formatı.';
+                errorMessage = 'Invalid email format.';
                 break;
               case 'weak-password':
-                errorMessage = 'Şifre çok zayıf.';
+                errorMessage = 'Password is too weak.';
                 break;
               default:
-                errorMessage = 'Kayıt olurken bir hata oluştu: ${e.code}';
+                errorMessage = 'Registration error: ${e.code}';
             }
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -133,7 +133,7 @@ class SignupScreen extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Kayıt Ol',
+                    'Sign Up',
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -168,7 +168,7 @@ class SignupScreen extends HookConsumerWidget {
                           controller: emailController,
                           enabled: !isLoading.value,
                           decoration: InputDecoration(
-                            labelText: 'E-posta',
+                            labelText: 'Email',
                             prefixIcon: Icon(
                               Icons.email_outlined,
                               color: AppColors.primaryOrange,
@@ -194,10 +194,10 @@ class SignupScreen extends HookConsumerWidget {
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen e-posta adresinizi girin';
+                              return 'Please enter your email';
                             }
                             if (!value.contains('@')) {
-                              return 'Geçerli bir e-posta adresi girin';
+                              return 'Please enter a valid email address';
                             }
                             return null;
                           },
@@ -207,7 +207,7 @@ class SignupScreen extends HookConsumerWidget {
                           controller: passwordController,
                           enabled: !isLoading.value,
                           decoration: InputDecoration(
-                            labelText: 'Şifre',
+                            labelText: 'Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
@@ -233,10 +233,10 @@ class SignupScreen extends HookConsumerWidget {
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen şifre girin';
+                              return 'Please enter a password';
                             }
                             if (value.length < 6) {
-                              return 'Şifre en az 6 karakter olmalıdır';
+                              return 'Password must be at least 6 characters';
                             }
                             return null;
                           },
@@ -246,7 +246,7 @@ class SignupScreen extends HookConsumerWidget {
                           controller: confirmPasswordController,
                           enabled: !isLoading.value,
                           decoration: InputDecoration(
-                            labelText: 'Şifre Tekrar',
+                            labelText: 'Confirm Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
@@ -272,10 +272,10 @@ class SignupScreen extends HookConsumerWidget {
                           textInputAction: TextInputAction.done,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Lütfen şifrenizi tekrar girin';
+                              return 'Please confirm your password';
                             }
                             if (value != passwordController.text) {
-                              return 'Şifreler eşleşmiyor';
+                              return 'Passwords do not match';
                             }
                             return null;
                           },
@@ -306,7 +306,7 @@ class SignupScreen extends HookConsumerWidget {
                             ),
                           )
                         : const Text(
-                            'Kayıt Ol',
+                            'Sign Up',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
