@@ -29,9 +29,7 @@ class ScannerScreen extends HookConsumerWidget {
               valueListenable: scannerController.torchState,
               builder: (context, state, child) {
                 return Icon(
-                  state == TorchState.off 
-                    ? Icons.flash_off 
-                    : Icons.flash_on,
+                  state == TorchState.off ? Icons.flash_off : Icons.flash_on,
                 );
               },
             ),
@@ -58,4 +56,4 @@ class ScannerScreen extends HookConsumerWidget {
       ),
     );
   }
-} 
+}

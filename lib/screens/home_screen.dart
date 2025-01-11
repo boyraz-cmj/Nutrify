@@ -208,14 +208,30 @@ class HomeScreen extends HookConsumerWidget {
 
     return Scaffold(
       drawer: Drawer(
-        width: MediaQuery.of(context).size.width * 0.33, // Ekranın 1/3'ü
+        width: MediaQuery.of(context).size.width * 0.75,
         child: Container(
-          color: AppColors.backgroundGreen,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.primaryGreen.withOpacity(0.1),
+                AppColors.backgroundGreen,
+              ],
+            ),
+          ),
           child: Column(
             children: [
               DrawerHeader(
-                decoration: const BoxDecoration(
-                  color: AppColors.backgroundGreen,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primaryGreen.withOpacity(0.1),
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -225,29 +241,29 @@ class HomeScreen extends HookConsumerWidget {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.primaryOrange.withOpacity(0.3),
+                            color: AppColors.primaryOrange.withOpacity(0.2),
                             spreadRadius: 2,
                             blurRadius: 8,
-                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
                       child: const CircleAvatar(
                         backgroundColor: AppColors.primaryOrange,
-                        radius: 30,
+                        radius: 40,
                         child: Icon(
                           Icons.person,
                           color: Colors.white,
-                          size: 35,
+                          size: 40,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     Text(
                       FirebaseAuth.instance.currentUser?.email ?? '',
                       style: const TextStyle(
                         color: AppColors.textDark,
-                        fontSize: 12,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -306,12 +322,14 @@ class HomeScreen extends HookConsumerWidget {
       ),
       appBar: AppBar(
         backgroundColor: AppColors.primaryGreen,
+        elevation: 0,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
               icon: const Icon(
                 Icons.person,
                 color: Colors.white,
+                size: 28,
               ),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
@@ -326,46 +344,98 @@ class HomeScreen extends HookConsumerWidget {
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                hintText: 'Barkod veya ürün adı girin',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              onSubmitted: (value) => getProductName(ref, value),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.primaryGreen.withOpacity(0.1),
+              AppColors.backgroundGreen,
+            ],
           ),
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.qr_code_scanner,
-                    size: 100,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Ürün taramak için kamerayı kullanın',
-                    style: Theme.of(context).textTheme.titleMedium,
+        ),
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryGreen.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 2,
                   ),
                 ],
               ),
+              child: TextField(
+                controller: searchController,
+                decoration: InputDecoration(
+                  hintText: 'Barkod veya ürün adı girin',
+                  hintStyle: TextStyle(
+                    color: Colors.grey[400],
+                    fontSize: 16,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppColors.primaryOrange,
+                    size: 24,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 15,
+                  ),
+                ),
+                onSubmitted: (value) => getProductName(ref, value),
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primaryGreen.withOpacity(0.2),
+                            blurRadius: 15,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        Icons.qr_code_scanner,
+                        size: 100,
+                        color: AppColors.primaryGreen,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Ürün taramak için kamerayı kullanın',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: AppColors.textDark,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: Container(
         decoration: BoxDecoration(
@@ -396,7 +466,18 @@ class HomeScreen extends HookConsumerWidget {
         color: AppColors.primaryGreen,
         shape: const CircularNotchedRectangle(),
         notchMargin: 8,
-        child: const SizedBox(height: 56.0),
+        elevation: 8,
+        child: Container(
+          height: 56.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.primaryGreen,
+                AppColors.primaryGreen.withOpacity(0.9),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
