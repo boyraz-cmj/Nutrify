@@ -73,36 +73,107 @@ class MyApp extends ConsumerWidget {
           primary: AppColors.primaryGreen,
           secondary: AppColors.primaryOrange,
           background: AppColors.backgroundGreen,
+          surface: AppColors.surfaceColor,
+          brightness: Brightness.light,
         ),
+        scaffoldBackgroundColor: AppColors.backgroundGreen,
         useMaterial3: true,
+        // Card teması - gölgeler daha belirgin
+        cardTheme: CardTheme(
+          elevation: 6,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          color: AppColors.surfaceColor,
+          shadowColor: AppColors.neonGreenShadow
+              .withOpacity(AppColors.cardShadowOpacity),
+        ),
+        // Buton teması - neon efektler artırıldı
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            elevation: 8,
+            shadowColor: AppColors.neonGreenShadow
+                .withOpacity(AppColors.buttonShadowOpacity),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          ),
+        ),
+        // Input teması - kontrast artırıldı
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: AppColors.backgroundGreen,
+          fillColor: AppColors.surfaceColor,
           prefixIconColor: AppColors.primaryOrange,
           suffixIconColor: AppColors.primaryOrange,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.primaryGreen),
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: AppColors.primaryGreen.withOpacity(0.5),
+              width: 2,
+            ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide:
-                BorderSide(color: AppColors.primaryGreen.withOpacity(0.5)),
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: AppColors.primaryGreen.withOpacity(0.4),
+              width: 2,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide:
-                const BorderSide(color: AppColors.primaryGreen, width: 2),
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: AppColors.accentGreen,
+              width: 2.5,
+            ),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 16,
+          ),
+          labelStyle: TextStyle(
+            color: AppColors.textDark.withOpacity(0.8),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        // AppBar teması - daha belirgin
+        appBarTheme: AppBarTheme(
+          elevation: 4,
+          backgroundColor: AppColors.primaryGreen,
+          foregroundColor: AppColors.textLight,
+          centerTitle: true,
+          shadowColor: AppColors.neonGreenShadow
+              .withOpacity(AppColors.neonShadowOpacity),
+          titleTextStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.textLight,
+          ),
+        ),
+        // Floating Action Button teması - neon efektler güçlendirildi
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: AppColors.primaryOrange,
+          foregroundColor: AppColors.textLight,
+          elevation: 8,
+          splashColor: AppColors.neonOrangeShadow.withOpacity(0.4),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
       ),
       home: authState.when(
-        data: (user) {
-          return user != null ? const HomeScreen() : const LoginScreen();
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        data: (user) => user != null ? const HomeScreen() : const LoginScreen(),
+        loading: () => const Center(
+          child: CircularProgressIndicator(
+            color: AppColors.primaryGreen,
+            backgroundColor: AppColors.neonGreenShadow,
+          ),
+        ),
         error: (error, stack) => Center(
-          child: Text('Bir hata oluştu: $error'),
+          child: Text(
+            'Bir hata oluştu: $error',
+            style: const TextStyle(color: AppColors.error),
+          ),
         ),
       ),
     );
