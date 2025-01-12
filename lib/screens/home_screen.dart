@@ -78,7 +78,7 @@ class HomeScreen extends HookConsumerWidget {
           return;
         }
 
-        const String baseUrl = 'http://10.32.3.7:3000';
+        const String baseUrl = 'http://192.168.1.101:3000';
         final uri = Uri.parse('$baseUrl/product-name/$barcode');
         logger.info('Requesting: $uri');
 

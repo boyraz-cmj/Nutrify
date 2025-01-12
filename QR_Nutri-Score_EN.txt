@@ -1,0 +1,3309 @@
+UPDATED 01/04/2022
+
+NUTRI-SCORE FREQUENTLY ASKED QUESTIONS
+SCIENTIFIC & TECHNICAL
+
+Contents
+I.
+
+CALCULATING THE SCORE................................................................................................................................. 3
+HOW IS THE NUTRITIONAL SCORE CALCULATED? ..................................................................................................................... 3
+WHAT REFERENCE IS USED TO CALCULATE THE CONTENT OF "FRUIT, VEGETABLES, PULSES, NUTS, AND RAPESEED, WALNUT AND OLIVE OILS"
+IN PROCESSED PRODUCTS? ................................................................................................................................................. 3
+DO CONCENTRATED JUICES COUNT WHEN WORKING OUT “FRUIT, VEGETABLE, PULSES, NUTS, AND RAPESEED, WALNUT AND OLIVE OILS”
+CONTENT? ...................................................................................................................................................................... 3
+WHICH METHOD SHALL BE USED FOR ASSESSING FIBRE CONTENT? .............................................................................................. 4
+WHAT COUNTS AS A SIMPLE SUGAR? .................................................................................................................................... 4
+HOW IS THE FINAL SCORED DETERMINED? ............................................................................................................................. 4
+WHEN CALCULATING THE SCORE, SHOULD THE RESULTS BE ROUNDED?........................................................................................ 4
+HOW IS THE SALT - SODIUM CONVERSION CALCULATED? .......................................................................................................... 4
+HOW ARE COMPOSITE PRODUCTS CALCULATED? ..................................................................................................................... 5
+DOES THE PRODUCT'S NUTRI-SCORE NEED TO BE CALCULATED BASED ON AS IT'S SOLD OR ONCE IT'S PREPARED? ................................. 5
+WHAT IS THE NUTRI-SCORE FOR FRIED PRODUCTS?................................................................................................................. 5
+IS THE NUTRI-SCORE CALCULATED FOR THE PRODUCT WITH THE COVERING LIQUID? ...................................................................... 6
+WITH LIQUID FOODS, IS THE SCORE CALCULATED FOR 100 G OR 100 ML? ................................................................................... 6
+WHY THE “FRUITS, VEGETABLES, PULSES, AND NUTS” COMPONENT HAS BEEN MODIFIED AND WHAT IS THE TIME FRAME FOR ACHIEVING
+COMPLIANCE WITH THE NEW PROVISIONS? ............................................................................................................................ 6
+
+II.
+
+MODIFYING THE SCORE FOR FOODS AND BEVERAGES ..................................................................................... 7
+WHICH ADDED FATS ARE COVERED BY THE MODIFIED NUTRI-SCORE?.......................................................................................... 7
+WHICH CHEESES ARE COVERED BY THE NUTRI-SCORE MODIFICATION? ........................................................................................ 7
+WHICH BEVERAGES ARE COVERED BY THE NUTRI-SCORE MODIFICATION? .................................................................................... 7
+DOES IT APPLY TO ALCOHOLIC DRINKS? ................................................................................................................................. 8
+
+III.
+
+FOODS COVERED BY THE NUTRI-SCORE............................................................................................................ 8
+WHICH PRODUCTS ARE COVERED BY THE NUTRI-SCORE? .......................................................................................................... 8
+WHICH PRODUCTS ARE NOT COVERED BY THE NUTRI-SCORE? ................................................................................................... 9
+CAN THE NUTRI-SCORE BE DISPLAYED ON PRODUCTS THAT ARE NOT SUBJECT TO MANDATORY NUTRITIONAL DECLARATION? ............... 10
+IS IT POSSIBLE TO APPLY THE NUTRI-SCORE TO RECIPES?......................................................................................................... 10
+IF THERE IS A BUSINESS RELATIONSHIP BETWEEN A CLIENT COMPANY AND ITS SUPPLIER, CAN THE NUTRI-SCORE OF A RECIPE'S
+"INGREDIENTS" BE USED WITHOUT SIGNING UP TO NUTRI-SCORE? ........................................................................................... 11
+FOR ASSORTMENTS, MUST MULTIPLE NUTRI-SCORES BE DISPLAYED? ........................................................................................ 11
+
+1
+
+IV.
+
+LEGAL ISSUES PERTAINING TO THE NUTRI-SCORE PLAN ................................................................................. 11
+
+WHO MAY DISPLAY THE NUTRI-SCORE LOGO ON THEIR BRANDS AND PRODUCTS?........................................................................ 11
+HOW TO OBTAIN THE RIGHT TO USE THE NUTRI-SCORE? (REGISTRATION PROCESS) ...................................................................... 11
+HOW DOES THE PRIOR NOTICE TO RIGHTSHOLDERS APPLY WITH THE UPDATE OF THE CONDITIONS OF USE IN JULY 2021? .................... 12
+HOW CAN THE DOCUMENTS REQUIRED TO USE THE NUTRI-SCORE BE OBTAINED?........................................................................ 13
+HOW ARE THE NUTRI-SCORE SCORES CALCULATED? .............................................................................................................. 13
+IS IT POSSIBLE TO CONDUCT A TEST PHASE BEFORE COMMITTING? ............................................................................................ 13
+MUST OPERATORS PUT THE NUTRI-SCORE ON ALL THEIR BRANDS AND ON ALL THE PRODUCTS FOR THE SAME BRAND? ....................... 14
+WHAT IS THE SCOPE OF ENGAGEMENT FOR A BRAND THAT WISHES TO USE THE NUTRI-SCORE LABEL? ............................................. 14
+ARE CO-BRANDED PRODUCTS INCLUDED IN THE SCOPE OF ENGAGEMENT? ................................................................................. 15
+WHAT ARE THE RULES OF USE OF THE NUTRI-SCORE BY JOINT-VENTURES? ................................................................................. 16
+MUST THE NUTRI-SCORE ALSO BE PUT ON PRODUCTS MADE FOR THE FOODSERVICE INDUSTRY?..................................................... 16
+WHAT ARE THE SPECIFICS FOR APPLYING THE NUTRI-SCORE OVERSEAS? .................................................................................... 16
+DOES THE NUTRI-SCORE APPLY OUTSIDE OF FRANCE? ........................................................................................................... 16
+CAN A REPRESENTATIVE COMPLETE THE NUTRI-SCORE REGISTRATION PROCESS? ......................................................................... 17
+WHY ARE THERE PENALTIES IN THE NUTRI-SCORE CONDITIONS OF USE? .................................................................................... 17
+HOW CAN A COMPANY STOP USING THE NUTRI-SCORE? ........................................................................................................ 17
+HOW CAN SOMEONE OBTAIN THE TRANSLATION OF THE NUTRI-SCORE CONDITIONS OF USE? ........................................................ 18
+IS IT POSSIBLE TO MODIFY THE NUTRI-SCORE CONDITIONS OF USE? .......................................................................................... 18
+IS IT POSSIBLE TO MODIFY THE NUTRI-SCORE GRAPHIC CHARTER? ............................................................................................ 18
+IS THERE A GRAPHIC CHARTER THAT LAYS OUT THE RULES FOR USING THE LOGO ON E-COMMERCE SITES? ......................................... 18
+IS IT POSSIBLE FOR MANUFACTURERS TO REGISTER FOR AN EXCLUSIVELY DIGITAL USE OF THE NUTRI-SCORE LOGO? ........................ 18
+CAN THE LOGO BE USED FOR PROMOTIONAL PURPOSES? ........................................................................................................ 19
+WHAT ARE THE RULES FOR USING THE NUTRI-SCORE FOR PROMOTIONAL PURPOSES? .................................................................. 19
+HOW CAN THE NUTRI-SCORE LOGOS BE OBTAINED FOR EDUCATIONAL, SCIENTIFIC OR JOURNALISTIC PRESENTATIONS? ....................... 19
+CAN THE NUTRI-SCORE MARK BE REPRODUCED WITHOUT PERMISSION FROM SANTÉ PUBLIQUE FRANCE? ........................................ 19
+Appendix 1: Guidance on quantifying the fruit, vegetable, pulse, nut, and rapeseed, walnut and olive oils
+content of a processed product ............................................................................................................................. 20
+Appendix 2: Methods for calculating the nutritional score ................................................................................... 27
+Appendix 3: Eurocode 2 classification – groups included in the fruits, vegetables, pulses and nuts and rapeseed,
+walnut and olive oils component .......................................................................................................................... 33
+
+2
+
+Scientific and Technical FAQ
+The latest modifications are shown in the document in blue.
+
+I. Calculating the Score
+HOW IS THE NUTRITIONAL SCORE CALCULATED?
+The nutritional score is calculated using the data from the nutritional declaration for 100 g of the product
+as sold.
+Note: see the special rubric for reconstituted products
+
+WHAT REFERENCE IS USED TO CALCULATE THE CONTENT OF "FRUIT, VEGETABLES, PULSES, NUTS, AND
+RAPESEED, WALNUT AND OLIVE OILS" IN PROCESSED PRODUCTS?
+A guidance document on quantifying the fruit, vegetable, pulse, nuts, and rapeseed, walnut and olive oils
+content of a processed product is attached in Appendix 1.
+It is based on the following reference document: 'Application of the Nutrient profiling model: Definition of
+‘fruit, vegetables and nuts’ and guidance on quantifying the fruit, vegetable and nut content of a processed
+product - Peter Scarborough, Mike Rayner, Anna Boxer and Lynn Stockley - British Heart Foundation - Health
+Promotion Research Group, Department of Public Health, University of Oxford - December 2005”.
+
+DO CONCENTRATED JUICES COUNT WHEN WORKING OUT “FRUIT, VEGETABLE, PULSES, NUTS, AND
+RAPESEED, WALNUT AND OLIVE OILS” CONTENT?
+With regards to concentrated fruits and vegetables:
+Can be counted: fruit juices made from 100% concentrates
+E.g. orange juice made from 100% concentrate that is rehydrated to 100% (or coconut juice when
+rehydration results in 100% juice)
+Cannot be counted: concentrated fruit juices or fruit puree that have not been rehydrated to 100%
+E.g. juice/concentrated lemon syrup used in a sorbet cannot be counted as fruit
+The classification of fruit juices and their related products regarding the calculation of the Fruit, vegetable,
+pulses, nuts, and rapeseed, walnut and olive oils component is described in Appendix 1.
+
+3
+
+WHICH METHOD SHALL BE USED FOR ASSESSING FIBRE CONTENT?
+All methods for determination of the fibre content declared on the nutritional declaration, listed in the
+European guidance document1 , published in December 2012, are valid for the calculation of the score.
+
+WHAT COUNTS AS A SIMPLE SUGAR?
+Simple sugars include mono and disaccharides.
+
+HOW IS THE FINAL SCORED DETERMINED?
+The overall score for a food is found by subtracting the total number of favourable points from the total
+number of unfavourable points.
+In addition, the level of unfavourable points (up to 11) can cause the favourable points to vary depending
+on whether points for protein have been counted (see special rules).
+The score calculation method is detailed in Appendix 2.
+
+WHEN CALCULATING THE SCORE, SHOULD THE RESULTS BE ROUNDED?
+Points are assigned according to the values indicated on the mandatory nutritional declaration.
+To determine number of decimals needed, we recommend the use of the European guidance document
+with regards to the settings of tolerances for nutrient values for labels. For optional nutrients, in accordance
+with Article 30-2 of the INCO regulation 1169/2011, such as fibre, rounding guidelines from the previous
+document are also recommended2.
+
+HOW IS THE SALT - SODIUM CONVERSION CALCULATED?
+The sodium content corresponds to the salt content listed in the mandatory declaration divided by a
+conversion coefficient of 2.5.
+When the salt value is expressed in centigrams (2 decimal places if expressed in grams), then the rounding
+rule described in the 'When calculating the score, should the results be rounded?' section of this FAQ
+apply.
+To avoid the rare but conceivable discrepancies in points assigned to the 'sodium' component in the score
+calculation process resulting from converting the amount of salt listed in the nutritional declaration into
+sodium, the solution is to privilege salt content expressed in mg (3 decimal places if expressed in grams)
+and include it in the nutritional declaration on the package. The declared value is calculated according to
+the methods described in Article 31-4 of EU regulation no. 1169/2011.
+
+1
+
+Guidance document for competent authorities for the control of compliance with EU legislation with regard to
+methods of analysis for determination of the fibre content declared on a label
+2
+
+guidance document for competent authorities for the control of compliance with EU legislation with regard to the
+setting of tolerances for nutrient values declared on a label
+
+4
+
+HOW ARE COMPOSITE PRODUCTS CALCULATED?
+The nutritional score is calculated using the nutritional data listed on the package for 100 g of the product,
+whose nutrients form part of the mandatory nutritional declaration or are included as supplemental
+information, in accordance with Article 30 of the INCO regulation no. 1169/2011.
+In the case of a prepared dish sold with a sauce packet that displays the nutritional values of the dish +
+sauce, the Nutri-Score should also be calculated for the dish + sauce.
+If two nutritional statements are provided, two Nutri-Scores may be displayed on the front – there is a
+graphic charter available for displaying 2 Nutri-Scores on the front of the packaging.
+
+DOES THE PRODUCT'S NUTRI-SCORE NEED TO BE CALCULATED BASED ON AS IT'S SOLD OR ONCE IT'S
+PREPARED?
+The INCO regulation stipulates that the nutritional declaration may be based on the nutritional values of
+the product as sold, when appropriate, as prepared. In any case, the Nutri-Score’s calculation has always to
+be based on the energy and the nutrients indicated on the corresponding nutritional declaration. In
+addition, the calculation of the Nutri-Score on the prepared product can only be considered if there are
+sufficient details on the preparation method.
+An example of product that is covered by this modality of calculation is dehydrated powdered soups.
+For these products, we recommend to calculate the Nutri-Score for the product as prepared, to allow
+consumers to be able to compare the Nutri-Score on the same basis. To be eligible for this calculation
+method, the packaging must affix the nutritional declaration for 100 g or 100 mL of prepared product and
+the food’s preparation method has to be described in detail.
+In this case, the operator is asked to add an indication on the packaging to inform the consumer that the
+Nutri-Score has been calculated on the product as prepared (principle of transparency). This information
+may be added either on the front-of-pack next to the logo (the white space around the logo may be used
+in this regard) or on the back of the packaging next to the nutritional declaration.
+Clarification: for reconstitutions with milk, if the type of milk is not indicated, then semi-skimmed milk will
+be considered the default.
+
+WHAT IS THE NUTRI-SCORE FOR FRIED PRODUCTS?
+Pre-packaged fried products (such as chips or breaded fish) are usually given a Nutri-Score of A or B. These
+products will normally have undergone an industrial pre-frying process that has a low impact on the amount
+of fat in the product.
+Some products may be designed for cooking in an oven or frying pan, whereas other packaging may
+mention that it can be cooked in a fryer, which leads to a far greater quantity of oil in the final consumed
+product. As a result, cooking in a fryer translates to a Nutri-Score that is one or two bands higher,
+depending on the type of oil used.
+In the exclusive case of fried products that cannot be eaten as sold and where the packaging indicates a
+fryer as a cooking method, it is recommended that the producer inform consumers of the changes such a
+preparation method would cause in terms of the product's Nutri-Score, by adding the following generic
+
+5
+
+sentence to the packaging: "The process of deep-frying will worsen the product’s Nutri-Score by one or two
+letters."
+
+IS THE NUTRI-SCORE CALCULATED FOR THE PRODUCT WITH THE COVERING LIQUID?
+The nutritional score is calculated using the nutritional data listed on the package for 100 g of the product,
+whose nutrients form part of the mandatory nutritional declaration or are included as supplemental
+information, in accordance with Article 30 of the INCO regulation no. 1169/2011.
+If the covering liquid is taken into account in the mandatory nutritional declaration, the Nutri-Score should
+also be calculated for the product + the covering liquid and vice versa. To calculate the percent of “fruits,
+vegetables, pulses, nuts and oils », you have to use the same basis as the table of nutritional values. If the
+covering liquid is taken into account, the calculation should include it. If the nutritional values do not take
+the covering liquid into account, then it should be recalculated without the covering liquid.
+
+WITH LIQUID FOODS, IS THE SCORE CALCULATED FOR 100 G OR 100 ML?
+With liquid foods such as soups, oils or milk, the value used is the one given as a unit on the nutrition label,
+and not a unit that is not written on the packaging (to ensure transparency for the consumer). If two values
+are mentioned (per 100 g and per 100 mL), the one per 100 g is to be taken into account.
+
+WHY THE “FRUITS, VEGETABLES, PULSES, AND NUTS” COMPONENT HAS BEEN MODIFIED AND WHAT IS
+THE TIME FRAME FOR ACHIEVING COMPLIANCE WITH THE NEW PROVISIONS?
+The “fruits, vegetables, pulses, and nuts” component has been modified in October 2019 to better take into
+account the nutritional recommendations for oils in Europe.
+The percent of rapeseed, walnut and olive oils in the products is now included in the positive component
+“fruits, vegetables, pulses, and nuts” for the score calculation. Following this modification, the rapeseed,
+walnut and olive oils are all ranked as “C-yellow” in order to reflect the public health recommendations that
+advocate to favour these oils compared to other fats.
+The Conditions of Use state that “The Industry actor has a reasonable time frame determined, if required,
+by Santé publique France for achieving compliance with the new provisions in the Conditions of Use. “ To
+date, this time frame has not been defined yet, in order to allow the committed companies to make the
+necessary changes. Thus, during this period, it is possible that an oil (for example olive oil) have different
+scores “C-yellow” or “D-orange” for a same product, the time that the new labels “C-yellow” are put in
+place.
+
+6
+
+II. Modifying the Score for Foods and Beverages
+WHICH ADDED FATS ARE COVERED BY THE MODIFIED NUTRI-SCORE?
+'Added fats' refer to fats sold as finished products, not to fats used as ingredients in a composite product.
+For instance, the following are considered added fats: vegetable oils, margarines, butter, cream or dairy
+products used as added fats.
+Plant-based preparation for cooking (for instance made of soja, coconut…), as well as whipped cream
+should be considered as added fats.
+Cold-emulsified sauces, such as mayonnaise or cocktail sauce, are not covered by the Added Fats
+adaptation.
+Besides, cream used in a composite product (or butter, sunflower oil, etc.) will be included in the overall
+score for the product, using the information from the nutritional declaration for 100 g of the food.
+Composite products are considered in their entirety as a mixture of ingredients, including any fats. The
+score applies to the final mixture. As is the case for fats, cheeses (which, like fats, are also excepted when
+calculating the score) are not considered separately when included in a recipe.
+
+WHICH CHEESES ARE COVERED BY THE NUTRI-SCORE MODIFICATION?
+The following are considered cheeses, as defined by Decree 2007-628, when calculating the modified
+score:
+
+
+
+
+Cheeses
+Processed cheeses
+Cheese specialties
+
+However, is not considered cheese for the purposes of calculating the Nutri-Score.
+
+
+
+
+Quark. Calculations for this product category are performed the same way whether it is cheese or
+not, as products rarely have a score higher than 11 for their 'negative' component, which means
+their protein content is counted.
+Plant-based cheese alternatives
+
+WHICH BEVERAGES ARE COVERED BY THE NUTRI-SCORE MODIFICATION?
+The Nutri-Score modification applies to the following beverages if they include a nutritional declaration,
+except bottled waters for which a Nutri-Score A / dark green can be displayed without mandatory
+nutritional declaration:
+
+
+
+
+
+
+
+Mineral water, table water and spring water (score A – dark green)
+Flavoured water (with and without added sugars). This category is different from mineral water
+and spring water and cannot be scored A – dark green ;
+Fruit juices, nectars and smoothies
+Vegetable juices;
+Drinks with added sugar and/or sweeteners
+Teas, infusions or coffee reconstituted exclusively with water
+
+7
+
+The energy, energy density, sugars and fruit and vegetables columns in the conversion grid for drinks
+replaces those used for other food categories. The other columns (saturated fatty acids, salt, proteins, fibre)
+remain similar and must be taken into account.
+However, milk, drinkable yoghurt, flavoured or chocolate milk beverages containing more than 80% milk,
+soups and gazpacho, and plant-based drinks are not considered beverages for the purposes of calculating
+the Nutri-Score.
+Calculating the score and attributing a Nutri-Score for milk products is based on the calculation for solid
+products, so that the nutritional value of these products can be better taken into account (the presence of
+proteins and calcium especially). As such, it seems essential to differentiate between products that contain
+milk as main ingredient and those that contain less and are closer related to sugary drinks. To reinforce this
+distinction, containing more than 80% milk is necessary for the product to be classified as a solid product
+when calculating the Nutri-Score. This threshold has been defined by expert consensus, to ensure a clear
+distinction between milk products (especially compared to beverages such as café au lait) while also
+continuing to allow a certain degree of innovation within this product sector.
+
+DOES IT APPLY TO ALCOHOLIC DRINKS?
+The Nutri-Score does not apply to alcoholic drinks containing more than 1.2% alcohol.
+Conversely, dealcoholized beverages (e.g. alcohol-free beers, or beverages such as alcohol-free Mojitos)
+must include a mandatory nutritional declaration in a similar way to non-alcoholic beverages (e.g. soft
+drinks, or fruit juices). As such, as soon as a manufacturer decides to display the Nutri-Score on one of its
+products, it must also do likewise for its dealcoholized beverages.
+
+III. Foods Covered by the Nutri-Score
+WHICH PRODUCTS ARE COVERED BY THE NUTRI-SCORE?
+The food products covered by the Nutri-Score are those with a mandatory nutritional declaration in
+accordance with regulation no. 1169/2011, known as the INCO regulation. Except for very specific cases
+discussed elsewhere in this FAQ, the available data on the mandatory nutritional declaration is that which
+must be used to calculate the Nutri-Score.
+Although infant food for children aged 0-3 has a mandatory nutritional declaration, these products are not
+eligible for the Nutri-Score. This is because children have specific nutritional needs, particularly in terms of
+lipid intake, for which the Nutri-Score is unsuitable.
+Similarly, products usually known as sport nutrition products are not eligible for the application of the NutriScore. The underlying nutrient profiling system of the Nutri-Score was developed in regard to the needs of
+the general population, whereas sport nutrition must meet particular needs.
+Moreover, given the specificities in terms of the nutritional composition, supervision and purpose of food
+products designed for special diets covered by the regulation UE n°609/2013, the following products are
+not eligible for the application of the Nutri-Score:
+- preparations for infants and follow-on formula;
+- cereal-based preparations and food products for babies;
+- food products designed for special medical purposes;
+- meal substitutes for weight control and substitutes to the total daily ration for weight control, etc.
+8
+
+Meal replacement products, which do not have a goal of weight control, are also not eligible for the NutriScore.
+
+WHICH PRODUCTS ARE NOT COVERED BY THE NUTRI-SCORE?
+Food products that are not covered by the mandatory nutritional declaration are listed in Appendix V of
+regulation no. 1169/2011. They are:
+1.
+2.
+
+3.
+4.
+5.
+6.
+7.
+
+8.
+
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+
+Unprocessed products that comprise a single ingredient or category of ingredients (such as fresh
+fruits or vegetables, cut raw meat, honey, etc.)
+Processed products where the only processing they have been subjected to is maturing and that
+comprise a single ingredient or category of ingredients
+Note: here the products in question are mainly meat products
+Waters intended for human consumption, including those where the only added ingredients are
+carbon dioxide and/or flavourings
+Herbs, spices or mixtures thereof
+Salt and salt substitutes
+Table top sweeteners
+Products covered by Directive 1999/4/EC of the European Parliament and of the Council of 22
+February 1999 relating to coffee extracts and chicory extracts, whole or milled coffee beans, and
+whole or milled decaffeinated coffee beans
+Herbal and fruit infusions, tea, decaffeinated tea, instant or soluble tea or tea extract, decaffeinated
+instant or soluble tea or tea extract, which do not contain other added ingredients than flavourings
+which do not modify the nutritional value of the tea
+Fermented vinegars and substitutes for vinegar, including those where the only added ingredients
+are flavourings
+Flavourings
+Food additives
+Processing aids
+Food enzymes
+Gelatine
+Jam setting compounds
+Yeasts
+Chewing gums
+Food in packaging or containers the largest surface of which has an area of less than 25 cm²
+Food, including handcrafted food, directly supplied by the manufacturer of small quantities of
+products to the final consumer or to local retail establishments directly supplying the final consumer
+
+To this point, it should be noted that the exemption criteria are considered cumulatively, meaning that the
+concept of 'small quantities' must be considered alongside all the other criteria.
+
+• With regard to 'local retail establishments directly supplying the final consumer'
+'Retail shops' include large and medium-sized shops and supermarkets as well as convenience stores that
+sell food.
+
+9
+
+• With regard to the concept of 'local'
+A radius of around 100 km at the departmental and regional level seems acceptable. This distance could be
+extended for producers located in less densely populated areas that develop distribution channels with
+consumers and retailers (gourmet shops, cheese shops, etc.) in the closest urban centres (such as the Paris
+metropolitan area for the Burgundy and Centre regions). This analysis applies to cross-border trade when
+compliant with the recommendations of the member state in question.
+
+• With regard to the 'directly supplying the final consumer' criterion
+A producer directly supplying the final consumer includes producer sales through farms, markets, short
+supply chains, CSAs, and production shops such as those run by artisans (butchers, delicatessens,
+fishmongers, bakeries, etc.), and also internet sales, as long as these sales do not constitute the sole source
+of revenue for the producer.
+Products displayed during trade fairs in order to promote regional products may also be included.
+In the vast majority of cases, when the above criteria are fulfilled the producer to whom this measure applies
+de facto satisfies the criterion of 'small quantities' as understood by the law.
+In addition to the criteria listed above, the amount of foodstuffs produced by operators that meet the
+national definition of a microenterprise as described in Article 3 of Decree no. 2008-1354 from 18 December
+2008 relating to the criteria that determine whether a company belongs to the category for statistical and
+economic analysis purposes can be considered as falling under the definition of 'small quantities'; these
+companies employ fewer than ten people and have a total annual sales revenue or total assets of no more
+than 2 million euros.
+Food supplements are also not eligible for the application of the Nutri-Score.
+
+CAN THE NUTRI-SCORE BE DISPLAYED ON PRODUCTS THAT ARE NOT SUBJECT TO MANDATORY
+NUTRITIONAL DECLARATION?
+In case of food products that are not subject to mandatory nutritional declaration, (i.e. Appendix V of
+INCO regulation no. 1169/2011), if the nutritional declaration is presented, the manufacturers can choose
+whether they want or not to display the Nutri-Score on their products. However, the choice should be
+applied to all products of a same food category (and not for each product separately).
+Notably, with products that are packaged on-site in stores, the Nutri-Score may be added if there is a
+nutritional declaration on the product.
+
+IS IT POSSIBLE TO APPLY THE NUTRI-SCORE TO RECIPES?
+This remains a grey area, and the answer is subject to change depending on the outcome of the work
+planned by PNNS4.
+In the case of recipes, for example in magazines, applications or in promotional material, the calculation is
+based on the quantities and nutritional values of the various ingredients that constitute the dish, once the
+ingredients that require cooking have been cooked. In the event that an ingredient's nutritional values are
+unavailable because there are not covered by the INCO regulation (raw products, for example), the values
+
+10
+
+listed the National food composition database shall be referred to instead. Nutritional values of such
+ingredients shall then be calculated using a rule of proportionality based on data found in the composition
+database.
+The list of ingredients used in the recipe, and their respective quantities, must be clearly indicated. A table
+of the recipe's nutritional values must be presented.
+Pre-packaged food products are not concerned by this modality of calculation.
+
+IF THERE IS A BUSINESS RELATIONSHIP BETWEEN A CLIENT COMPANY AND ITS SUPPLIER, CAN THE
+NUTRI-SCORE OF A RECIPE'S "INGREDIENTS" BE USED WITHOUT SIGNING UP TO NUTRI-SCORE?
+Where there is a business relationship between two companies, the technical datasheet of the "ingredient",
+intended for the manufacturer and not the final consumer, may include the Nutri-Score label without the
+manufacturer having to apply it for the involved brand and therefore it is not required to register with
+authorities in this case.
+
+FOR ASSORTMENTS, MUST MULTIPLE NUTRI-SCORES BE DISPLAYED?
+For assortments:
+- When the nutritional values are different, one Nutri-Score for each nutritional declaration must be
+displayed; Santé publique France offers a graphic charter that makes it possible to display several NutriScores on the front.
+- In the event that the nutritional tables produce the same Nutri-Score result, a single Nutri-Score can be
+displayed on the front (in the case of a compote with different flavours or products with one average
+nutritional statement)
+- If this is an assortment where each person is expected to consume the entire product, an average NutriScore can be calculated (such as a 'dessert sampler' assortment comprising a crème brulée, a macaroon
+and a chocolate cake for each person, which are consumed as a single product). If components of an
+assortment belongs to groups with different calculation rules (for example a solid food with a beverage),
+this modality of calculation cannot be used.
+
+IV.
+
+Legal Issues Pertaining to the Nutri-Score Plan
+
+WHO MAY DISPLAY THE NUTRI-SCORE LOGO ON THEIR BRANDS AND PRODUCTS?
+Use of the Nutri-Score trademark is reserved for producers and distributors of products marketed in France
+and/or Europe.
+
+HOW TO OBTAIN THE RIGHT TO USE THE NUTRI-SCORE? (REGISTRATION PROCESS)
+
+
+We particularly emphasize on the reading of the Conditions of Use, which describes the conditions
+and terms of engagement, and the Q&A, which gives clarifications on how to correctly use and
+calculate the score.
+
+11
+
+
+
+When ready to register, you can use one of the following links to register depending on your case:
+
+
+For brands distributed exclusively on the French market, operators must register on the following
+website:
+https://www.demarches-simplifiees.fr/commencer/nutri-score_enregistrement_france
+
+
+
+For brands distributed in several territories (including France possibly) or in a territory for which
+the regulator has not established its own Application procedure (Germany, Belgium,
+Luxembourg), operators must register on the following website:
+https://www.demarches-simplifiees.fr/commencer/ns_international_registration_procedure
+
+Once the registration is completed, you will receive a receipt. In this receipt, you will find useful documents
+and particularly the logos to use on your packaging. The registration procedure is purely declarative. Thus,
+you do not need any further validation from Santé Publique France or other regulators and as soon as you
+receive the validation e-mail, you can start to use the Nutri-Score on your packaging. Please have in mind
+that you will also have to fill out and send files with information regarding products references. The
+documents and the procedure to be followed are indicated in the Conditions of Use.
+
+
+For brands distributed only in Switzerland :
+https://www.blv.admin.ch/blv/de/home/lebensmittel-und-ernaehrung/ernaehrung/nutriscore/nutri-score-lebensmittelproduzenten.html
+
+HOW DOES THE PRIOR NOTICE TO RIGHTSHOLDERS APPLY WITH THE UPDATE OF THE CONDITIONS OF
+USE IN JULY 2021?
+The updated Conditions of Use in July 2021 require distributors to give a three-month prior notice to all
+producers.
+The former Conditions of Use (no longer applicable) only required distributors to give a three-month prior
+notice to producers which were not registered for the Nutri-Score. If you have already given prior notice to
+producers under the previous Conditions of Use, there is no need to resend a prior notice to these
+producers.
+However, you must provide a three-month prior notice to all producers that you have not notified including
+producers registered for the Nutri-Score. In any event, you must be able to show that you have sent the
+three-month prior notice to all producers appropriately.
+For clear practical reasons, Santé publique France and Regulators tolerate that distributors send a prior
+notice to producers registered for the Nutri-Score while continuing to use the logo without waiting the
+three-month period to elapse if the distributors were already using the Nutri-Score logo lawfully for
+products of the registered producers before the entry into force of the updated Conditions of Use.
+No tolerance applies if the distributors were not using the Nutri-Score Logo for products of registered
+producers before the entry into force of the updated Conditions of Use and the three-month waiting period
+must be fulfilled.
+
+12
+
+HOW CAN THE DOCUMENTS REQUIRED TO USE THE NUTRI-SCORE BE OBTAINED?
+As explained above (question “HOW TO OBTAIN THE RIGHT TO USE THE NUTRI-SCORE? (REGISTRATION
+PROCESS), to receive these documents, the operator must first sign up to one of the websites:
+They will then provide their contact information and details about their company (SIRET number, VAT
+number, etc.) as well as information about which product segments will receive the Nutri-Score.
+Once all the required information has been provided and the application has been submitted, the applicant
+will receive an email containing a link to the documents required to use the Nutri-Score (as a .zip file).
+
+HOW ARE THE NUTRI-SCORE SCORES CALCULATED?
+An English table for professionals who would like to take part in the scheme can be downloaded from the
+English version of the Santé publique France website: https://www.santepubliquefrance.fr/en/nutri-score
+In addition, software publishers that have developed programs for calculating the Nutri-Score must comply
+with all the calculation guidelines laid out in the Nutri-Score Conditions of Use and obtain a licence from
+Santé Publique France.
+For more information, consult the note on the nutritional information system from the High Council of
+Public Health (HCSP) (French only): http://www.hcsp.fr/explore.cgi/avisrapportsdomaine?clefr=519
+
+IS IT POSSIBLE TO CONDUCT A TEST PHASE BEFORE COMMITTING?
+To obtain the required documents for using the logo, you must register on one of the the following sites,
+depending on your case:
+
+
+For brands distributed exclusively on the French market :
+https://www.demarches-simplifiees.fr/commencer/nutri-score_enregistrement_france
+
+
+
+For brands distributed in several territories (including France possibly) or in a territory for which
+the regulator has not established its own Application procedure (Germany, Belgium, and
+Luxembourg) :
+https://www.demarches-simplifiees.fr/commencer/ns_international_registration_procedure
+
+
+
+For brands distributed only in Switzerland :
+https://www.blv.admin.ch/blv/de/home/lebensmittel-und-ernaehrung/ernaehrung/nutriscore/nutri-score-lebensmittelproduzenten.html
+
+Businesses have 24 months to put the logo on all the categories of food products that they market under
+their own brands. They could thus decide to put it only on products sold online at first. But the ultimate
+goal – that aligns with the use of the collective mark – is to display the Nutri-Score logo on the packages of
+every product a brand sells, for every format, mode or point of sale.
+
+13
+
+MUST OPERATORS PUT THE NUTRI-SCORE ON ALL THEIR BRANDS AND ON ALL THE PRODUCTS FOR THE
+SAME BRAND?
+Decree no. 2016-980 from 19 July 2016 on additional nutritional information for food products stipulates
+that 'the commitment made by the producers and distributors as part of the voluntary initiative to use the
+complementary form of presentation applies to all categories of food products that they market under their
+own brands'.
+As a result, a company that owns several brands could choose to only put the Nutri-Score on one or some
+of its brands, but when used for a brand, it must be used for all categories of food products for that brand.
+However, if some or all of a brand's products are not subject to the INCO regulation, the operator is not
+obligated to display the Nutri-Score on all of its brand's products.
+
+WHAT IS THE SCOPE OF ENGAGEMENT FOR A BRAND THAT WISHES TO USE THE NUTRI-SCORE LABEL?
+A brand (defined as trademark in the conditions of use) is a distinctive sign that enables consumers to
+distinguish the product or service of one company from those offered by competitors. The brand may be
+embodied by a proper noun, a word, an expression or a visual symbol. It acts as a benchmark for the
+consumer, and perhaps even a "guarantee" of quality.
+If there are separate brands, the producer or distributor may choose to register one or more of its brands.
+In case of sub-brands, the producer can affix the Nutri-Score on the sub-brands products without affixing
+the Nutri-Score on the Parent brand.
+Definition of:
+
+
+parent/sub brand: a sub-brand is a product brand or product line that complements a parent
+brand, the latter of which acts as a guarantee for the former.
+
+However, when a producer or distributor registers one of its brands, he must affix the Nutri-Score on the
+Products reproducing or declining in whole or in part one or more of the elements of the brand registered.
+
+Example 1:
+In this example, Nestlé can choose to affix the Nutri-Score on the Sub-brand Chocapic and not to affix the
+Nutri-Score on the Sub–brand Fitness. To do so, Nestlé must indicate the Sub-brand Chocapic when it
+registers its brand for the Nutri-Score.
+
+14
+
+Example 2:
+In this example, if Casino registers the brand “Casino”, the Nutri-Score will have to be affixed on Products
+with the brand “Casino” and also on “Casino BIO” or “Casino délices“ Products:
+
+ARE CO-BRANDED PRODUCTS INCLUDED IN THE SCOPE OF ENGAGEMENT?
+By co-branding, it is meant an arrangement that associates a single product with two separated brands.
+To affix the Nutri-Score on co-branded products, the following cases are to be considered:
+
+
+
+
+
+Both brands are not engaged: it is not possible to use the Nutri-Score on the co-branded product;
+Only one brand is engaged: it is possible to use the Nutri-Score on the co-branded product but not
+mandatory;
+o The non-engaged brand owner consent to use the Nutri-Score on the co-branded products.
+In this case, the non-engaged brand will not have to use the Nutri-Score on its other
+products.
+o The non-engaged brand owner does not consent to use the Nutri-Score on the co-branded
+products. In this case, such products are exempted to use the Nutri-Score even if an
+engaged brand appear on the packaging.
+Both brands are engaged: it is required to affix the Nutri-Score on the co-branded product.
+
+15
+
+WHAT ARE THE RULES OF USE OF THE NUTRI-SCORE BY JOINT-VENTURES?
+By joint-ventures, it is meant a business entity created by two or more parties, characterized by shared
+governance and ownership.
+For using the Nutri-Score, joint-ventures are considered independent and distinct from the companies
+behind the joint venture. Therefore, joint-ventures can apply for the Nutri-Score on brands under their
+responsibility without implying any registration for the brands owned by the companies behind the jointventure.
+
+MUST THE NUTRI-SCORE ALSO BE PUT ON PRODUCTS MADE FOR THE FOODSERVICE INDUSTRY?
+Companies commit to using it for all the ranges they sell under a brand, whatever the final destination of
+the product may be, as the INCO regulation also applies to products that will be used by communities. So,
+if the products for use by the foodservice industry are sold under the 'Alpha' brand, they must include the
+Nutri-Score
+On the other hand, if the brand name is different (something other than 'Alpha'), the company is not
+obligated to put the Nutri-Score on a foodservice-only brand.
+This rule is applicable when the products are visible to consumers. When the products are intended for
+professionals, it is possible not to affix the Nutri-Score even if the brand is engaged in the Nutri-Score.
+
+WHAT ARE THE SPECIFICS FOR APPLYING THE NUTRI-SCORE OVERSEAS?
+The Nutri-Score order is applied directly in the overseas French departments (DOMs) of Martinique,
+Guadeloupe, Réunion and French Guiana, as well as in Mayotte and the overseas French collectivities
+(COMs) of Saint-Martin, Saint-Barthélemy and Saint-Pierre-et-Miquelon: overseas territories where health
+laws apply directly. However, the order does not apply to the COMs of Wallis and Futuna, New Caledonia
+and French Polynesia.
+
+DOES THE NUTRI-SCORE APPLY OUTSIDE OF FRANCE?
+The commitment made by producers and distributors as part of the voluntary initiative to use the
+recommended complementary form of presentation applies to all categories of food products that they sell
+on the French market under their own brands. The abovementioned Decree no. 2016-980 and the order
+from 31 October 2017 determining the complementary form of presentation for the nutritional declaration
+recommended by the government (pursuant to Articles L. 3232-8 and R. 3232-7 of the Public Health Code)
+form part of the French regulation.
+Thus, there is no obligation to put the Nutri-Score logo on products exported outside of France.
+However, if a business also wishes to put the Nutri-Score on the market in one or more European Union
+member states, it is possible to do so while complying with the Conditions of Use.
+The Nutri-Score brand is protected within the European Union and has been registered with the WIPO
+(World Intellectual Property Organization) in the following countries: Australia, Brazil, Canada, Switzerland,
+Morocco, Mexico, Turkey, Ukraine, USA, Benin, Burkina Faso, Cameroon, Central African Republic, Republic
+of Congo, Ivory Coast, Gabon, Guinea, Guinea-Bissau , Equatorial Guinea, Mali, Mauritania, Niger, Senegal,
+Chad, Togo, Comoros.
+
+16
+
+For any use outside the European Union, the Operator must ensure that the logo does not contravene
+national law.
+For any use in one or more countries where the Nutri-Score has not been registered with the WIPO, the
+Operator must notify Santé Publique France in order to consider a possible deposit.
+
+CAN A REPRESENTATIVE COMPLETE THE NUTRI-SCORE REGISTRATION PROCESS?
+Any eligible person who wishes to use the 'Nutri-Score' trademark notifies Santé Publique France or the
+Regulators on the Territories of their intention by registering on one of these websites:
+
+
+
+For brands distributed exclusively on the French market :
+https://www.demarches-simplifiees.fr/commencer/nutri-score_enregistrement_france
+
+
+
+For brands distributed in several territories (including France possibly) or in a territory for which
+the regulator has not established its own Application procedure (Germany, Belgium and
+Luxembourg) :
+https://www.demarches-simplifiees.fr/commencer/ns_international_registration_procedure
+
+
+
+For brands distributed only in Switzerland :
+https://www.blv.admin.ch/blv/de/home/lebensmittel-und-ernaehrung/ernaehrung/nutriscore/nutri-score-lebensmittelproduzenten.html
+
+A duly authorised representative would be fully capable of completing the registration process on behalf of
+a principal. Santé Publique France cannot be involved in handling and structuring the portfolio of brands
+for a producer or distributor wishing to use the Nutri-Score.
+It is thus entirely possible to use the services of a representative, if the operator wishes. The representative
+must however complete one separate registration for each different principal.
+
+WHY ARE THERE PENALTIES IN THE NUTRI-SCORE CONDITIONS OF USE?
+Regarding the penalties mentioned by the Conditions of Use, it is important to remember that the
+Conditions of Use are concerned with protecting the Nutri-Score collective mark. This protection is thus
+grounded in intellectual property and industrial property rights (the trademark was registered with INPI
+and EUIPO).
+As with any trademark, the purpose of the Conditions of Use are to product industrial products and ensure
+the 'Nutri-Score' collective mark is used properly by businesses to prevent illegal behaviours, fraud and/or
+unfair competition. Thus, penalties are only invoked if businesses are using Nutri-Score incorrectly, for
+instance, displaying a false score, as this would be dishonest.
+
+HOW CAN A COMPANY STOP USING THE NUTRI-SCORE?
+After registering, the Operator has 24 months to put the Nutri-Score logo on all product categories available
+on the market.
+
+17
+
+The Operator may stop using the Nutri-Score for one or all of their brands at any time, provided Santé
+publique France is informed of this change.
+
+HOW CAN SOMEONE OBTAIN THE TRANSLATION OF THE NUTRI-SCORE CONDITIONS OF USE?
+Unofficial translations of the Conditions of Use are available in several languages. The French or English
+versions of the Conditions of Use on the website of Santé publique France remains binding. The other
+language versions can be downloaded from the website of the respective national competent authorities:
+
+
+
+
+
+
+France : https://www.santepubliquefrance.fr/determinants-de-sante/nutrition-et-activitephysique/articles/nutri-score
+Germany : https://www.bmel.de/SharedDocs/Downloads/DE/_Ernaehrung/LebensmittelKennzeichnung/markensatzung.pdf?__blob=publicationFile&v=3
+Belgium : nutriscore.be
+Switzerland : https://www.blv.admin.ch/blv/de/home/lebensmittel-undernaehrung/ernaehrung/nutri-score/nutri-score-lebensmittelproduzenten.html
+Luxembourg : https://mpc.gouvernement.lu/fr/le-ministere/consodur/consommateurs.html
+
+IS IT POSSIBLE TO MODIFY THE NUTRI-SCORE CONDITIONS OF USE?
+The Conditions of Use may not be modified by unilateral amendment: all the prerogatives must therefore
+be complied with in order to use the 'Nutri-Score' logo.
+Article 9 of the Conditions of Use stipulates the methods by which modifications can be made.
+
+IS IT POSSIBLE TO MODIFY THE NUTRI-SCORE GRAPHIC CHARTER?
+As an integral part of the Conditions of Use to which it is appended, the graphic charter may not be
+unilaterally modified.
+
+IS THERE A GRAPHIC CHARTER THAT LAYS OUT THE RULES FOR USING THE LOGO ON E-COMMERCE SITES?
+For this application, the size of the logo is not set and it is not subject to the proportionality rules for
+packages. However, it is important to ensure the logo is perfectly legible.
+The other conditions for using the logo on e-commerce sites are the same as those required when products
+are sold in shops.
+
+IS IT POSSIBLE FOR MANUFACTURERS TO REGISTER FOR AN EXCLUSIVELY DIGITAL USE OF THE NUTRISCORE LOGO?
+It is not possible to use the logo on digital formats as long as the involved brand is not engaged to affix the
+Nutri-Score on its packaging.
+In case of retailers having engaged their own private label, a digital use is authorized on other brands
+distributed by the retailer (in compliance with article 7.2 of the Conditions of Use).
+
+18
+
+CAN THE LOGO BE USED FOR PROMOTIONAL PURPOSES?
+Article 6 of the Conditions of Use covers these provisions.
+For generic communication regarding the Nutri-Score logo, the Operator can put the following on its
+communication media:
+1. The Neutral Logo,
+2. And/or at least 3 of the 5 Classifying Logos arranged in such a way as not to mislead the consumer
+regarding the classification of the brand's Products, in particular by implying that all of the brand's
+products have the same classification.
+Communications regarding a Product must use the appropriate Classifying Logo in compliance with the
+provisions of Article 6.2 of the Conditions of Use.
+
+WHAT ARE THE RULES FOR USING THE NUTRI-SCORE FOR PROMOTIONAL PURPOSES?
+The rules for using the Nutri-Score for sales communications and promotions are detailed in the graphic
+charter.
+
+In these cases, the producer can choose to include the communication logo only (without emphasis
+on one of the letters) and/or 3 to 5 Nutri-Score modules, all the same size and in full colour.
+However, if the brand's entire engaged product range has only one or two colours, it is possible to
+only display the colours that match those of the brand.
+The use of the Nutri-Score logo on catalogues, flyers, etc. is optional; only its use on packaging is
+mandatory. As soon as the logo is displayed on the front of the packaging, it is possible to add an
+explanation of the logo at the back of the packaging. The information provided there must only
+mention elements related to the score calculation. It should not mention other information related to
+additives or preservatives for instance, that could give the impression that these components are part
+of the calculation.
+
+HOW CAN THE NUTRI-SCORE LOGOS BE OBTAINED FOR EDUCATIONAL, SCIENTIFIC OR JOURNALISTIC
+PRESENTATIONS?
+Certain logos can be obtained by writing to the nutriscore@santepubliquefrance.fr address and including a
+description of the intended use.
+
+CAN THE NUTRI-SCORE MARK BE REPRODUCED WITHOUT PERMISSION FROM SANTÉ PUBLIQUE
+FRANCE?
+Wherever the Nutri-Score is used as a trademark in business, prior written permission must be obtained
+from Santé publique France.
+
+19
+
+Appendix 1: Guidance on quantifying the fruit, vegetable, pulse, nut, and
+rapeseed, walnut and olive oils content of a processed product
+Prior comment: only the fruits, vegetables, pulses, nuts, and rapeseed, walnut and olive oils that belong
+to the groups mentioned in this appendix (as per the foundational works of Scarborough et al.) are used
+to calculate the quantity of fruits, vegetables, pulses, nuts, and rapeseed, walnut and olive oils in a
+processed product.
+
+By Peter Scarborough, Mike Rayner, Anna Boxer and Lynn Stockley. British Heart Foundation Health
+Promotion Research Group, Department of Public Health, University of Oxford. December 20053.
+
+The fruit, vegetables, pulses and nuts component of the Food Standard Agency (FSA) score was initially
+developed in the 2000s and was based on a food classification named Eurocode 2. An English version is
+available online1.
+The purpose of this document is to clarify certain points in order to standardise the manner in which the
+quantity of 'fruit, vegetables, pulses, nuts and rapeseed, walnut and olive oils' in a food is evaluated so
+that the score can be calculated. The points covered are:
+1. Which foods are included in the vegetables category when calculating the 'fruit, vegetables,
+pulses, nuts, and rapeseed, walnut and olive oils' component for the score calculation?
+2. Should pureed, concentrated, dried or powdered fruits, vegetables and pulses, as well as fruit
+and vegetable juices, be included when calculating the quantity of fruits and vegetables in a
+product to determine the score? If so, how are the amounts of these processed fruits and
+vegetables calculated?
+3. Should the quantities of fruits, vegetables, pulses and nuts in a product be calculated before or
+after cooking?
+
+1. DEFINING FRUITS, VEGETABLES, PULSES AND NUTS AND RAPESEED, WALNUT AND OLIVE OILS
+The Eurocode 2 classification4 (in English) defines the food groups. Under this system ‘Fruits’ are defined as
+products in Group 9, ‘Vegetables’ as products in Group 8, 'Pulses' as products in Group 7.10, 'Nuts' as
+products in Groups 7.20 and 7.40. The groups are defined according to this classification:
+i. Group 7.10 (Pulses);
+
+3
+
+accessed from
+https://www.researchgate.net/publication/267194254_Application_of_the_Nutrient_profiling_model_Definition_of
+_'fruit_vegetables_and_nuts'_and_guidance_on_quantifying_the_fruit_vegetable_and_nut_content_of_a_processe
+d_product
+4
+accessed from
+http://www.danfood.info/eurocode/
+
+20
+
+ii.Group 8.10 (Leaf vegetables); 8.15 (Brassicas); 8.20 (Stalk vegetables); 8.25 (Shoot vegetables); 8.30
+(Onion-family vegetables); 8.38 (Root vegetables); 8.40 (Fruit vegetables); 8.45 (Seed vegetables and
+immature pulses); 8.50 (Edible fungi); 8.55 (Seaweeds and algae); 8.60 (Vegetable mixtures)
+iii Group 9.10 (Malaceous fruit); 9.20 (Prunus species fruit); 9.25 (Other stone fruit); 9.30 (Berries); 9.40
+(Citrus fruit); 9.50 (Miscellaneous fruit); 9.60 (Fruit mixtures).
+iv Group 7.20 (underground pulses); 7.40 (nuts)
+
+The list of the various foods in these groups is available in appendix 3.
+Herbs listed in group 12.20 of the Eurocode 2 classification, are also included in the component as well as
+olive, walnut and rapeseed oil.
+
+Clarifications:
+-
+
+Coconut presents particular issues because it is eaten in a different way to other nuts.
+
+Depending on how it is eaten, it can be included in the following groups:
+- fresh coconut flesh should be scored as fruit
+- the water of the coconut (or “coconut water”, defined as the liquid extracted from the centre of the
+unripe green coconut, without extracting or pressing the coconut flesh) should be scored as beverage. The
+coconut water can be counted as fruit (when it is sold as such or used as an ingredient).
+- the coconut milk (obtained by extracting or squeezing the coconut flesh of a ripe coconut) should be
+scored as food. Ingredients coming from coconut (e.g. coconut extract) can be considered as fruit. However,
+any additional water should not be taken into account.
+- the coconut cream should be scored as added fat. Ingredients coming from coconut (e.g. coconut extract)
+can be considered as fruit. However, any additional water should not be taken into account.
+- desiccated and dried coconut are equivalent to dried fruit. Dried shredded coconut is considered as dried
+fruit.
+- coconut which is processed beyond the original product should not be included.
+
+
+
+Pickles are a variety of CUCUMIS SATIVUS, like cucumber. In light of the botanical name, they are
+listed as vegetables.
+Capers are not listed, they are not included in vegetable calculations.
+
+The following are not counted:
+
+ Tubers, particularly potatoes and other starchy vegetables (such as yams or manioc from Group 8.34)
+are excluded from the calculations.
+
+ Pulse and maize flours are not counted for the fruit and vegetables calculations either.
+ Quinoa, the nutritional composition of which is similar to that of cereals, is not considered a vegetable.
+ Spices: do not belong to generic Eurocode group 8 (which contains vegetables), but to group 4 instead.
+
+21
+
+ Chia, poppy, sunflower, flax seeds and pine nuts that belong to Eurocode group 7.30 not covered by the
+FSA document.
+
+ Other foods that do not belong to Eurocode groups 9, 8, 7.10, 7.20, 7.40 and 12.20.
+2. CALCULATING THE QUANTITY OF FRUITS, VEGETABLES AND PULSES IN PROCESSED PRODUCTS
+
+
+Acceptable levels of processing for inclusion in the calculation
+
+The health benefits of fruits and vegetables are associated with the whole product, including the vitamins
+they provide.
+Processing can result in loss of fibre and vitamins. Therefore, it would not be appropriate for ingredients
+such as concentrated fruit juice sugars that are added to foods to increase sweetness to count for the
+purpose of calculating a score in the same way as intact fruit and vegetables.
+Intact fruits and vegetables (including those that are cooked and dried) and minimally processed fruit,
+vegetables and pulses (peeled, sliced, tinned, frozen, purees, pulp, grilled, roasted or marinated) count
+for the purpose of calculating a score. Roasted nuts can be also counted. Remember that fruits,
+vegetables, pulses and nuts only count when their content exceeds 40%.
+However, fruits, vegetables and pulses that are subject to further processing (e.g. concentrated fruit juice
+sugars, powders, freeze-drying, candied fruits, fruits in stick form, flours leading to loss of water) do not
+count. As an example, corn in the form of popcorn or soy proteins cannot be considered as vegetables.
+Regarding the frying process, fried vegetables which are thick and only partially dehydrated by the process
+can be taken into account, whereas crisps which are thin and completely dehydrated are excluded.
+Any addition of external ingredients that are not classified as Fruits, Vegetables, Pulses and Nuts cannot
+be counted (with exception of reconstitution with water to 100% concentrated fruit juices and dehydrated
+vegetable). For example, in the case of addition of sugars/ honey on fruits or nuts, only the fruits or nuts
+proportion is included in the fruit and vegetable component. Similarly, as detailed previously, additional
+water added to dilute coconut in coconut milk is not included in the fruit and vegetable component.
+
+Fruits and vegetable juices can be taken into account for the following categories, based on the Directive
+n° 2001/112/CE:
+
+
+
+
+Fruit juice (as described in Annex I.I.1.a)
+Fruit juice from concentrate (as described in Annex I.I.1.b)
+Fruit nectar (as described in Annex I.I.4). However, added sugars are not included in the fruit and
+vegetable component.
+
+Other categories are excluded for the Fruit and Vegetable component:
+
+
+
+
+Concentrated fruit juice (as described in Annex I.I.2). Only 100% reconstitution shall be taken into
+account.
+Concentrated fruit purée for use in the manufacture of fruit nectar (as described in Annex I.I.4).
+Only 100% reconstitution shall be taken into account.
+Powdered/ Dehydrated fruit juice (as described in Annex I.I.3)
+
+Water extracted fruit juices cannot be counted in the Fruit and Vegetable component.
+
+22
+
+Fruit or vegetable content in beverages that go through a process aiming at removing alcohol from the
+beverage cannot be counted.
+
+
+
+Methods for calculating processed fruits, vegetables and pulses
+
+Previous work has found that:
+• 15-20 g of dried fruit and 25-30 g of ready-to-eat (semi-hydrated) fruit are equivalent to 80 g of fresh
+fruit.
+• 40 g of dried pulses are equivalent to 80 g of fresh pulses.
+• 20 g of tomato concentrate and 25 g of tomato ketchup are equivalent to 80 g of fresh tomato.
+
+This would suggest that, for the purposes of calculating nutrient profiling scores, the amount of dried fruit
+or vegetables/pulses or concentrated vegetable present in a food should be multiplied by a standard factor
+when calculating the amount per 100 g of a product. However, this procedure could result in anomalous
+results. For example, if the amount of dried fruit in a ‘fruit and cereal bar’ were to be multiplied by 2, then
+a bar weighing 75 g and containing 50 g dried fruit would appear to have a fruit content of 100/75 = 133%,
+despite there being 25 g of non-fruit constituents.
+That is why the decision was made to multiply the amount of fresh or concentrated fruit or
+vegetables/pulses by an agreed amount and divide by the weight of the non-fruit/vegetable constituents,
+plus that of the fruit or vegetable multiplied by the agreed amount. A multiplier of 2 was viewed as optimal.
+Therefore, so as not to over-emphasise their importance to a healthy diet, the weight of dried fruit and
+vegetables/pulses and concentrated vegetables/pulses should be multiplied by 2 when calculating the
+amount of fruit and vegetables/pulses in 100 g of food.
+For reminder, concentrated fruit juices and puree that have not been rehydrated to 100% cannot be taken
+into account.
+In the above example, using a multiplier of 2, the fruit content of the fruit and cereal bar would be:
+(50 x 2) / (25 + (50 x 2)) = 100/125 = 80%.
+The factor of 2 applies, regardless of the concentration factor. It is not possible to use the reconstitution
+factor in accordance with the 2012/122/EC directive. Moreover, even if the grammage or percentage of
+tomato is given in the list of ingredients once reconstituted in accordance with the 2012/122/EC directive,
+the score must be calculated based on the concentrated product (before reconstitution) by applying the
+factor of 2.The multiplier of 2 should only be applied to prepared concentrated purees such as tomato
+puree. For a triple-concentrated tomato puree, the same multiplier of 2 is applied.
+
+3. WHICH AMOUNT OF FRUITS, VEGETABLES, PULSES AND NUTS AND RAPESEED, WALNUT AND OLIVE OILS TO
+CONSIDER WHEN CALCULATING THE SCORE?
+The proportion of fruits, vegetables, pulses and nuts and rapeseed, walnut and olive oils should be
+aligned with values considered when elaborating the list of ingredients (even though they are not explicitly
+indicated on the packaging).
+
+23
+
+SUMMARY OF RECOMMENDATIONS
+The percentage of fruits, vegetables, pulses, nuts and rapeseed, walnut, and olive oils in 100 g of food is
+calculated as follows:
+
+The % of f, v, p n & o* in a product =
+(Weight of f, v, p, n & o) + (2 x weight of dried f, v & p)
+_________________________________________________________________________________ x 100
+(Weight of f, v, p, n & o) + (2 x weight of dried f, v, p) + (Weight of non-f, v, p, n & o ingredients)
+
+f, v, p, n & o: fruits, vegetables, pulses, nuts, and oils, including juices and purees;
+Dried f, v, p : includes vegetable concentrates
+
+
+
+List of food products considered when calculating scores
+
+'Fruit, vegetables, pulses, nuts and oils' include products from the following families:
+Fruits:
+-
+
+Prunus species fruit
+Apple, pear, quince, medlar
+Date, lychee, persimmon
+Berries, grapes, cherries, blackcurrants, strawberries, red currants, blackberries, cranberries,
+bilberries, etc.
+Citrus fruit: lemon, orange, grapefruit, kumquat, tangerine, etc.
+Banana, kiwi fruit, pineapple, melon, fig, mango, passionfruit, guava, papaya, pomegranate,
+cashew fruit, carambola, durian, rambutan, sweetsop, prickly pear, sapodilla, breadfruit,
+tamarillo, tamarind
+
+Vegetables:
+-
+
+Leaf vegetables: endive, lettuce (all types: leaf lettuce, arugula, escarole, etc.), spinach, lamb's
+lettuce, dandelion greens, nettle, beet greens, sorrel, etc.
+Brassicas: cabbage (all types: cauliflower, red cabbage, Brussels sprouts, curly kale, green
+cabbage, Chinese cabbage, watercress, radish, broccoli, etc.)
+Stalk vegetables: celery, fennel, rhubarb
+Shoot vegetables: asparagus, chicory, globe artichoke, palm hearts, bamboo shoots, taro shoots,
+etc.
+Onion, shallot, leek, garlic, chive, parsley, other herbs
+Root vegetables: carrot, salsify, celeriac, radish, parsnip, beetroot, chicory root
+Fruit vegetables: tomato, aubergine, cucumber, courgette, sweet pepper, chilli pepper, squash,
+
+24
+
+-
+
+various gourds, green banana, plantain, avocado, olive, pickle
+Flower-head vegetables: pumpkin flower
+Sprouted vegetables: pea, broad bean, sweet corn, soya bean
+Edible fungi
+Seaweeds and algae
+
+Pulses:
+-
+
+Peas (various types: chickpea, green pea, pigeon pea, etc.)
+Beans (various types: Lima, red, etc.)
+Lentils (various types: green, yellow, French, etc.)
+Cowpea, soya bean, carob bean, broad bean, etc.
+
+Nuts:
+-
+
+Walnut, hazelnut, pistachio, Brazil nut, cashew, pecan, coconut (see clarifications above), peanut,
+almond, chestnuts
+
+Oils:
+-
+
+Rapeseed, walnut and olive oils
+
+Herbs:
+-
+
+Basil, Coriander, Lemon grass, Marjoram, Mint, Oregano, Sage, etc.
+
+Elements that are not counted in the score calculation are detailed in the previous section.
+
+
+
+Calculating the amount of fruit, vegetables, pulses and nuts in a processed product
+
+Only intact and minimally processed fruits, vegetables and pulses should count for the purpose of
+calculating a score. Fruits and vegetables that have been subject to further processing should not count
+(see details of processing above).
+Nuts count, whether they are whole, dried, light-dried, roasted, chopped, grated or ground.
+
+
+
+Calculating score before or after cooking
+
+The amount of fruits and vegetables in the product (g per 100 g) can be calculated before or after cooking.
+However, when calculating the quantity of fruits and vegetables in a composite food, all the ingredients
+should be in the same state – either raw or cooked.
+
+25
+
+EXAMPLES
+Two examples of application of the generic formula:
+The % of f, v, p, n & o* in a product =
+(Weight of f, v, p, n & o) + (2 x weight of dried f, v & p)
+_______________________________________________________________________________ x 100
+(Weight of f, v, p, n & o) + (2 x weight of dried f, v, p) + (Weight of non-f, v, p, n & o ingredients)
+
+f, v, p, n & o: fruits, vegetables, pulses, nuts, and oils, including juices and purees;
+Dried f, v, p: includes vegetable concentrates
+
+1. Suppose a portion of fruit cake weighing 150 g consists of
+• 15 g of cherries,
+• 25 g of raisins,
+• 15 g of mixed nuts,
+• 95 g of other non-fruit, vegetable, pulse or nut ingredients
+The percentage of fruits, vegetables, pulses, nuts, and oils is:
+15 (cherries) + 15 (nuts) + (2 x 25 (raisins))
+_________________________________________________ x 100
+15 + 15 + (2 x 25) + 95 (other ingredients)
+
+= 46%
+
+2. Suppose a pizza weighing 320 g consists of
+• 50 g of cooked vegetables
+• 20 g of tomato concentrate
+• 250 g of other ingredients
+The percentage of fruits, vegetables, pulses, nuts, and oils is:
+50 (vegetables) + (2 x 20 (concentrate))
+_______________________________________ x 100
+50 + (2 x 20) + 250 (other ingredients)
+
+= 26%
+
+26
+
+Appendix 2: Methods for calculating the nutritional score
+The nutritional score is distinct from the Nutri-Score:
+
+
+
+The nutritional score uses the nutrients and ingredients within the food that have a significant
+impact on health to derive an estimate of the nutritional value of the food on a scale ranging from
+"negative fifteen" -15 (better nutritional option) to "positive forty" +40 points (worse nutritional
+option).
+
+
+
+The Nutri-Score is a graphic scale that divides the nutritional score into 5 classes (expressed by a
+colour and a letter), the purpose being to help the consumer better see, interpret and understand
+the nutritional value. The point is not to separate 'good' foods from 'bad' foods, but rather to use
+the 5 classes to distinguish foods that are healthier from those that are less healthy from a
+nutritional point of view. This also helps food producers to decide how to reformulate their
+products so they can move to a higher class and helps consumer think about their health as they
+are making choices about food.
+
+The nutritional calculation algorithm and the method for determining Nutri-Score classification thresholds
+are publicly available; this was done to make the system more transparent and reproducible.
+The nutritional score is calculated using the nutritional data listed on the package for 100 g of the product,
+which form part of the mandatory nutritional declaration or are included as supplemental information, in
+accordance with Article 30 of the INCO regulation no. 1169/2011:
+-
+
+Calories (KJ)
+Fat (g)
+Saturated fatty acids (g)
+Sugars (g)
+Proteins (g)
+Sodium (mg)
+Fibres (g)
+
+Through the vitamins they contain, fruits, vegetables, pulses and nuts are major contributors to public
+health and help ensure that the information provided is consistent with nutritional guidelines. They are also
+counted for the nutritional score. As the food must contain at least 40% fruits, vegetables, pulses, nuts, and
+rapeseed, walnut and olive oils to obtain 1 point in the score calculation, an estimate of the content can be
+made by using the ingredient list, to the extent that for these products, the fruits, vegetables, pulses, nuts,
+and rapeseed, walnut and olive oils are mentioned in the legal name of the product (Article 9 of INCO
+regulation no. 1169/2011, (Europa Summary of EU legislation 2012)).
+
+27
+
+
+
+Score Calculation Methods: General
+
+The score comprises two dimensions: points corresponding to the 'unfavourable' elements, an excess of
+which is considered unhealthy (calories, sugars, sodium and saturated fatty acids5) and points
+corresponding to 'favourable' elements, an adequate amount of which is considered healthy: (fruits,
+vegetables, pulses, nuts, and rapeseed, walnut and olive oils, protein and fibres).
+-
+
+-
+
+Between 0 and 10 points are awarded for each of these 4 'unfavourable' elements, based on the
+amount in 100 g of the food. Points are assigned based on the reference intake for the nutrient in
+question. First, the 'unfavourable' elements are totalled, resulting in the N component, with a
+maximum point of 40.
+Between 0 and 5 points are awarded for each of the 3 'favourable' elements (excepted for the
+adaptation for beverages), based on the amount in 100 g of the food. 'Favourable' elements are
+totalled, resulting in the P component, with a maximum point of 15.
+
+Depending on the total of the N component, either all of the 'favourable' elements are subtracted, or only
+the points for fibres and, the “fruits, vegetables, pulses, nuts, and rapeseed, walnut and olive oils”
+components, according to the following rules.
+
+
+
+If the total for the N component is less than 11 points, then the nutritional score is equal to the
+total N component points minus the total for the P component.
+If the total for the N component is greater than or equal to 11 points and
+
+5
+
+See: EU framework for national initiatives on selected nutrients (salt, energy and saturated fatty acids, added
+sugars (2008, 2011, 2015)
+
+28
+
+ If the total for “Fruits, vegetables, pulses, nuts, and rapeseed, walnut and olive oils” is
+equal to 5 (10 for beverages), then the nutritional score is equal to the total N
+component points minus the total for the P component.
+ If the total for “Fruits, vegetables, pulses, nuts, and rapeseed, walnut and olive oils” is
+less than 5 (10 for beverages), then the nutritional score is equal to the total N
+component points minus the sum of the points for “fibres” and “Fruits, vegetables,
+pulses, nuts, and rapeseed, walnut and olive oils”. In this case, the protein content is
+therefore not taken into account in the calculation of the final nutritional score.
+The diagram below summarises the formula to be applied in the listed scenarios.
+
+*the score may be 10 for beverages (see the specific attribution table below)
+
+The point table generally used to calculate the nutritional score is as follows:
+-
+
+Points assigned for unfavourable elements of the nutritional score (N)
+
+Points
+
+Energy density
+(kJ/100g)
+
+Sugars
+(g/100g)
+
+Saturated
+fatty acids
+(g/100g)
+
+Sodium
+(mg/100g)1
+
+0
+1
+2
+3
+
+< 335
+> 335
+> 670
+> 1005
+
+< 4.5
+> 4.5
+>9
+> 13.5
+
+<1
+>1
+>2
+>3
+
+< 90
+> 90
+> 180
+> 270
+
+4
+5
+6
+7
+
+> 1340
+> 1675
+> 2010
+> 2345
+
+> 18
+> 22.5
+> 27
+> 31
+
+>4
+>5
+>6
+>7
+
+> 360
+> 450
+> 540
+> 630
+
+8
+9
+
+> 2680
+> 3015
+
+> 36
+> 40
+
+>8
+>9
+
+> 720
+> 810
+
+10
+
+> 3350
+
+> 45
+
+> 10
+
+> 900
+
+1
+
+: the sodium content corresponds to the salt content listed in the mandatory declaration divided by 2.5.
+
+29
+
+-
+
+Points attributed for favourable elements of the nutritional score (P)
+
+0
+1
+
+Fruits,
+vegetables,
+pulses, nuts,
+and
+rapeseed,
+walnut and
+olive oils (%)
+< 40
+> 40
+
+2
+3
+
+> 60
+-
+
+> 1.9
+> 2.8
+
+> 3.2
+> 4.8
+
+4
+5
+
+> 80
+
+> 3.7
+> 4.7
+
+> 6.4
+> 8.0
+
+Points
+
+
+
+Fibre (g/100g)
+
+Protein
+(g/100g)
+
+< 0.9
+> 0.9
+
+< 1.6
+> 1.6
+
+Methods for calculating the score: adaptations
+
+The main purpose of the Nutri-Score is to help the consumer determine what the nutritional composition
+of a given food product will contribute to a balanced diet. For each product category, the Nutri-Score helps
+reveal the degree to which product compositions vary in terms of the selected nutrients: depending on the
+category, products can be divided into 3 to 5 classes. This is not true for added fats (oils, butter or cream),
+which are almost entirely made up of fatty acids or cheeses which are grouped into only 1 or 2 classes
+(ANSES 2015a). For beverages, due to the lack of a significant quantity of the majority of the components
+used to calculate the nutritional score and due to the liquid nature of the products, it is necessary to count
+the category-specific components (sugar and calories) when calculating the nutritional score. Thus,
+modifications were made to improve the consistency of Nutri-Score and nutritional guideline classifications
+(Haut Conseil de la Santé Publique 2015).
+
+ Cheeses
+Cheeses are included under the definition of dairy products, which should be consumed several times a
+day. The guidelines encourage consumers to take note of the amount of fat (to be avoided) and calcium (to
+be encouraged).
+There is a strong correlation between the protein and calcium content of dairy products (Rayner et coll.
+2005). Calcium is not one of the nutrients subject to mandatory declaration. That is why the score
+modification consists solely of ensuring that the amount of protein in cheeses is always counted (which
+would otherwise be precluded by their salt, calorie and saturated fatty acid content, as these result in a
+total of the N component that exceeds 11). This ensures that their relative calcium content is accounted
+for.
+Thus, the protein content is always counted, whether the N point total is <11 or not, and the thresholds for
+the other food categories remain the same. Cheeses are divided into three Nutri-Score classes.
+Cheese nutritional score = Total N points – Total P points
+
+30
+
+ Added fats
+The French national nutrition health programme (PNNS) recommends privileging plant-derived fats and
+limiting animal fats (butter and cream). The classification obtained with the original score calculation that
+put all added fats in the 'dark orange/E' category does not seem consistent with nutritional guidelines. Thus,
+the algorithm must be optimised to better account for saturated fatty acid contents6. The points table for
+fatty acids is calculated based on the total saturated fatty acid/lipid component (as a percentage) with the
+table for assigning points starting at 10% and increasing by steps of 6%.
+The column ratio total saturated fatty acids/lipids replaces the saturated fatty acids column used in the
+general case, but the other columns remain unchanged and must be used.
+
+0
+
+Ratio
+total saturated fatty acids/lipids
+(%)
+<10
+
+1
+
+<16
+
+2
+
+<22
+
+3
+
+<28
+
+4
+
+<34
+
+5
+
+<40
+
+6
+
+<46
+
+7
+
+<52
+
+8
+
+<58
+
+9
+
+<64
+
+10
+
+≥64
+
+Points
+
+ Beverages
+For beverages, the nutritional composition specific to this category must be accounted for, especially the
+sugar content. Modifications have been made in order to improve consistency between the Nutri-Score and
+nutritional guidelines (Haut Conseil de la Santé Publique 2015). Water is the only beverage recommended
+by international bodies. That is why water is always kept distinct from all other beverages (including those
+with 0 calories). Furthermore, the latest scientific research suggests that drinking sweetened (calorie-free)
+beverages has a negative impact on health (Fowler et coll. 2008;Narain et coll. 2017) or at least that there
+is no benefit from consuming these products (ANSES 2015b).
+Scores for beverages are calculated using the tables below.
+The following columns: energy density, sugars and fruit, vegetables, pulses, nuts, and rapeseed, walnut and
+olive oils replaces the previous columns, but the other columns remain unchanged and must be used.
+
+6
+
+EU framework for national initiatives on selected nutrients saturated fatty acids (2011)
+
+31
+
+
+
+Points
+
+Energy density
+(kJ/100g or
+100mL)
+
+Sugars (g/100g or
+100mL)
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+≤0
+≤30
+≤60
+≤90
+≤120
+≤150
+≤180
+≤210
+≤240
+≤270
+>270
+
+≤0
+≤1.5
+≤3
+≤4.5
+≤6
+≤7.5
+≤9
+≤10.5
+≤12
+≤13.5
+> 13.5
+
+Fruits, vegetables,
+pulses, nuts, and
+rapeseed, walnut and
+olive oils (%)
+≤40
+>40
+>60
+
+>80
+
+Assigning Colours
+
+The Nutri-Score logo is attributed based on the score obtained (see table below).
+Points
+Solid foods
+
+Beverages
+
+Min to -1
+
+Waters
+
+0-2
+
+Min - 1
+
+3 - 10
+
+2-5
+
+11 - 18
+
+6-9
+
+19 - max
+
+10 - max
+
+Logo
+
+32
+
+Appendix 3: Eurocode 2 classification – groups included in the fruits,
+vegetables, pulses and nuts and rapeseed, walnut and olive oils
+component
+7.10 Pulses
+7.10.10
+
+Dried pea
+
+Pisum sativum
+
+Inc. Whole dried pea, Split
+pea
+
+7.10.15
+
+Chick pea
+
+Cicer arietinum
+
+(whole or split) Bengal gram,
+Garbanzo, Ceci
+
+7.10.20
+
+Dried broad bean
+
+Vicia faba
+
+7.10.25
+
+Lentil
+
+Lens esculenta
+
+Varieties: Green, Orange,
+Yellow, Puy, Indian brown
+
+7.10.30
+
+Common bean
+
+Phaseolus vulgaris
+
+Common bean food items
+
+7.10.34
+
+Dried lima bean
+
+Phaseolus lunatis
+
+Dried butter bean
+
+7.10.38
+
+Mung bean
+
+Phaseolus aureus
+
+Green gram, Golden gram
+
+7.10.42
+
+Urd bean
+
+Phaseolus mungo
+
+Black gram
+
+7.10.46
+
+Black eye bean
+
+Vigna unguiculata
+
+Blackeye pea, Chloris,
+Cowpea
+
+7.10.50
+
+Soya beans
+
+Glycine max
+
+Chinese black bean,
+Manchurian bean, Soybean
+
+7.10.xx
+
+Carob fruit
+
+Ceratonia siliqua
+
+Carob bean, Locust bean.
+
+VEGETABLES
+8.10 Leaf vegetables
+8.10.10
+
+Endive
+
+Cichorum endivia
+
+inc. Curly endive, Batavian
+endive, Radicchio
+
+8.10.12
+
+Lettuce
+
+Lactuca sativa
+
+inc. Iceberg lettuce, Cabbage
+lettuce, Cos lettuce, Leaf
+Lettuce
+
+8.10.16
+
+Lamb's lettuce
+
+Valerianella olitoria
+
+Corn salad, Mâche (Fr)
+
+8.10.20
+
+Swiss chard
+
+Beta vulgaris var cicla
+
+syn. Chard, Silver beet, Seakale
+beet, Leaf beet; inc. Spinach
+beet, Ruby/Rhubarb beet
+
+8.10.24
+
+Spinach
+
+Spinacia oleracea
+
+Spinage
+
+8.10.28
+
+Garden orache
+
+Atriplex hortensis
+
+Orach
+
+8.10.30
+
+Cress seedling
+
+Lepidium sativum
+
+8.10.32
+
+Mustard seedling
+
+Sinapis alba
+
+8.10.34
+
+Land cress
+
+Barbarea verna
+
+American cress, Winter cress
+
+33
+
+8.10.36
+
+Watercress
+
+Nasturtium officinale
+
+8.10.40
+
+Vine leaf
+
+Vitis vinifera
+
+8.10.44
+
+Dandelion leaf
+
+Taraxacum officinalis
+
+8.10.48
+
+Nettle
+
+Urtica dioica
+
+Perennial nettle
+
+8.10.50
+
+Sorrel
+
+Rumex spp.
+
+syn. Sour grass; inc. Common
+sorrel, French sorrel
+
+8.10.55
+
+Purslane
+
+Portulaca oleracea
+
+8.10.60
+
+Parsley
+
+Petroselinum crispum
+
+8.15.10
+
+Broccoli
+
+Brassica oleracea var italica
+
+8.15.12
+
+Broccoli tops
+
+Brassica oleracea var italica
+
+8.15.15
+
+Cauliflower
+
+Brassica
+oleracea var botrytis
+
+8.15.20
+
+Cabbage
+
+Brassica
+oleracea var capitata alber
+
+8.15.24
+
+Red cabbage
+
+Brassica
+oleracea var capitata rubra
+
+8.15.28
+
+Chinese cabbage
+
+Brassica
+oleracea var pekinensis
+
+8.15.32
+
+Cabbage penca
+
+8.15.40
+
+Brussels sprouts
+
+Brassica
+oleracea var gemmifera
+
+8.15.42
+
+Brussels tops
+
+Brassica
+oleracea var gemmifera
+
+8.15.46
+
+Turnip tops
+
+Brassica rapa var rapifera
+
+8.15.50
+
+Kohlrabi
+
+Brassica
+oleracea var gongylodes
+
+Turnip cabbage
+
+8.15.55
+
+Curly kale
+
+Brassica
+oleracea var acephala
+
+Borecole
+
+8.15 Brassicas
+
+Mainly leaves
+
+Inc. White cabbage, Spring
+greens
+
+Celery cabbage
+
+Cabbage-like top of plant
+
+8.20 Stalk vegetables
+8.20.10
+
+Celery
+
+Apium graveolens var dulce
+
+8.20.20
+
+Fennel
+
+Foeniculum
+vulgare var dulce
+
+8.20.30
+
+Sea kale
+
+Crambe maritima
+
+8.20.50
+
+Rhubarb
+
+Rheum rhaponticum
+
+Florence fennel
+
+Pie-plant
+
+8.25 Shoot vegetables
+8.25.10
+
+Asparagus
+
+Asparagus
+officinalis var altilis
+
+34
+
+8.25.20
+
+Chicory
+
+Cichorium intybus
+
+Belgian / white chicory,
+Witloof
+
+8.25.30
+
+Globe artichoke
+
+Cynara scalymus
+
+French artichoke, Leafy
+artichoke
+
+8.25.40
+
+Bamboo shoot
+
+Bambusa spp.
+
+8.25.50
+
+Palm heart
+
+Palmaceae spp.
+
+8.30 Onion-family vegetables
+8.30.10
+
+Onion
+
+Allium cepa
+
+8.30.15
+
+Spring onion
+
+Allium cepa
+
+8.30.20
+
+Shallot
+
+Allium ascalonicum
+
+8.30.30
+
+Leek
+
+Allium
+ampeloprasum var porrum
+
+8.30.40
+
+Garlic
+
+Allium sativum
+
+8.30.50
+
+Chives
+
+Allium schoenoprasum
+
+inc. Pickling onion, Red onion,
+Spanish onion
+
+Chive garlic
+
+8.38 Root vegetables
+8.38.10
+
+Carrot
+
+Daucus carota
+
+8.38.20
+
+Salsify
+
+Scorzonera hispanica
+
+8.38.30
+
+Celeriac
+
+Apium
+graveolens var rapaceum
+
+8.38.34
+
+Parsnip
+
+Pastinaca sativa
+
+8.38.38
+
+Turnip
+
+Brassica rapa var rapifera
+
+8.38.42
+
+Swede
+
+Brassica
+napus var napobrassica
+
+Rutabaga, Swedish turnip,
+Yellow turnip
+
+8.38.50
+
+Radish
+
+Raphanus sativus
+
+Inc. Red radish, White radish,
+Black radish, Daikon radish
+
+8.38.55
+
+Beetroot
+
+Beta vulgaris var conditiva
+
+Red beet
+
+8.38.60
+
+Parsley root
+
+Petroselinum
+crispum var tuberosus
+
+Parsley potato, Hamburg
+parsley
+
+Vegetable oyster; inc.
+Scorzonera (Black salsify)
+
+8.40 Fruit vegetables
+8.40.10
+
+Tomato
+
+Lycopersicum esculentum
+
+Peruvian apple
+
+8.40.15
+
+Aubergine
+
+Solanum melongena
+
+Egg plant
+
+8.40.20
+
+Sweet pepper
+
+Capsicum
+annuum var grossum
+
+Bell pepper, Capsicum pepper;
+inc. various coloured forms
+
+8.40.25
+
+Chilli pepper
+
+Capsicum frutescens
+
+Pimento
+
+8.40.30
+
+Cucumber
+
+Cucumis sativa
+
+8.40.40
+
+Courgette
+
+Cucurbita pepo
+
+Zucchini; inc. Marrow (mature)
+
+35
+
+8.40.45
+
+Cucurbita squash
+
+Cucurbita spp.
+
+Inc. Acorn squash, Spaghetti
+squash, Custard squash,
+Golden nugget, Pumpkin
+
+8.40.49
+
+Other gourds
+
+Cucurbitaceae spp.
+
+Inc. Ash gourd, Bottle gourd,
+Butternut squash, Chayote,
+Snake squash
+
+8.40.50
+
+Ackee
+
+Blighia sapida
+
+Akee, Akee apple
+
+8.40.52
+
+Breadfruit
+
+Artocarpus attilis
+
+See also: Jack fruit
+
+8.40.54
+
+Matoki
+
+Musa sapientium
+
+Green banana; see
+also: Banana
+
+8.40.56
+
+Plantain
+
+Musa paradisiaca
+
+Adam's fig; see also: Banana
+
+8.40.60
+
+Avocado
+
+Persea americana
+
+Alligator pear
+
+8.40.65
+
+Olive
+
+Olea europaea
+
+8.45 Pod and seed vegetables
+8.45.10
+
+Pea
+
+Pisum sativum
+
+Green / garden pea
+
+8.45.20
+
+Broad bean
+
+Vicia faba
+
+Faba bean, Field bean, Horse
+bean
+
+8.45.25
+
+Wax beans
+
+Phaseolus lunatis
+
+Butter bean, Lima bean
+
+8.45.30
+
+French bean
+
+Phaseolus vulgaris
+
+Green bean
+
+8.45.40
+
+Runner beans
+
+Phaseolus coccineus
+
+Green bean, String bean
+
+8.45.50
+
+Sweet corn
+
+Zea mays
+
+Sweet maize; inc. "Baby corn"
+(immature)
+
+8.45.60
+
+Okra
+
+Hibiscus esculentus
+
+Gumbo, Ladyfinger, Okro
+
+8.50.10
+
+Cultivated mushroom
+
+Agaricus bisporus
+
+Inc. Button mushroom, Cup
+mushroom, Open mushroom
+
+8.50.15
+
+Field mushroom
+
+Agaricus spp.
+
+8.50.20
+
+Honey mushroom
+
+Armillaria mellea
+
+Honey agaric, Honey fungus
+
+8.50.25
+
+Boletus
+
+Boletus (and other) spp.
+
+Inc. Yellow boletus, Red
+boletus, Rough stemmed
+boletus, Ringed boletus
+
+8.50.30
+
+Truffle
+
+Tuber melanosporum
+
+Swine bread
+
+8.50.35
+
+Morel
+
+Morchella esculanta
+
+8.50.40
+
+Cantharelle
+
+Cantharellus cibarius
+
+8.50.45
+
+Orange agaric
+
+Lactarius deliciosus
+
+8.50.50
+
+Oyster mushroom
+
+Pleurotus ostreatus
+
+8.50.55
+
+Shiitake mushroom
+
+Lentinus edodes
+
+8.50.60
+
+Straw mushroom
+
+Volvaria volvaria
+
+8.50 Edible fungi
+
+Saffron milk-cap
+
+36
+
+8.55 Seaweeds
+8.55.10
+
+Irish moss
+
+Chondrus crispus
+
+8.55.20
+
+Kombu
+
+Laminaria spp.
+
+8.55.30
+
+Laver
+
+Porphyra spp.
+
+8.55.40
+
+Wakame
+
+Undaria spp.
+
+Carrageen moss
+
+Inc. Sea lettuce, Nori (Japanese
+laver)
+
+8.60 Vegetable mixtures
+8.60.10
+
+Vegetable mixes
+
+8.60.20
+
+Mustard and cress
+
+8.60.30
+
+Pot-herb
+
+Sinapis alba / Lepidium
+sativum
+
+FRUITS
+9.10 Malaceous fruit
+9.10.10
+
+Dessert apple
+
+Pyrus malus / Malus pumila
+
+Inc. Granny Smith, Golden
+Delicious, Discovery
+
+9.10.15
+
+Cooking apple
+
+Pyrus malus / Malus pumila
+
+Inc. Bramley's Seedling
+
+9.10.20
+
+Pear
+
+Pyrus communis
+
+Inc. Conference, Doyenne du
+Comice, William's Bon
+Chrétien
+
+9.10.25
+
+Nashi pear
+
+Pyrus pyrifolia
+
+Asian pear
+
+9.10.30
+
+Quince
+
+Cydonia oblongo
+
+9.10.40
+
+Medlar
+
+Mespilus germanica
+
+9.10.50
+
+Loquat
+
+Eriobotyra japonica
+
+Japanese medlar
+
+9.20 Prunus species fruit
+9.20.10
+
+Apricot
+
+Prunus armeniacea
+
+9.20.20
+
+Peach
+
+Prunus persica
+
+9.20.25
+
+Nectarine
+
+Prunus persica var nectarina
+
+9.20.30
+
+Plum
+
+Prunus domestica
+
+9.20.32
+
+Damson
+
+Prunus domestica var institia Inc. Bullace, Prune damson
+
+9.20.34
+
+Mirabelle
+
+Prunus domestica var syriaca Syrian plum
+
+9.20.36
+
+Greengage
+
+Prunus domestica var italica
+
+9.20.40
+
+Sweet cherry
+
+Prunus avium
+
+Gean
+
+9.20.45
+
+Sour cherry
+
+Prunus cerasus
+
+Acid cherry; inc. Morello
+cherry
+
+9.20.50
+
+Chickasaw plum
+
+Prunus angustifolia
+
+37
+
+9.20.55
+
+Susina
+
+Prunus salicina
+
+Japanese plum
+
+9.20.60
+
+Sloe
+
+Prunus spinosa
+
+Blackthorn, Sloe plum
+
+9.25.30
+
+Date
+
+Phoenix dactylifera
+
+9.25.40
+
+Lychee
+
+Litchi chinensis
+
+Litchi, Lichi
+
+9.25.44
+
+Persimmon plum
+
+Diaspyrous kaki
+
+Date plum, Kaki, Sharon fruit
+
+9.25.48
+
+Barbados cherries
+
+Malpighia spp.
+
+Acerolas, West Indian
+cherries
+
+9.30.10
+
+White grapes
+
+Vitis vinifera
+
+9.30.12
+
+Black grapes
+
+Vitis vinifera
+
+9.30.15
+
+Strawberries
+
+Fragaria vesca
+
+9.30.20
+
+Raspberries
+
+Rubus idaeus
+
+9.30.22
+
+Loganberries
+
+Rubus loganobaccus
+
+9.30.24
+
+Blackberries
+
+Rubus fruticosus
+
+9.30.26
+
+Dewberries
+
+Rubus caesius
+
+Youngberries
+
+9.30.28
+
+Cloudberries
+
+Rubus chamaemorus
+
+Averin, Knotberries
+
+9.30.30
+
+Gooseberries
+
+Ribes grossularia
+
+Wine berries
+
+9.30.32
+
+Black currants
+
+Ribes nigrum
+
+9.30.34
+
+Red currants
+
+Ribes rubrum
+
+9.30.36
+
+White currants
+
+Ribes sativum
+
+9.30.40
+
+Cranberries
+
+Vaccinium oxycoccus
+
+9.30.42
+
+Bilberries
+
+Vaccinium myrtillis
+
+Huckleberries,
+Whortleberries
+
+9.30.44
+
+Cowberry
+
+Vaccinium vitis var idaea
+
+Foxberries, Mountain
+cranberries, Red bilberries,
+Red whortleberries
+
+9.30.46
+
+Blueberries
+
+Vaccinium corymbosum /
+Vaccinium angustifolium
+
+9.30.50
+
+Elderberries
+
+Sambuca nigra
+
+9.30.54
+
+Rowanberries
+
+Sorbus aucaparia
+
+9.30.58
+
+Physalis
+
+Physalis peruviana
+
+Cape gooseberry, Chinese
+lantern, Golden berry
+
+9.30.62
+
+Mulberries
+
+Morus spp.
+
+Inc. Black mulberry, White
+mulberry
+
+9.30.66
+
+Bearberries
+
+Arctostaphylos uva-ursi
+
+Foxberries, Marranitas
+
+9.30.70
+
+Sea buckthorn
+
+Hippophae rhamnoides
+
+9.25 Other stone fruit
+
+9.30 Berries
+
+38
+
+9.40 Citrus fruit
+9.40.10
+
+Lemon
+
+Citrus limonum
+
+9.40.20
+
+Orange
+
+Citrus sinensis
+
+Sweet orange
+
+9.40.25
+
+Tangerine
+
+Citrus reticulata
+
+Mandarin orange; inc.
+Clementine, Satsuma
+
+9.40.30
+
+Grapefruit
+
+Citrus paradisi
+
+9.40.35
+
+Pomelo
+
+Citrus grandis
+
+9.40.40
+
+Lime
+
+Citrus aurantifolia
+
+9.40.50
+
+Kumquat
+
+Fortunella japonica
+
+Cumquat
+
+Pummelo, Shaddock
+
+9.50 Miscellaneous fruit
+9.50.10
+
+Banana
+
+Musa (infertile hybrid)
+
+See also: Plantain
+
+9.50.14
+
+Pineapple
+
+Ananas comosus
+
+Ananas, Pine
+
+9.50.18
+
+Kiwi fruit
+
+Actinidia chinensis
+
+Chinese gooseberry, Monkey
+peach
+
+9.50.22
+
+Melon
+
+Cucumis melo
+
+Inc. Ogen, Cantaloupe,
+Honeydew, Gallia melons
+
+9.50.26
+
+Water melon
+
+Citrullus vulgaris var lanatus
+
+9.50.30
+
+Fig
+
+Ficus carica
+
+9.50.32
+
+Mango
+
+Mangifera indica
+
+9.50.34
+
+Pomegranate
+
+Punica granatum
+
+9.50.36
+
+Passionfruit
+
+Passiflora edulis
+
+Purple granadilla
+
+9.50.38
+
+Cashew fruit
+
+Anacordium occidentale
+
+Christmas apple
+
+9.50.40
+
+Guava
+
+Psidium guayava
+
+9.50.42
+
+Papaya
+
+Carica papaya
+
+Papaw
+
+9.50.44
+
+Custard apple
+
+Anona spp.
+
+Inc. Sour sop, Sweet sop,
+Bullock's heart
+
+9.50.46
+
+Prickly pear
+
+Opuntia ficus indica
+
+Indian fig cactus
+
+9.50.48
+
+Rose hip
+
+Rosa canina
+
+Rose berry, Rose haw
+
+9.50.50
+
+Sapodilla
+
+Achras sapota
+
+Naseberry, Sapodilla plum
+
+9.50.52
+
+Carambola
+
+Averrhoa carambola
+
+Star apple, Star fruit
+
+9.50.54
+
+Durian
+
+Durio zibethinus
+
+Durion
+
+9.50.56
+
+Jack fruit
+
+Artocarpus heterophylla
+
+Jack; see also: Breadfruit
+
+9.50.58
+
+Chayote
+
+Sechium edule
+
+9.50.60
+
+Rambutan
+
+Nephelium lappaceum
+
+9.50.62
+
+Tamarillo
+
+Cyphomandra betacea
+
+9.50.64
+
+Tamarinde
+
+Tamarindus indica
+
+Tree tomato
+
+39
+
+9.60 Fruit mixtures
+9.60.10
+
+Fruit cocktail
+
+Contg. pear, peach,
+pineapple, grape, cherry
+
+9.60.20
+
+Fruit salad
+
+Contg. banana, orange, apple,
+pear, grape
+
+NUTS
+7.20 Underground pulses
+7.20.10
+
+Peanut
+
+Arachis hypogea
+
+Groundnut, Monkey nut
+
+7.40.10
+
+Walnut
+
+Juglans regia
+
+7.40.14
+
+Hazelnut
+
+Corylus avellana
+
+7.40.18
+
+Filbert
+
+Corylus maxima
+
+7.40.22
+
+Coconut
+
+Cocos nucifera
+
+Cokernut
+
+7.40.26
+
+Brazil nut
+
+Bertholletia excelsa
+
+Paranut, Cream nut
+
+7.40.30
+
+Hickory nut
+
+Carya illinoensis
+
+Pecan nut
+
+7.40.34
+
+Cashew nut
+
+Anacardium occidentale
+
+7.40.38
+
+Almond, sweet
+
+Prunus amygalus dulcis
+
+7.40.42
+
+Almond, bitter
+
+Prunus amygalus amara
+
+7.40.46
+
+Pistachio nut
+
+Pistacia vera
+
+7.40.50
+
+Sweet chestnut
+
+Castanea vulgaris
+
+7.40 Nuts
+
+12.20 Herbs
+12.20.10
+
+Angelica
+
+Angelica archangelica
+
+(leaf, stem, root, seed) see
+also Candied angelica
+
+12.20.12
+
+Basil
+
+Ocimum basilicum
+
+(leaf)
+
+12.20.14
+
+Bay
+
+Laurus nobilis
+
+(leaf)
+
+12.20.16
+
+Bergamot
+
+Monarda didyma
+
+(leaf, flower)
+
+12.20.18
+
+Burnet
+
+Poterium sanguisorba
+
+(leaf)
+
+12.20.20
+
+Borage
+
+Borago officinalis
+
+(flower, leaf)
+
+12.20.22
+
+Chervil
+
+Anthriscus cerefolium
+
+(leaf)
+
+12.20.24
+
+Chamomile
+
+Chamaemelum nobile
+
+(leaf, flower)
+
+12.20.26
+
+Comfrey
+
+Symphytum officinale
+
+(leaf, root)
+
+12.20.28
+
+Coriander
+
+Coriandrum sativum
+
+(leaf, root)
+
+12.20.30
+
+Curry
+
+Chalcas koenigii
+
+(leaf)
+
+12.20.32
+
+Dill
+
+Anethum graveolens
+
+(leaf)
+
+40
+
+12.20.34
+
+Fennel
+
+Foeniculum vulgare
+
+(leaf, stem, seed)
+
+12.20.36
+
+Fenugreek
+
+Trigonella foenum-graceum (leaf)
+
+12.20.38
+
+Hop
+
+Humulus lupulus
+
+(flower, shoot)
+
+12.20.40
+
+Hyssop
+
+Hysoppus officinalis
+
+(leaf)
+
+12.20.42
+
+Lemon balm
+
+Melissa officinalis
+
+(leaf)
+
+12.20.44
+
+Lemon grass
+
+Cymbopogon spp.
+
+(leaf)
+
+12.20.46
+
+Lemon verbena
+
+Lippia citriodora
+
+(leaf)
+
+12.20.48
+
+Lovage
+
+Levisticum officinale
+
+(leaf, stem, root, seed)
+
+12.20.50
+
+Marigold
+
+Calendula officinalis
+
+(petal)
+
+12.20.52
+
+Marjoram
+
+Origanum majorana
+
+(leaf) also Sweet marjoram,
+Spanish wild marjoram
+
+12.20.54
+
+Mint
+
+Mentha spp.
+
+(leaf)
+
+12.20.56
+
+Nasturtium
+
+Tropaeolum majus
+
+(leaf, petal, seed, seed pod)
+
+12.20.58
+
+Oregano
+
+Origanum vulgare
+
+(leaf, flower)
+
+12.20.60
+
+Rosemary
+
+Rosmarinus officinalis
+
+(leaf)
+
+12.20.62
+
+Sage
+
+Salvia officinalis
+
+(leaf)
+
+12.20.64
+
+Savory
+
+Saturcia spp.
+
+(leaf) inc. Winter savory,
+Summer savory
+
+12.20.66
+
+Tansy
+
+Chrysanthemum vulgare
+
+(leaf)
+
+12.20.68
+
+Tarragon
+
+Artemesia dracunculus
+
+(leaf)
+
+12.20.70
+
+Thyme
+
+Thymus spp.
+
+(leaf)
+
+12.20.72
+
+Woodruff
+
+Asperula odorata
+
+(leaf)
+
+12.20.74
+
+Yarrow
+
+Achillea millefolium
+
+(leaf, root, seed)
+
+41
+
+

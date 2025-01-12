@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../widgets/nutrition_claims_widget.dart';
-import '../models/nutrition_claims.dart';
-import '../core/theme/app_colors.dart';
-import 'dart:convert';
+import '../models/product_score.dart';
+import '../services/scoring_service.dart';
+
+enum NutrientStatus {
+  positive,
+  moderate,
+  negative,
+}
+
+final scoringService = ScoringService();
 
 class ProductDetailScreen extends ConsumerWidget {
   final Map<String, dynamic> product;
@@ -12,655 +18,423 @@ class ProductDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('Product Details: ${json.encode(product)}');
-    print('Nutrition Claims Data: ${json.encode(product['nutritionClaims'])}');
-
     final nutritionFacts =
         product['nutritionFacts'] as Map<String, dynamic>? ?? {};
-
-    // Makrobesin değerlerini al ve hesapla
-    final totalFat = _extractNumericValue(nutritionFacts['totalFat']);
-    final totalCarbs =
-        _extractNumericValue(nutritionFacts['totalCarbohydrate']);
-    final protein = _extractNumericValue(nutritionFacts['protein']);
-
-    // Kalori hesaplamaları (1g yağ = 9 kcal, 1g protein/karbonhidrat = 4 kcal)
-    final fatCalories = totalFat * 9;
-    final carbCalories = totalCarbs * 4;
-    final proteinCalories = protein * 4;
-    final totalCalories = fatCalories + carbCalories + proteinCalories;
-
-    // Yüzde hesaplamaları
-    final fatPercentage = (fatCalories / totalCalories * 100).round();
-    final carbPercentage = (carbCalories / totalCalories * 100).round();
-    final proteinPercentage = (proteinCalories / totalCalories * 100).round();
-
-    // Günlük referans değerleri
-    final Map<String, double> dailyValues = {
-      'totalFat': 78.0, // 78g (değiştirildi: 65g -> 78g)
-      'saturatedFat': 20.0, // 20g (aynı)
-      'cholesterol': 300.0, // 300mg (aynı)
-      'sodium': 2300.0, // 2300mg (aynı)
-      'totalCarbohydrate': 275.0, // 275g (değiştirildi: 300g -> 275g)
-      'dietaryFiber': 28.0, // 28g
-      'protein': 50.0, // 50g (aynı)
-    };
-
-    int _calculateDailyValue(double value, String nutrient) {
-      final referenceValue = dailyValues[nutrient] ?? 100.0;
-      return ((value / referenceValue) * 100).round();
-    }
+    final productScore = scoringService.calculateScore(
+      nutritionFacts,
+      product['nutritionClaims'] as Map<String, dynamic>?,
+    );
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
+        backgroundColor: const Color(0xFFF8F8F8),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: const Text(
           'Product Details',
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 17,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _cleanProductName(
-                  product['productName'] ?? 'Product Name Not Found',
-                  product['brandName'] ?? '',
-                ),
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                '${product['brandName'] ?? 'Brand Not Found'}',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 24),
-
-              // Makrobesin dağılımı kartı
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Macronutrient Distribution',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 16),
-                      _buildMacroRow(
-                        'Fat',
-                        totalFat,
-                        fatPercentage,
-                        Colors.red.shade300,
-                      ),
-                      _buildMacroRow(
-                        'Carbs',
-                        totalCarbs,
-                        carbPercentage,
-                        Colors.blue.shade300,
-                      ),
-                      _buildMacroRow(
-                        'Protein',
-                        protein,
-                        proteinPercentage,
-                        Colors.green.shade300,
-                      ),
-                    ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product Header
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _cleanProductName(
+                      product['productName'] ?? 'Product Name Not Found',
+                      product['brandName'] ?? '',
+                    ),
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ),
-
-              const SizedBox(height: 24),
-              Text(
-                'Nutrition Facts',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 16),
-
-              // Besin değerleri kartı
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildNutritionRow(
-                        'Serving Size',
-                        nutritionFacts['servingSize'] ?? '100g',
-                      ),
-                      const Divider(),
-                      _buildNutritionRowWithPercentage(
-                        'Calories',
-                        nutritionFacts['calories'] ?? '0',
-                        null,
-                      ),
-                      const Divider(),
-                      _buildNutritionRowWithPercentage(
-                        'Total Fat',
-                        nutritionFacts['totalFat'] ?? '0g',
-                        _calculateDailyValue(
-                          _extractNumericValue(nutritionFacts['totalFat']),
-                          'totalFat',
-                        ),
-                      ),
-                      _buildIndentedNutritionRowWithPercentage(
-                        'Saturated Fat',
-                        nutritionFacts['saturatedFat'] ?? '0g',
-                        _calculateDailyValue(
-                          _extractNumericValue(nutritionFacts['saturatedFat']),
-                          'saturatedFat',
-                        ),
-                      ),
-                      _buildIndentedNutritionRow(
-                        'Trans Fat',
-                        nutritionFacts['transFat'] ?? '0g',
-                      ),
-                      const Divider(),
-                      _buildNutritionRowWithPercentage(
-                        'Cholesterol',
-                        nutritionFacts['cholesterol'] ?? '0mg',
-                        _calculateDailyValue(
-                          _extractNumericValue(nutritionFacts['cholesterol']),
-                          'cholesterol',
-                        ),
-                      ),
-                      const Divider(),
-                      _buildNutritionRowWithPercentage(
-                        'Sodium',
-                        nutritionFacts['sodium'] ?? '0mg',
-                        _calculateDailyValue(
-                          _extractNumericValue(nutritionFacts['sodium']),
-                          'sodium',
-                        ),
-                      ),
-                      const Divider(),
-                      _buildNutritionRowWithPercentage(
-                        'Total Carbohydrate',
-                        nutritionFacts['totalCarbohydrate'] ?? '0g',
-                        _calculateDailyValue(
-                          _extractNumericValue(
-                              nutritionFacts['totalCarbohydrate']),
-                          'totalCarbohydrate',
-                        ),
-                      ),
-                      _buildIndentedNutritionRow(
-                        'Dietary Fiber',
-                        nutritionFacts['dietaryFiber'] ?? '0g',
-                      ),
-                      _buildIndentedNutritionRow(
-                        'Sugars',
-                        nutritionFacts['sugars'] ?? '0g',
-                      ),
-                      const Divider(),
-                      _buildNutritionRowWithPercentage(
-                        'Protein',
-                        nutritionFacts['protein'] ?? '0g',
-                        _calculateDailyValue(
-                          _extractNumericValue(nutritionFacts['protein']),
-                          'protein',
-                        ),
-                      ),
-                      const Divider(),
-                      _buildNutritionRow(
-                        'Vitamin D',
-                        nutritionFacts['vitaminD'] ?? '0mcg',
-                      ),
-                      _buildNutritionRow(
-                        'Calcium',
-                        nutritionFacts['calcium'] ?? '0mg',
-                      ),
-                      _buildNutritionRow(
-                        'Iron',
-                        nutritionFacts['iron'] ?? '0mg',
-                      ),
-                      _buildNutritionRow(
-                        'Potassium',
-                        nutritionFacts['potassium'] ?? '0mg',
-                      ),
-                    ],
+                  Text(
+                    product['brandName'] ?? 'Brand Not Found',
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-              ),
-
-              // Nutrition Claims kartı
-              Builder(
-                builder: (context) {
-                  try {
-                    // Nutrition claims verilerini kontrol et
-                    final nutritionClaimsData = product['nutritionClaims'];
-                    if (nutritionClaimsData == null)
-                      return const SizedBox.shrink();
-
-                    // Tip kontrolü ve dönüşümü
-                    Map<String, dynamic> nutritionClaims;
-                    if (nutritionClaimsData is Map) {
-                      nutritionClaims =
-                          Map<String, dynamic>.from(nutritionClaimsData);
-                    } else {
-                      print(
-                          'Invalid nutrition claims data type: ${nutritionClaimsData.runtimeType}');
-                      return const SizedBox.shrink();
-                    }
-
-                    final allergens = (nutritionClaims['allergens'] is Map)
-                        ? Map<String, dynamic>.from(
-                            nutritionClaims['allergens'] as Map)
-                        : <String, dynamic>{};
-
-                    final dietaryInfo = (nutritionClaims['dietaryInfo'] is Map)
-                        ? Map<String, dynamic>.from(
-                            nutritionClaims['dietaryInfo'] as Map)
-                        : <String, dynamic>{};
-
-                    // Debug için
-                    print('Allergens: $allergens');
-                    print('Dietary Info: $dietaryInfo');
-
-                    // Eğer hem allergens hem de dietaryInfo boşsa, hiçbir şey gösterme
-                    if (allergens.isEmpty && dietaryInfo.isEmpty) {
-                      return const SizedBox.shrink();
-                    }
-
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: _getScoreColor(productScore.totalScore),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Nutrition Claims',
-                              style: Theme.of(context).textTheme.titleLarge,
+                              '${productScore.totalScore.round()}/100',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                              ),
                             ),
-                            const SizedBox(height: 16),
-
-                            // Free from section
-                            if (allergens.entries
-                                .where((e) => e.value
-                                    .toString()
-                                    .toLowerCase()
-                                    .contains('free'))
-                                .isNotEmpty)
-                              Builder(
-                                builder: (context) {
-                                  try {
-                                    final freeFromItems = allergens.entries
-                                        .where((e) => e.value
-                                            .toString()
-                                            .toLowerCase()
-                                            .contains('free'))
-                                        .toList();
-
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text('This food is free from:'),
-                                        const SizedBox(height: 8),
-                                        ...freeFromItems.map((e) => Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 16, bottom: 4),
-                                              child: Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.check_circle,
-                                                    color: Colors.green,
-                                                    size: 20,
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Text(e.key
-                                                      .toString()
-                                                      .replaceAll(
-                                                          RegExp(r'^\s+|\s+$'),
-                                                          '')),
-                                                ],
-                                              ),
-                                            )),
-                                        const SizedBox(height: 16),
-                                      ],
-                                    );
-                                  } catch (e) {
-                                    print('Error in Free from section: $e');
-                                    return const SizedBox.shrink();
-                                  }
-                                },
-                              ),
-
-                            // May contain section
-                            if (allergens.entries
-                                .where((e) => e.value
-                                    .toString()
-                                    .toLowerCase()
-                                    .contains('may'))
-                                .isNotEmpty)
-                              Builder(
-                                builder: (context) {
-                                  try {
-                                    final mayContainItems = allergens.entries
-                                        .where((e) => e.value
-                                            .toString()
-                                            .toLowerCase()
-                                            .contains('may'))
-                                        .toList();
-
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text('This food may contain:'),
-                                        const SizedBox(height: 8),
-                                        ...mayContainItems.map((e) => Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 16, bottom: 4),
-                                              child: Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.help,
-                                                    color: Colors.orange,
-                                                    size: 20,
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Text(e.key
-                                                      .toString()
-                                                      .replaceAll(
-                                                          RegExp(r'^\s+|\s+$'),
-                                                          '')),
-                                                ],
-                                              ),
-                                            )),
-                                        const SizedBox(height: 16),
-                                      ],
-                                    );
-                                  } catch (e) {
-                                    print('Error in May contain section: $e');
-                                    return const SizedBox.shrink();
-                                  }
-                                },
-                              ),
-
-                            // Dietary Information
-                            if (dietaryInfo.isNotEmpty)
-                              Builder(
-                                builder: (context) {
-                                  try {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text('Dietary Information:'),
-                                        const SizedBox(height: 8),
-                                        ...dietaryInfo.entries
-                                            .map((e) => Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 16, bottom: 4),
-                                                  child: Row(
-                                                    children: [
-                                                      Icon(
-                                                        e.value == false
-                                                            ? Icons.cancel
-                                                            : Icons
-                                                                .check_circle,
-                                                        color: e.value == false
-                                                            ? Colors.red
-                                                            : Colors.green,
-                                                        size: 20,
-                                                      ),
-                                                      const SizedBox(width: 8),
-                                                      Text('${e.key} diet'),
-                                                    ],
-                                                  ),
-                                                )),
-                                      ],
-                                    );
-                                  } catch (e) {
-                                    print(
-                                        'Error in Dietary Information section: $e');
-                                    return const SizedBox.shrink();
-                                  }
-                                },
-                              ),
                           ],
                         ),
                       ),
-                    );
-                  } catch (e) {
-                    print('Error in nutrition claims card: $e');
-                    return const SizedBox.shrink();
-                  }
-                },
+                      const SizedBox(width: 8),
+                      Text(
+                        _getScoreDescription(productScore.nutriscore),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Positives Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Positives',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                ),
+                      ),
+                      Text(
+                        'per 100 g',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  _buildNutrientRow(
+                    icon: Icons.check_circle_outline,
+                    title: 'No additives',
+                    subtitle: 'No hazardous substances',
+                    value: '',
+                    status: NutrientStatus.positive,
+                  ),
+                  _buildNutrientRow(
+                    icon: Icons.fitness_center,
+                    title: 'Protein',
+                    subtitle: _getProteinDescription(nutritionFacts['protein']),
+                    value:
+                        '${_extractNumericValue(nutritionFacts['protein']).toStringAsFixed(1)}g',
+                    status: _getProteinStatus(nutritionFacts['protein']),
+                  ),
+                  _buildNutrientRow(
+                    icon: Icons.grass,
+                    title: 'Fibre',
+                    subtitle:
+                        _getFiberDescription(nutritionFacts['dietaryFiber']),
+                    value:
+                        '${_extractNumericValue(nutritionFacts['dietaryFiber']).toStringAsFixed(1)}g',
+                    status: _getFiberStatus(nutritionFacts['dietaryFiber']),
+                  ),
+                  _buildNutrientRow(
+                    icon: Icons.soup_kitchen,
+                    title: 'Salt',
+                    subtitle: _getSaltDescription(nutritionFacts['sodium']),
+                    value:
+                        '${_extractNumericValue(nutritionFacts['sodium']).toStringAsFixed(1)}g',
+                    status: _getSaltStatus(nutritionFacts['sodium']),
+                  ),
+                  _buildNutrientRow(
+                    icon: Icons.cookie,
+                    title: 'Sugar',
+                    subtitle: _getSugarDescription(nutritionFacts['sugars']),
+                    value:
+                        '${_extractNumericValue(nutritionFacts['sugars']).toStringAsFixed(1)}g',
+                    status: _getSugarStatus(nutritionFacts['sugars']),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Negatives Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Negatives',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                ),
+                      ),
+                      Text(
+                        'per 100 g',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  _buildNutrientRow(
+                    icon: Icons.local_fire_department_outlined,
+                    title: 'Energy',
+                    subtitle: _getEnergyDescription(nutritionFacts['calories']),
+                    value:
+                        '${_extractNumericValue(nutritionFacts['calories']).toStringAsFixed(0)} kcal',
+                    status: _getEnergyStatus(nutritionFacts['calories']),
+                  ),
+                  _buildNutrientRow(
+                    icon: Icons.water_drop,
+                    title: 'Saturates',
+                    subtitle: _getSaturatesDescription(
+                        nutritionFacts['saturatedFat']),
+                    value:
+                        '${_extractNumericValue(nutritionFacts['saturatedFat']).toStringAsFixed(1)}g',
+                    status: _getSaturatesStatus(nutritionFacts['saturatedFat']),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildMacroRow(
-      String label, double value, int percentage, Color color) {
+  Widget _buildNutrientRow({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required String value,
+    required NutrientStatus status,
+  }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Icon(
-                _getMacroIcon(label),
-                color: color,
-                size: 24,
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '$label ($percentage%)',
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    Text(
-                      '${value.toStringAsFixed(1)}g',
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          LinearProgressIndicator(
-            value: percentage / 100,
-            backgroundColor: color.withOpacity(0.2),
-            valueColor: AlwaysStoppedAnimation<Color>(color),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNutritionRowWithPercentage(
-      String label, String value, int? percentage) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Row(
         children: [
           Icon(
-            _getNutritionIcon(label),
-            color: AppColors.primaryGreen,
-            size: 20,
+            icon,
+            size: 22,
+            color: Colors.black87,
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 16),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label),
-                Row(
-                  children: [
-                    Text(value),
-                    if (percentage != null) ...[
-                      const SizedBox(width: 8),
-                      Text('${percentage.toString()}%'),
-                    ],
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNutritionRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label),
-          Text(
-            value,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    );
-  }
-
-  double _extractNumericValue(String? value) {
-    if (value == null) return 0;
-    final match = RegExp(r'(\d+\.?\d*)').firstMatch(value);
-    return match != null ? double.parse(match.group(1)!) : 0;
-  }
-
-  Widget _buildIndentedNutritionRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 4, 0, 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(fontSize: 14),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildIndentedNutritionRowWithPercentage(
-      String label, String value, int? percentage) {
-    // Değer ve birim arasındaki boşlukları temizle
-    final cleanValue = value.replaceAll(RegExp(r'\s+'), '');
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 4, 0, 4),
-      child: Row(
-        children: [
-          // Label sol tarafta (girintili)
-          Expanded(
-            flex: 3,
-            child: Text(
-              label,
-              style: const TextStyle(fontSize: 14),
-            ),
-          ),
-          // Yüzde ve değer sağ tarafta
-          Expanded(
-            flex: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (percentage != null) ...[
-                  Text(
-                    '$percentage%',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                ],
                 Text(
-                  cleanValue,
+                  title,
                   style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey[600],
                   ),
                 ),
               ],
             ),
           ),
+          if (value.isNotEmpty) ...[
+            Text(
+              value,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(width: 8),
+          ],
+          Container(
+            width: 18,
+            height: 18,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: _getStatusColor(status),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Color _getStatusColor(NutrientStatus status) {
+    switch (status) {
+      case NutrientStatus.positive:
+        return const Color(0xFF1B5E20); // Koyu yeşil
+      case NutrientStatus.moderate:
+        return const Color(0xFF8BC34A); // Açık yeşil
+      case NutrientStatus.negative:
+        return const Color(0xFFE53935); // Kırmızı
+    }
+  }
+
+  NutrientStatus _getProteinStatus(dynamic protein) {
+    final value = _extractNumericValue(protein);
+    if (value >= 8) return NutrientStatus.positive;
+    if (value >= 6) return NutrientStatus.moderate;
+    return NutrientStatus.negative;
+  }
+
+  NutrientStatus _getFiberStatus(dynamic fiber) {
+    final value = _extractNumericValue(fiber);
+    if (value >= 3) return NutrientStatus.positive;
+    if (value >= 2) return NutrientStatus.moderate;
+    return NutrientStatus.negative;
+  }
+
+  NutrientStatus _getSaltStatus(dynamic sodium) {
+    final value = _extractNumericValue(sodium);
+    if (value <= 0.3) return NutrientStatus.positive;
+    if (value <= 0.5) return NutrientStatus.moderate;
+    return NutrientStatus.negative;
+  }
+
+  NutrientStatus _getSugarStatus(dynamic sugar) {
+    final value = _extractNumericValue(sugar);
+    if (value <= 5) return NutrientStatus.positive;
+    if (value <= 10) return NutrientStatus.moderate;
+    return NutrientStatus.negative;
+  }
+
+  NutrientStatus _getEnergyStatus(dynamic calories) {
+    final value = _extractNumericValue(calories);
+    if (value <= 300) return NutrientStatus.positive;
+    if (value <= 400) return NutrientStatus.moderate;
+    return NutrientStatus.negative;
+  }
+
+  NutrientStatus _getSaturatesStatus(dynamic saturates) {
+    final value = _extractNumericValue(saturates);
+    if (value <= 2) return NutrientStatus.positive;
+    if (value <= 4) return NutrientStatus.moderate;
+    return NutrientStatus.negative;
+  }
+
+  String _getProteinDescription(dynamic protein) {
+    final value = _extractNumericValue(protein);
+    if (value >= 8) return 'Excellent amount of protein';
+    if (value >= 6) return 'Good amount of protein';
+    return 'Low amount of protein';
+  }
+
+  String _getFiberDescription(dynamic fiber) {
+    final value = _extractNumericValue(fiber);
+    if (value >= 3) return 'Excellent amount of fibre';
+    if (value >= 2) return 'Good amount of fibre';
+    return 'Low in fibre';
+  }
+
+  String _getSaltDescription(dynamic sodium) {
+    final value = _extractNumericValue(sodium);
+    if (value <= 0.3) return 'Low salt';
+    if (value <= 0.5) return 'Moderate salt';
+    return 'High salt';
+  }
+
+  String _getSugarDescription(dynamic sugar) {
+    final value = _extractNumericValue(sugar);
+    if (value <= 5) return 'Low impact';
+    if (value <= 10) return 'Moderate impact';
+    return 'High impact';
+  }
+
+  String _getEnergyDescription(dynamic calories) {
+    final value = _extractNumericValue(calories);
+    if (value <= 300) return 'Low caloric';
+    if (value <= 400) return 'Moderate caloric';
+    return 'A bit too caloric';
+  }
+
+  String _getSaturatesDescription(dynamic saturates) {
+    final value = _extractNumericValue(saturates);
+    if (value <= 2) return 'Low in saturates';
+    if (value <= 4) return 'Moderate in saturates';
+    return 'A little too fatty';
+  }
+
+  Color _getScoreColor(double score) {
+    if (score >= 80) return const Color(0xFF1B5E20); // Koyu yeşil
+    if (score >= 60) return const Color(0xFF8BC34A); // Açık yeşil
+    if (score >= 40) return const Color(0xFFFFD600); // Sarı
+    return const Color(0xFFE53935); // Kırmızı
+  }
+
+  String _getScoreDescription(String nutriscore) {
+    switch (nutriscore.toUpperCase()) {
+      case 'A':
+        return 'Excellent';
+      case 'B':
+        return 'Good';
+      case 'C':
+        return 'Average';
+      case 'D':
+        return 'Poor';
+      case 'E':
+        return 'Bad';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  double _extractNumericValue(dynamic value) {
+    if (value == null) return 0;
+    if (value is num) return value.toDouble();
+    if (value is String) {
+      final match = RegExp(r'(\d+\.?\d*)').firstMatch(value);
+      return match != null ? double.parse(match.group(1)!) : 0;
+    }
+    return 0;
   }
 
   String _cleanProductName(String productName, String brandName) {
-    // Eğer ürün adı marka adı ile bitiyorsa, marka adını kaldır
     if (productName.toLowerCase().endsWith(brandName.toLowerCase())) {
       return productName
           .substring(0, productName.length - brandName.length)
           .trim();
     }
-    // Eğer ürün adı marka adı ile başlıyorsa, marka adını kaldır
     if (productName.toLowerCase().startsWith(brandName.toLowerCase())) {
       return productName.substring(brandName.length).trim();
     }
     return productName;
-  }
-
-  IconData _getMacroIcon(String label) {
-    switch (label.toLowerCase()) {
-      case 'fat':
-        return Icons.opacity; // Yağ damlası ikonu
-      case 'carbs':
-        return Icons.grain; // Tahıl ikonu
-      case 'protein':
-        return Icons.fitness_center; // Protein için ağırlık ikonu
-      default:
-        return Icons.circle;
-    }
-  }
-
-  IconData _getNutritionIcon(String label) {
-    switch (label.toLowerCase()) {
-      case 'calories':
-        return Icons.local_fire_department; // Kalori için ateş ikonu
-      case 'total fat':
-        return Icons.opacity; // Yağ damlası ikonu
-      case 'saturated fat':
-        return Icons.opacity_outlined; // Doymuş yağ için farklı yağ ikonu
-      case 'trans fat':
-        return Icons.warning_outlined; // Trans yağ için uyarı ikonu
-      case 'cholesterol':
-        return Icons.medical_services_outlined; // Kolesterol için medikal ikonu
-      case 'sodium':
-        return Icons.restaurant; // Sodyum için tuz/yemek ikonu
-      case 'total carbohydrate':
-        return Icons.grain; // Karbonhidrat için tahıl ikonu
-      case 'dietary fiber':
-        return Icons.grass; // Lif için bitki ikonu
-      case 'sugars':
-        return Icons.cake; // Şeker için tatlı ikonu
-      case 'protein':
-        return Icons.fitness_center; // Protein için ağırlık ikonu
-      case 'serving size':
-        return Icons.restaurant_menu; // Porsiyon için tabak ikonu
-      default:
-        return Icons.info_outline;
-    }
   }
 }
