@@ -14,6 +14,21 @@ Nutrify is a modern Flutter application that helps users make informed food choi
 
 </div>
 
+## 📱 App Screenshots
+
+<p float="left">
+  <img src="assets/screenshots/login_screen.png" width="200" />
+  <img src="assets/screenshots/signup_screen.png" width="200" /> 
+  <img src="assets/screenshots/home_screen.png" width="200" />
+  <img src="assets/screenshots/drawer_menu.png" width="200" />
+</p>
+
+<p float="left">
+  <img src="assets/screenshots/product_detail.png" width="200" />
+  <img src="assets/screenshots/settings_screen.png" width="200" />
+  <img src="assets/screenshots/scanner_screen.png" width="200" />
+</p>
+
 ## ✨ Features
 
 ### 🔍 Real-time Barcode Scanning
