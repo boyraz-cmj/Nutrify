@@ -115,6 +115,8 @@ flutter run
 ## 👥 Contributors
 
 - Yusuf Emre Boyraz - Initial work & Development
+- Yusuf Baki Demiryürek 
+- Semih Kaan Duran
 
 ## 📄 License
 
