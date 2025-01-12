@@ -126,3 +126,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Inspired by Yuka app's nutrition scoring system
 - Special thanks to the Flutter and Firebase communities
+
+## Screenshots from the Nutrify Project
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+
+<img src="assets/screenshots/login_screen.png" width="200" alt="Login Screen"/>
+<img src="assets/screenshots/signup_screen.png" width="200" alt="Signup Screen"/>
+<img src="assets/screenshots/home_screen.png" width="200" alt="Home Screen"/>
+<img src="assets/screenshots/drawer_menu.png" width="200" alt="Drawer Menu"/>
+<img src="assets/screenshots/product_detail.png" width="200" alt="Product Detail"/>
+<img src="assets/screenshots/settings_screen.png" width="200" alt="Settings Screen"/>
+<img src="assets/screenshots/scanner_screen.png" width="200" alt="Scanner Screen"/>
+
+</div>
