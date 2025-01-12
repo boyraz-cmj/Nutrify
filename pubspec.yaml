@@ -103,7 +103,6 @@ flutter:
 
   assets:
     - assets/logo/
-    - assets/screenshots/
 
 flutter_launcher_icons:
   android: true
