@@ -8,13 +8,11 @@ Nutrify is a modern Flutter application that helps users make informed food choi
 
 ## 🎥 Demo
 
-<p align="center">
-  <a href="https://youtu.be/sj1hk2sSqSs">
-    <img src="assets/screenshots/thumbnail.png" alt="Nutrify Demo Video" width="600">
-  </a>
-</p>
+<div align="center">
+  
+[![Nutrify Demo](https://img.youtube.com/vi/sj1hk2sSqSs/0.jpg)](https://www.youtube.com/embed/sj1hk2sSqSs "Watch Nutrify Demo")
 
-[Watch Demo Video](YOUR_YOUTUBE_VIDEO_URL)
+</div>
 
 ## ✨ Features
 
