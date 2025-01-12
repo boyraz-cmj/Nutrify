@@ -219,7 +219,6 @@ class HomeScreen extends HookConsumerWidget {
 
     return Scaffold(
       drawer: Drawer(
-        width: MediaQuery.of(context).size.width * 0.75,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -231,16 +230,24 @@ class HomeScreen extends HookConsumerWidget {
               ],
             ),
           ),
-          child: Column(
+          child: ListView(
+            padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.primaryGreen,
+                      AppColors.primaryGreen.withOpacity(0.8),
+                    ],
+                  ),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primaryGreen.withOpacity(0.1),
-                      blurRadius: 10,
-                      spreadRadius: 2,
+                      color: AppColors.neonGreenShadow.withOpacity(0.2),
+                      blurRadius: 8,
+                      spreadRadius: 1,
                     ),
                   ],
                 ),
@@ -248,23 +255,32 @@ class HomeScreen extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            AppColors.primaryOrange.withOpacity(0.8),
+                            AppColors.primaryOrange,
+                          ],
+                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.primaryOrange.withOpacity(0.2),
-                            spreadRadius: 2,
+                            color: AppColors.neonOrangeShadow.withOpacity(0.3),
                             blurRadius: 8,
+                            spreadRadius: 1,
                           ),
                         ],
                       ),
                       child: const CircleAvatar(
-                        backgroundColor: AppColors.primaryOrange,
                         radius: 40,
+                        backgroundColor: Colors.transparent,
                         child: Icon(
                           Icons.person,
-                          color: Colors.white,
                           size: 40,
+                          color: AppColors.textLight,
                         ),
                       ),
                     ),
@@ -272,7 +288,7 @@ class HomeScreen extends HookConsumerWidget {
                     Text(
                       FirebaseAuth.instance.currentUser?.email ?? '',
                       style: const TextStyle(
-                        color: AppColors.textDark,
+                        color: AppColors.textLight,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),

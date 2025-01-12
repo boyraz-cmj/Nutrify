@@ -212,25 +212,18 @@ class SignupScreen extends HookConsumerWidget {
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(
-                                color: AppColors.primaryGreen.withOpacity(0.3),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                isPasswordVisible.value
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: AppColors.primaryOrange,
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: AppColors.primaryGreen,
-                                width: 2,
-                              ),
+                              onPressed: () => isPasswordVisible.value =
+                                  !isPasswordVisible.value,
                             ),
                           ),
                           obscureText: !isPasswordVisible.value,
-                          textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter a password';
@@ -251,25 +244,18 @@ class SignupScreen extends HookConsumerWidget {
                               Icons.lock_outline,
                               color: AppColors.primaryOrange,
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(
-                                color: AppColors.primaryGreen.withOpacity(0.3),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                isConfirmPasswordVisible.value
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: AppColors.primaryOrange,
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: AppColors.primaryGreen,
-                                width: 2,
-                              ),
+                              onPressed: () => isConfirmPasswordVisible.value =
+                                  !isConfirmPasswordVisible.value,
                             ),
                           ),
                           obscureText: !isConfirmPasswordVisible.value,
-                          textInputAction: TextInputAction.done,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please confirm your password';
