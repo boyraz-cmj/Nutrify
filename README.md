@@ -71,7 +71,7 @@ Nutrify is a modern Flutter application that helps users make informed food choi
 
 1. Clone the repository
 ```bash
-git clone https://github.com/boyraz-cmj/nutrify.git
+git clone https://github.com/yusufemreboyraz/nutrify.git
 ```
 
 2. Install dependencies
