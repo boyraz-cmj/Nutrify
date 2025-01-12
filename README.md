@@ -1,7 +1,7 @@
 # Nutrify - Food Nutrition Analysis App 🥗
 
 <p align="center">
-  <img src="assets/logo/readme.png" width="200" alt="Nutrify Logo">
+  <img src="assets\readme.png" width="200" alt="Nutrify Logo">
 </p>
 
 Nutrify is a modern Flutter application that helps users make informed food choices by providing detailed nutritional analysis of food products through barcode scanning. Using the Nutri-Score system, it evaluates and grades products from A to E based on their nutritional quality.
@@ -10,7 +10,7 @@ Nutrify is a modern Flutter application that helps users make informed food choi
 
 <div align="center">
   
-[![Nutrify Demo](https://img.youtube.com/vi/sj1hk2sSqSs/0.jpg)](https://www.youtube.com/embed/sj1hk2sSqSs "Watch Nutrify Demo")
+[![Nutrify Demo](https://img.youtube.com/vi/sj1hk2sSqSs/0.jpg)](https://www.youtube.com/embed/sj1hk2sSqSs?autoplay=1&mute=1 "Watch Nutrify Demo")
 
 </div>
 
