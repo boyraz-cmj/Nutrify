@@ -189,19 +189,19 @@ class ProductDetailScreen extends ConsumerWidget {
         ),
       ),
       body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             // Product Header
             Container(
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
                     _cleanProductName(
                       product['productName'] as String? ?? '',
                       product['brandName'] as String? ?? '',
@@ -222,8 +222,8 @@ class ProductDetailScreen extends ConsumerWidget {
                                   fontSize: 16,
                                 ),
                       ),
-              ),
-              const SizedBox(height: 16),
+                    ),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Container(
@@ -310,9 +310,9 @@ class ProductDetailScreen extends ConsumerWidget {
                             color: Colors.grey[600],
                             fontSize: 13,
                           ),
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 16),
                     ...positiveNutrients.map((nutrient) => _buildNutrientRow(
                           icon: nutrient['icon'] as IconData,
@@ -331,9 +331,9 @@ class ProductDetailScreen extends ConsumerWidget {
             if (negativeNutrients.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -345,7 +345,7 @@ class ProductDetailScreen extends ConsumerWidget {
                                     fontSize: 17,
                                   ),
                         ),
-                            Text(
+                        Text(
                           'per 100 g',
                           style: TextStyle(
                             color: Colors.grey[600],
@@ -374,8 +374,8 @@ class ProductDetailScreen extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
                       'Allergens',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -422,12 +422,12 @@ class ProductDetailScreen extends ConsumerWidget {
             const SizedBox(height: 24),
 
             // Dietary Information Section
-                            if (dietaryInfo.isNotEmpty)
+            if (dietaryInfo.isNotEmpty)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
                       'Dietary Information',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -479,7 +479,7 @@ class ProductDetailScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                  Text(
+                Text(
                   title,
                   style: const TextStyle(
                     fontSize: 15,
@@ -497,9 +497,9 @@ class ProductDetailScreen extends ConsumerWidget {
             ),
           ),
           if (value.isNotEmpty) ...[
-          Text(
-            value,
-            style: const TextStyle(
+            Text(
+              value,
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
