@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 class ProductScore {
   final double totalScore;
   final double nutritionScore;
   final double allergenScore;
   final String healthStatus;
-  final String colorCode;
-  final String nutriscore; // A, B, C, D, or E
+  final Color colorCode;
+  final String nutriscore;
 
   const ProductScore({
     required this.totalScore,
@@ -16,26 +18,18 @@ class ProductScore {
   });
 
   static String getHealthStatus(double score) {
-    if (score <= -1) return 'Mükemmel';
-    if (score <= 2) return 'Çok İyi';
-    if (score <= 10) return 'İyi';
-    if (score <= 18) return 'Orta';
-    return 'Kötü';
+    if (score >= 80) return 'Excellent';
+    if (score >= 60) return 'Good';
+    if (score >= 40) return 'Average';
+    if (score >= 20) return 'Poor';
+    return 'Bad';
   }
 
-  static String getColorCode(double score) {
-    if (score <= -1) return '#00823F'; // Koyu Yeşil
-    if (score <= 2) return '#85BB2F'; // Açık Yeşil
-    if (score <= 10) return '#FECB02'; // Sarı
-    if (score <= 18) return '#EF8200'; // Turuncu
-    return '#E63E11'; // Kırmızı
-  }
-
-  static String getNutriScore(double score) {
-    if (score <= -1) return 'A';
-    if (score <= 2) return 'B';
-    if (score <= 10) return 'C';
-    if (score <= 18) return 'D';
-    return 'E';
+  static Color getColorCode(double score) {
+    if (score >= 80) return const Color(0xFF1E8F4E); // Dark green
+    if (score >= 60) return const Color(0xFF85BB2F); // Light green
+    if (score >= 40) return const Color(0xFFFECB02); // Yellow
+    if (score >= 20) return const Color(0xFFF39A1A); // Orange
+    return const Color(0xFFE63E11); // Red
   }
 }

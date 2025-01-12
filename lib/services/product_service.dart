@@ -16,7 +16,8 @@ class ProductService {
       return null;
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
-        throw Exception('Firebase erişim izni hatası: Lütfen güvenlik kurallarını kontrol edin');
+        throw Exception(
+            'Firebase erişim izni hatası: Lütfen güvenlik kurallarını kontrol edin');
       }
       throw Exception('Firebase hatası: ${e.message}');
     } catch (e) {
@@ -24,7 +25,8 @@ class ProductService {
     }
   }
 
-  Future<void> saveProduct(String barcode, Map<String, dynamic> productData) async {
+  Future<void> saveProduct(
+      String barcode, Map<String, dynamic> productData) async {
     try {
       final now = DateTime.now();
       await _firestore.collection('products').doc(barcode).set({
@@ -34,7 +36,8 @@ class ProductService {
       });
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
-        throw Exception('Firebase erişim izni hatası: Lütfen güvenlik kurallarını kontrol edin');
+        throw Exception(
+            'Firebase erişim izni hatası: Lütfen güvenlik kurallarını kontrol edin');
       }
       throw Exception('Firebase hatası: ${e.message}');
     } catch (e) {
