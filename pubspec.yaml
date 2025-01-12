@@ -102,9 +102,9 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
   assets:
+    - assets/
     - assets/logo/
     - assets/screenshots/
-    - assets/
 
 flutter_launcher_icons:
   android: true
