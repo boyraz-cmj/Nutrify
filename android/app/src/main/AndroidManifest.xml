@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     
     <application
-        android:label="ingrediapp"
+        android:label="Nutrify"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

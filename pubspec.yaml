@@ -1,5 +1,5 @@
 name: ingrediapp
-description: "A new Flutter project."
+description: "Nutrify - Food Nutrition Analysis App"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -57,6 +57,7 @@ dev_dependencies:
   freezed: ^2.4.6
   riverpod_generator: ^2.3.9
   json_serializable: ^6.7.1
+  flutter_launcher_icons: ^0.13.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -99,3 +100,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  assets:
+    - assets/logo/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#ffffff" # Opsiyonel: beyaz arka plan
+  adaptive_icon_foreground: "assets/logo/logo.png" # Android için önemli
